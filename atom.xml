@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Jhao Cheng</title>
-  <subtitle>來自馬祖的前端工程師</subtitle>
+  <title>來自馬祖的前端工程師</title>
+  <subtitle>Jhao Cheng Wu</subtitle>
   <link href="/Blog/atom.xml" rel="self"/>
   
   <link href="http://swarchen.github.io/Blog/"/>
-  <updated>2016-09-21T17:28:05.000Z</updated>
+  <updated>2016-09-21T17:42:29.000Z</updated>
   <id>http://swarchen.github.io/Blog/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-的使用/</id>
     <published>2016-09-21T16:53:50.000Z</published>
-    <updated>2016-09-21T17:28:05.000Z</updated>
+    <updated>2016-09-21T17:42:29.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="標題們"><a href="#標題們" class="headerlink" title="標題們"></a>標題們</h1><blockquote>
 <h1 id="h1-title"><a href="#h1-title" class="headerlink" title="# h1 title"></a># h1 title</h1><h2 id="h2-title"><a href="#h2-title" class="headerlink" title="## h2 title"></a>## h2 title</h2></blockquote>
@@ -66,6 +66,26 @@
 <h1 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h1><blockquote>
 <p>```javascript<br>&nbsp;&nbsp;function fancyAlert(arg) {<br>&nbsp;&nbsp;&nbsp;&nbsp;if(arg) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$.facebox({div:&#39;#foo&#39;})<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;}<br>```
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fancyAlert</span>(<span class="params">arg</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span>(arg) &#123;</div><div class="line">    $.facebox(&#123;<span class="attr">div</span>:<span class="string">'#foo'</span>&#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h1 id="標籤們"><a href="#標籤們" class="headerlink" title="標籤們"></a>標籤們</h1><div class="alert danger no-icon"><p>Here is a danger alert without icon</p>
+</div>
+<div class="alert info no-icon"><p>Here is a danger alert without icon</p>
+</div>
+<div class="alert success"><p>Here is a info alert with icon</p>
+</div>
+<div class="alert warning"><p>Here is a warning alert with icon</p>
+</div>
+<h1 id="高光"><a href="#高光" class="headerlink" title="高光"></a>高光</h1><span class="highlight-text danger">your highlighted text</span>
+<blockquote>
+<ul>
+<li>Class<ul>
+<li>red</li>
+<li>green</li>
+<li>blue</li>
+<li>yellow</li>
+</ul>
+</li>
+</ul>
 </blockquote>
 ]]></content>
     
