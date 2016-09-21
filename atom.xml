@@ -5,7 +5,7 @@
   <link href="/Blog/atom.xml" rel="self"/>
   
   <link href="http://swarchen.github.io/Blog/"/>
-  <updated>2016-09-21T16:56:08.000Z</updated>
+  <updated>2016-09-21T17:28:05.000Z</updated>
   <id>http://swarchen.github.io/Blog/</id>
   
   <author>
@@ -20,20 +20,74 @@
     <link href="http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-的使用/</id>
     <published>2016-09-21T16:53:50.000Z</published>
-    <updated>2016-09-21T16:56:08.000Z</updated>
+    <updated>2016-09-21T17:28:05.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="This-is-an-tag"><a href="#This-is-an-tag" class="headerlink" title="This is an  tag"></a>This is an <h1> tag</h1><h2 id="This-is-an-tag-1"><a href="#This-is-an-tag-1" class="headerlink" title="This is an  tag"></a>This is an <h2> tag</h2><h6 id="This-is-an-tag-2"><a href="#This-is-an-tag-2" class="headerlink" title="This is an  tag"></a>This is an <h6> tag</h6></h6></h2></h1>]]></content>
+    <content type="html"><![CDATA[<h1 id="標題們"><a href="#標題們" class="headerlink" title="標題們"></a>標題們</h1><blockquote>
+<h1 id="h1-title"><a href="#h1-title" class="headerlink" title="# h1 title"></a># h1 title</h1><h2 id="h2-title"><a href="#h2-title" class="headerlink" title="## h2 title"></a>## h2 title</h2></blockquote>
+<h1 id="強調"><a href="#強調" class="headerlink" title="強調"></a>強調</h1><blockquote>
+<p>* <em>italic</em> *</p>
+<p> ** <strong>Bold</strong> **</p>
+</blockquote>
+<h1 id="清單"><a href="#清單" class="headerlink" title="清單"></a>清單</h1><h2 id="無編號"><a href="#無編號" class="headerlink" title="無編號"></a>無編號</h2><blockquote>
+<ul>
+<li>* Item1</li>
+<li>* Item2<ul>
+<li>* Item2a</li>
+<li>* Item2b</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="有編號"><a href="#有編號" class="headerlink" title="有編號"></a>有編號</h2><blockquote>
+<ol>
+<li><ol>
+<li>Item1</li>
+</ol>
+</li>
+<li><ol>
+<li>Item2</li>
+<li>* Item2a</li>
+<li>* Item2b</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h1 id="圖片"><a href="#圖片" class="headerlink" title="圖片"></a>圖片</h1><blockquote>
+<p>![Markdown](<a href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png\" target="_blank" rel="external">https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png\</a>)</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png" alt="Markdown"></p>
+</blockquote>
+<h1 id="連結"><a href="#連結" class="headerlink" title="連結"></a>連結</h1><blockquote>
+<p>[Jhaocheng&#39;s GitHub](<a href="http://github.com/swarchen" target="_blank" rel="external">http://github.com/swarchen</a>)</p>
+<p><a href="http://github.com/swarchen" target="_blank" rel="external">Jhaocheng&#39;s GitHub</a></p>
+</blockquote>
+<h1 id="文字區塊"><a href="#文字區塊" class="headerlink" title="文字區塊"></a>文字區塊</h1><blockquote>
+<p>> text</p>
+</blockquote>
+<h1 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h1><blockquote>
+<p>```javascript<br>&nbsp;&nbsp;function fancyAlert(arg) {<br>&nbsp;&nbsp;&nbsp;&nbsp;if(arg) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$.facebox({div:&#39;#foo&#39;})<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;}<br>```
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fancyAlert</span>(<span class="params">arg</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span>(arg) &#123;</div><div class="line">    $.facebox(&#123;<span class="attr">div</span>:<span class="string">'#foo'</span>&#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;This-is-an-tag&quot;&gt;&lt;a href=&quot;#This-is-an-tag&quot; class=&quot;headerlink&quot; title=&quot;This is an  tag&quot;&gt;&lt;/a&gt;This is an &lt;h1&gt; tag&lt;/h1&gt;&lt;h2 id=&quot;This-is-an-
+      &lt;h1 id=&quot;標題們&quot;&gt;&lt;a href=&quot;#標題們&quot; class=&quot;headerlink&quot; title=&quot;標題們&quot;&gt;&lt;/a&gt;標題們&lt;/h1&gt;&lt;blockquote&gt;
+&lt;h1 id=&quot;h1-title&quot;&gt;&lt;a href=&quot;#h1-title&quot; class=&quot;headerlink&quot;
     
     </summary>
     
       <category term="writing" scheme="http://swarchen.github.io/Blog/categories/writing/"/>
     
     
-      <category term="Markdown Blog Writing 部落格 寫作" scheme="http://swarchen.github.io/Blog/tags/Markdown-Blog-Writing-%E9%83%A8%E8%90%BD%E6%A0%BC-%E5%AF%AB%E4%BD%9C/"/>
+      <category term="Markdown" scheme="http://swarchen.github.io/Blog/tags/Markdown/"/>
+    
+      <category term="Blog" scheme="http://swarchen.github.io/Blog/tags/Blog/"/>
+    
+      <category term="Writing" scheme="http://swarchen.github.io/Blog/tags/Writing/"/>
+    
+      <category term="部落格" scheme="http://swarchen.github.io/Blog/tags/%E9%83%A8%E8%90%BD%E6%A0%BC/"/>
+    
+      <category term="寫作" scheme="http://swarchen.github.io/Blog/tags/%E5%AF%AB%E4%BD%9C/"/>
     
   </entry>
   
