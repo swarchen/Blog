@@ -6,27 +6,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="來自馬祖的前端工程師">
-    <title>Hexo Markdown 的使用 - 來自馬祖的前端工程師</title>
+    <title>javascript - This - 來自馬祖的前端工程師</title>
     <meta name="author" content="Jhao Cheng Wu">
     
-        <meta name="keywords" content="Markdown,hexo">
+        <meta name="keywords" content="javascript">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/Blog/atom.xml">
     
-    <meta name="description" content="一些常用的 Markdown 整理，方便之後寫作快速查詢。">
+    <meta name="description" content="Kyle Simpson 在Frontend masters 的 javascript workshop">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Hexo Markdown 的使用">
-<meta property="og:url" content="http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-的使用/index.html">
+<meta property="og:title" content="javascript - This">
+<meta property="og:url" content="http://swarchen.github.io/Blog/2016/09/22/this/index.html">
 <meta property="og:site_name" content="來自馬祖的前端工程師">
-<meta property="og:description" content="一些常用的 Markdown 整理，方便之後寫作快速查詢。">
-<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png">
-<meta property="og:updated_time" content="2016-09-22T11:15:00.000Z">
+<meta property="og:description" content="Kyle Simpson 在Frontend masters 的 javascript workshop">
+<meta property="og:updated_time" content="2016-09-22T14:17:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo Markdown 的使用">
-<meta name="twitter:description" content="一些常用的 Markdown 整理，方便之後寫作快速查詢。">
-<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png">
+<meta name="twitter:title" content="javascript - This">
+<meta name="twitter:description" content="Kyle Simpson 在Frontend masters 的 javascript workshop">
     
     
         
@@ -35,8 +33,8 @@
         <meta property="og:image" content="http://swarchen.github.io/Blog/assets/images/profile.jpg"/>
     
     
-        <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png"/>
-        <meta class="swiftype" name="image" data-type="enum" content="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png" />
+        <meta property="og:image" content="http://i.imgur.com/KCLhCVI.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://i.imgur.com/KCLhCVI.png" />
     
     
     
@@ -191,11 +189,11 @@
         <div class="post-header main-content-wrap text-center">
     
         <h1 class="post-title" itemprop="headline">
-            Hexo Markdown 的使用
+            javascript - This
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" datetime="2016-09-22T00:53:50+08:00">
+    <time itemprop="datePublished" datetime="2016-09-22T20:45:10+08:00">
 	
 		    9月 22, 2016
     	
@@ -203,7 +201,7 @@
     
         <span>分類 </span>
         
-    <a class="category-link" href="/Blog/categories/writing/">writing</a>
+    <a class="category-link" href="/Blog/categories/javascript/">javascript</a>
 
 
     
@@ -213,70 +211,60 @@
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <h1 id="標題們"><a href="#標題們" class="headerlink" title="標題們"></a>標題們</h1><blockquote>
-<h1 id="h1-title"><a href="#h1-title" class="headerlink" title="# h1 title"></a># h1 title</h1><h2 id="h2-title"><a href="#h2-title" class="headerlink" title="## h2 title"></a>## h2 title</h2><a id="more"></a>
-<h1 id="強調"><a href="#強調" class="headerlink" title="強調"></a>強調</h1><p>* <em>italic</em> *</p>
-<p> ** <strong>Bold</strong> **</p>
-</blockquote>
-<h1 id="清單"><a href="#清單" class="headerlink" title="清單"></a>清單</h1><h2 id="無編號"><a href="#無編號" class="headerlink" title="無編號"></a>無編號</h2><blockquote>
-<ul>
-<li>* Item1</li>
-<li>* Item2<ul>
-<li>* Item2a</li>
-<li>* Item2b</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h2 id="有編號"><a href="#有編號" class="headerlink" title="有編號"></a>有編號</h2><blockquote>
+            <p>this有四種綁定的方式</p>
+<p>主要是以callsite發生的時機來決定</p>
+<p>callsite就是()被執行的位置</p>
+<h3 id="1-Default-binding-rule"><a href="#1-Default-binding-rule" class="headerlink" title="1. Default binding rule"></a>1. Default binding rule</h3><p>如果是在 strict mode ， this 指向的是 undefined</p>
+<p>若不是 strict mode ， this 指向的事 global object</p>
+<a id="more"></a>
+<h3 id="2-Implicit-biding-rule"><a href="#2-Implicit-biding-rule" class="headerlink" title="2. Implicit biding rule"></a>2. Implicit biding rule</h3><p>在javascript中所有物件都是reference from object 或者 function</p>
+<p>如下面的例子</p>
+<p>foo,o2.foo,o3.foo都是reference from 第一行定義的 function foo </p>
+<p>o2.foo(),o3.foo()的callsite</p>
+<p>所以this keyword 就是指向 o2,o3</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.bar)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="string">"bar1"</span>;</div><div class="line"><span class="keyword">var</span> o2 = &#123; <span class="attr">bar</span>: <span class="string">"bar2"</span>, <span class="attr">foo</span>: foo &#125;;</div><div class="line"><span class="keyword">var</span> o3 = &#123; <span class="attr">bar</span>: <span class="string">"bar3"</span>, <span class="attr">foo</span>: foo &#125;;</div><div class="line"></div><div class="line">foo(); <span class="comment">//"bar1"</span></div><div class="line">o2.foo(); <span class="comment">// "bar2"</span></div><div class="line">o3.foo(); <span class="comment">// "bar3"</span></div></pre></td></tr></table></figure>
+<p>從下面的例子可以更清楚地看到</p>
+<p>不論原本的 function 是在哪邊被定義的</p>
+<p>在執行的時候都是reference 而不是擁有那個function</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o1 = &#123;</div><div class="line">	<span class="attr">bar</span>: <span class="string">"bar1"</span>,</div><div class="line">	<span class="attr">foo</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.bar)</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> o2 = &#123; <span class="attr">bar</span>: <span class="string">"bar2"</span>, <span class="attr">foo</span>: o1.foo &#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="string">"bar3"</span>;</div><div class="line"><span class="keyword">var</span> foo = o1.foo;</div><div class="line"></div><div class="line">o1.foo(); <span class="comment">// "bar1"</span></div><div class="line">o2.foo(); <span class="comment">// "bar2"</span></div><div class="line">foo();  <span class="comment">// "bar3"</span></div></pre></td></tr></table></figure>
+<h4 id="binding-confusion"><a href="#binding-confusion" class="headerlink" title="binding confusion"></a>binding confusion</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> bar = <span class="string">"bar1"</span>;</div><div class="line">	<span class="keyword">this</span>.baz = baz;</div><div class="line">	<span class="keyword">this</span>.baz();</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.bar);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="string">"bar2"</span>;</div><div class="line">foo();</div></pre></td></tr></table></figure>
+<p>第十一行的 foo 的 callsite 是在 global scope底下</p>
+<p>所以 reference function 中的 this 指向的是 global object</p>
+<p>也就是第三行的 this.baz = baz; 等同於 global.baz = baz;</p>
+<p>但在 global scope底下 已經有了第六行定義的 baz function</p>
+<p>感覺上就是做了一個 a = a 的沒意義的操作</p>
+<p>第四行的 this.baz() 的callstie 執行時 因為前面有 this object</p>
+<p>所以 implicit binding rull apply</p>
+<p>reference 的 baz function 中的 this 指向的是 this object 也就是 global object</p>
+<p>因此執行的結果就會是 console.log(global.bar) 在瀏覽器中就是 console.log(window.bar)</p>
+<h3 id="3-Explicit-binding-rule"><a href="#3-Explicit-binding-rule" class="headerlink" title="3. Explicit binding rule"></a>3. Explicit binding rule</h3><p>Explicit binding 就是當我們使用 .call 或者 .apply 去做function 的執行的時候</p>
+<p>就明確指定了傳入的obj 為this</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.bar);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="string">"bar1"</span>;</div><div class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">bar</span>: <span class="string">"bar2"</span> &#125;;</div><div class="line"></div><div class="line">foo(); <span class="comment">// "bar1"</span></div><div class="line">foo.call(obj); <span class="comment">// "bar2"</span></div></pre></td></tr></table></figure>
+<p>javascript 也提供了一個bind的 function</p>
+<p>讓 Explicit binding變成hard binding</p>
+<p>在hard binding之後的function中</p>
+<p>this的值就已經無法被改變</p>
+<p>結果就像下面這樣</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.bar);</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo2 = foo.bind(obj);</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="string">"bar1"</span>;</div><div class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">bar</span>: <span class="string">"bar2"</span> &#125;;</div><div class="line"></div><div class="line">foo(); <span class="comment">// "bar1"</span></div><div class="line">foo.call(obj); <span class="comment">// "bar2"</span></div><div class="line">foo2(); <span class="comment">// "bar2"</span></div><div class="line">foo2(<span class="string">"I want another string QQ"</span>); <span class="comment">// "bar2"</span></div></pre></td></tr></table></figure>
+<h3 id="4-New-keyword"><a href="#4-New-keyword" class="headerlink" title="4. New keyword"></a>4. New keyword</h3><p>在任何的function 之前加上new</p>
+<p>會讓function call 變成 construction call</p>
+<p>過程是這樣的</p>
 <ol>
-<li><ol>
-<li>Item1</li>
+<li>產生一個全新的object</li>
+<li>這個全新的object和先前的object完全無關</li>
+<li>object的this指向自己</li>
+<li>最後會自動return this</li>
 </ol>
-</li>
-<li><ol>
-<li>Item2</li>
-<li>* Item2a</li>
-<li>* Item2b</li>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">this</span>.baz = <span class="string">"baz"</span>;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.bar + <span class="string">" "</span> + baz);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="string">"bar"</span>;</div><div class="line"><span class="keyword">var</span> baz = <span class="keyword">new</span> foo(); <span class="comment">// undefined undefined</span></div></pre></td></tr></table></figure>
+<h2 id="4種binding方式的優先順序"><a href="#4種binding方式的優先順序" class="headerlink" title="4種binding方式的優先順序"></a>4種binding方式的優先順序</h2><ol>
+<li>Was the function called with <code>new</code>?</li>
+<li>Was the function called with <code>call</code> or <code>apply</code> specifying an explicit this?</li>
+<li>Was the function valled via a containing/owning object (context)?</li>
+<li>DEFAULT: global object(except strict mode)</li>
 </ol>
-</li>
-</ol>
-</blockquote>
-<h1 id="圖片"><a href="#圖片" class="headerlink" title="圖片"></a>圖片</h1><blockquote>
-<p>![Markdown](<a href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png\" target="_blank" rel="external">https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png\</a>)</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png" alt="Markdown"></p>
-</blockquote>
-<h1 id="連結"><a href="#連結" class="headerlink" title="連結"></a>連結</h1><blockquote>
-<p>[Jhaocheng&#39;s GitHub](<a href="http://github.com/swarchen" target="_blank" rel="external">http://github.com/swarchen</a>)</p>
-<p><a href="http://github.com/swarchen" target="_blank" rel="external">Jhaocheng&#39;s GitHub</a></p>
-</blockquote>
-<h1 id="文字區塊"><a href="#文字區塊" class="headerlink" title="文字區塊"></a>文字區塊</h1><blockquote>
-<p>> text</p>
-</blockquote>
-<h1 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h1><blockquote>
-<p>```javascript<br>&nbsp;&nbsp;function fancyAlert(arg) {<br>&nbsp;&nbsp;&nbsp;&nbsp;if(arg) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$.facebox({div:&#39;#foo&#39;})<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;}<br>```
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fancyAlert</span>(<span class="params">arg</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span>(arg) &#123;</div><div class="line">    $.facebox(&#123;<span class="attr">div</span>:<span class="string">'#foo'</span>&#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h1 id="標籤們"><a href="#標籤們" class="headerlink" title="標籤們"></a>標籤們</h1><div class="alert danger no-icon"><p>Here is a danger alert without icon</p>
-</div>
-<div class="alert info no-icon"><p>Here is a danger alert without icon</p>
-</div>
-<div class="alert success"><p>Here is a info alert with icon</p>
-</div>
-<div class="alert warning"><p>Here is a warning alert with icon</p>
-</div>
-<h1 id="高光"><a href="#高光" class="headerlink" title="高光"></a>高光</h1><span class="highlight-text danger">your highlighted text</span>
-<blockquote>
-<ul>
-<li>Class<ul>
-<li>red</li>
-<li>green</li>
-<li>blue</li>
-<li>yellow</li>
-</ul>
-</li>
-</ul>
-</blockquote>
+<p>Ref:</p>
+<p><a href="https://frontendmasters.com/courses/advanced-javascript" target="_blank" rel="external">frontendmasters advanced-javascript</a></p>
+<p><a href="https://github.com/getify/You-Dont-Know-JS" target="_blank" rel="external">You-Dont-Know-JS</a></p>
 
             
         </div>
@@ -286,7 +274,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">標籤</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/Blog/tags/Blog/">Blog</a> <a class="tag tag--primary tag--small t-link" href="/Blog/tags/Markdown/">Markdown</a> <a class="tag tag--primary tag--small t-link" href="/Blog/tags/Writing/">Writing</a> <a class="tag tag--primary tag--small t-link" href="/Blog/tags/寫作/">寫作</a> <a class="tag tag--primary tag--small t-link" href="/Blog/tags/部落格/">部落格</a>
+    <a class="tag tag--primary tag--small t-link" href="/Blog/tags/javascript/">javascript</a> <a class="tag tag--primary tag--small t-link" href="/Blog/tags/this/">this</a>
 
             </div>
         
@@ -295,7 +283,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/22/javascript-的Scope-Compiler/"  data-tooltip="javascript - Scope">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -303,7 +291,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/22/hoisting/" data-tooltip="javascript - Hoisting">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -318,17 +306,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/Blog/2016/09/22/this/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/Blog/2016/09/22/this/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/Blog/2016/09/22/this/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -376,7 +364,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/22/javascript-的Scope-Compiler/"  data-tooltip="javascript - Scope">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -384,7 +372,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/22/hoisting/" data-tooltip="javascript - Hoisting">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -399,17 +387,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/Blog/2016/09/22/this/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/Blog/2016/09/22/this/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/Blog/2016/09/22/this/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -435,17 +423,17 @@
                 <div id="share-options-bar" class="share-options-bar" data-behavior="4">
     <ul class="share-options">
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/Blog/2016/09/22/this/">
                 <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/Blog/2016/09/22/this/">
                 <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/Blog/2016/09/22/this/">
                 <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
             </a>
         </li>
@@ -647,9 +635,9 @@
     
         <script>
              var disqus_config = function () {
-                 this.page.url = 'http://swarchen.github.io/Blog/Blog/2016/09/22/Hexo-Markdown-的使用/';
+                 this.page.url = 'http://swarchen.github.io/Blog/Blog/2016/09/22/this/';
                  
-                    this.page.identifier = '2016/09/22/Hexo-Markdown-的使用/';
+                    this.page.identifier = '2016/09/22/this/';
                  
              };
             (function() {

@@ -5,7 +5,7 @@
   <link href="/Blog/atom.xml" rel="self"/>
   
   <link href="http://swarchen.github.io/Blog/"/>
-  <updated>2016-09-21T18:16:56.000Z</updated>
+  <updated>2016-09-22T14:17:52.000Z</updated>
   <id>http://swarchen.github.io/Blog/</id>
   
   <author>
@@ -16,16 +16,219 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>javascript - This</title>
+    <link href="http://swarchen.github.io/Blog/2016/09/22/this/"/>
+    <id>http://swarchen.github.io/Blog/2016/09/22/this/</id>
+    <published>2016-09-22T12:45:10.000Z</published>
+    <updated>2016-09-22T14:17:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>this有四種綁定的方式</p>
+<p>主要是以callsite發生的時機來決定</p>
+<p>callsite就是()被執行的位置</p>
+<h3 id="1-Default-binding-rule"><a href="#1-Default-binding-rule" class="headerlink" title="1. Default binding rule"></a>1. Default binding rule</h3><p>如果是在 strict mode ， this 指向的是 undefined</p>
+<p>若不是 strict mode ， this 指向的事 global object</p>
+<a id="more"></a>
+<h3 id="2-Implicit-biding-rule"><a href="#2-Implicit-biding-rule" class="headerlink" title="2. Implicit biding rule"></a>2. Implicit biding rule</h3><p>在javascript中所有物件都是reference from object 或者 function</p>
+<p>如下面的例子</p>
+<p>foo,o2.foo,o3.foo都是reference from 第一行定義的 function foo </p>
+<p>o2.foo(),o3.foo()的callsite</p>
+<p>所以this keyword 就是指向 o2,o3</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.bar)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="string">"bar1"</span>;</div><div class="line"><span class="keyword">var</span> o2 = &#123; <span class="attr">bar</span>: <span class="string">"bar2"</span>, <span class="attr">foo</span>: foo &#125;;</div><div class="line"><span class="keyword">var</span> o3 = &#123; <span class="attr">bar</span>: <span class="string">"bar3"</span>, <span class="attr">foo</span>: foo &#125;;</div><div class="line"></div><div class="line">foo(); <span class="comment">//"bar1"</span></div><div class="line">o2.foo(); <span class="comment">// "bar2"</span></div><div class="line">o3.foo(); <span class="comment">// "bar3"</span></div></pre></td></tr></table></figure>
+<p>從下面的例子可以更清楚地看到</p>
+<p>不論原本的 function 是在哪邊被定義的</p>
+<p>在執行的時候都是reference 而不是擁有那個function</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o1 = &#123;</div><div class="line">	<span class="attr">bar</span>: <span class="string">"bar1"</span>,</div><div class="line">	<span class="attr">foo</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.bar)</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> o2 = &#123; <span class="attr">bar</span>: <span class="string">"bar2"</span>, <span class="attr">foo</span>: o1.foo &#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="string">"bar3"</span>;</div><div class="line"><span class="keyword">var</span> foo = o1.foo;</div><div class="line"></div><div class="line">o1.foo(); <span class="comment">// "bar1"</span></div><div class="line">o2.foo(); <span class="comment">// "bar2"</span></div><div class="line">foo();  <span class="comment">// "bar3"</span></div></pre></td></tr></table></figure>
+<h4 id="binding-confusion"><a href="#binding-confusion" class="headerlink" title="binding confusion"></a>binding confusion</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> bar = <span class="string">"bar1"</span>;</div><div class="line">	<span class="keyword">this</span>.baz = baz;</div><div class="line">	<span class="keyword">this</span>.baz();</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.bar);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="string">"bar2"</span>;</div><div class="line">foo();</div></pre></td></tr></table></figure>
+<p>第十一行的 foo 的 callsite 是在 global scope底下</p>
+<p>所以 reference function 中的 this 指向的是 global object</p>
+<p>也就是第三行的 this.baz = baz; 等同於 global.baz = baz;</p>
+<p>但在 global scope底下 已經有了第六行定義的 baz function</p>
+<p>感覺上就是做了一個 a = a 的沒意義的操作</p>
+<p>第四行的 this.baz() 的callstie 執行時 因為前面有 this object</p>
+<p>所以 implicit binding rull apply</p>
+<p>reference 的 baz function 中的 this 指向的是 this object 也就是 global object</p>
+<p>因此執行的結果就會是 console.log(global.bar) 在瀏覽器中就是 console.log(window.bar)</p>
+<h3 id="3-Explicit-binding-rule"><a href="#3-Explicit-binding-rule" class="headerlink" title="3. Explicit binding rule"></a>3. Explicit binding rule</h3><p>Explicit binding 就是當我們使用 .call 或者 .apply 去做function 的執行的時候</p>
+<p>就明確指定了傳入的obj 為this</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.bar);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="string">"bar1"</span>;</div><div class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">bar</span>: <span class="string">"bar2"</span> &#125;;</div><div class="line"></div><div class="line">foo(); <span class="comment">// "bar1"</span></div><div class="line">foo.call(obj); <span class="comment">// "bar2"</span></div></pre></td></tr></table></figure>
+<p>javascript 也提供了一個bind的 function</p>
+<p>讓 Explicit binding變成hard binding</p>
+<p>在hard binding之後的function中</p>
+<p>this的值就已經無法被改變</p>
+<p>結果就像下面這樣</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.bar);</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo2 = foo.bind(obj);</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="string">"bar1"</span>;</div><div class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">bar</span>: <span class="string">"bar2"</span> &#125;;</div><div class="line"></div><div class="line">foo(); <span class="comment">// "bar1"</span></div><div class="line">foo.call(obj); <span class="comment">// "bar2"</span></div><div class="line">foo2(); <span class="comment">// "bar2"</span></div><div class="line">foo2(<span class="string">"I want another string QQ"</span>); <span class="comment">// "bar2"</span></div></pre></td></tr></table></figure>
+<h3 id="4-New-keyword"><a href="#4-New-keyword" class="headerlink" title="4. New keyword"></a>4. New keyword</h3><p>在任何的function 之前加上new</p>
+<p>會讓function call 變成 construction call</p>
+<p>過程是這樣的</p>
+<ol>
+<li>產生一個全新的object</li>
+<li>這個全新的object和先前的object完全無關</li>
+<li>object的this指向自己</li>
+<li>最後會自動return this</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">this</span>.baz = <span class="string">"baz"</span>;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.bar + <span class="string">" "</span> + baz);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="string">"bar"</span>;</div><div class="line"><span class="keyword">var</span> baz = <span class="keyword">new</span> foo(); <span class="comment">// undefined undefined</span></div></pre></td></tr></table></figure>
+<h2 id="4種binding方式的優先順序"><a href="#4種binding方式的優先順序" class="headerlink" title="4種binding方式的優先順序"></a>4種binding方式的優先順序</h2><ol>
+<li>Was the function called with <code>new</code>?</li>
+<li>Was the function called with <code>call</code> or <code>apply</code> specifying an explicit this?</li>
+<li>Was the function valled via a containing/owning object (context)?</li>
+<li>DEFAULT: global object(except strict mode)</li>
+</ol>
+<p>Ref:</p>
+<p><a href="https://frontendmasters.com/courses/advanced-javascript" target="_blank" rel="external">frontendmasters advanced-javascript</a></p>
+<p><a href="https://github.com/getify/You-Dont-Know-JS" target="_blank" rel="external">You-Dont-Know-JS</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      Kyle Simpson 在Frontend masters 的 javascript workshop
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://swarchen.github.io/Blog/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://swarchen.github.io/Blog/tags/javascript/"/>
+    
+      <category term="this" scheme="http://swarchen.github.io/Blog/tags/this/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>javascript - Hoisting</title>
+    <link href="http://swarchen.github.io/Blog/2016/09/22/hoisting/"/>
+    <id>http://swarchen.github.io/Blog/2016/09/22/hoisting/</id>
+    <published>2016-09-22T11:28:37.000Z</published>
+    <updated>2016-09-22T14:17:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>hoisting 是在javascript執行時的一個行為</p>
+<p>javascript會在編譯的過程先將所有宣告(declarations)的變數做reference</p>
+<a id="more"></a>
+<p>用下面的例子解釋</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">a;</div><div class="line">b;</div><div class="line"><span class="keyword">var</span> a = b;</div><div class="line"><span class="keyword">var</span> b = <span class="number">2</span>;</div><div class="line">b;</div><div class="line">a;</div></pre></td></tr></table></figure>
+<p>而hoisting則會讓執行的結果變成</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a;</div><div class="line"><span class="keyword">var</span> b;</div><div class="line">a;</div><div class="line">b;</div><div class="line">a = b;</div><div class="line">b = <span class="number">2</span>;</div><div class="line">b;</div><div class="line">a;</div></pre></td></tr></table></figure>
+<p>在執行的時候就會產生上述的結果</p>
+<p>而在function也會有同樣的行為</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = b();</div><div class="line"><span class="keyword">var</span> c = d(); <span class="comment">// d is not a function</span></div><div class="line">a;</div><div class="line">c;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> c;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> d = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// function expression</span></div><div class="line">	<span class="keyword">return</span> b();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>這裡 hoisting則會讓執行的結果變成</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> c;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> a;</div><div class="line"><span class="keyword">var</span> c;</div><div class="line"><span class="keyword">var</span> d;</div><div class="line"></div><div class="line">a = b();</div><div class="line">c = d(); <span class="comment">// d is not a function</span></div><div class="line">a;</div><div class="line">c;</div><div class="line"></div><div class="line">d = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> b();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<div class="alert info"><p>重複的 hoisting 會將前面的宣告覆蓋過去</p>
+</div>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">foo(); <span class="comment">// "foo"</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> foo = <span class="number">2</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"bar"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"foo"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Hoisting 在做 mutual recursion 的時候非常重要</p>
+<p>若沒有hoisting的話</p>
+<p>永遠都會有一個function太晚宣告而無法正確執行程式</p>
+<p>而hosting 讓下面的程式可以執行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">a(<span class="number">1</span>); <span class="comment">// 39</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">foo</span>) </span>&#123;</div><div class="line">	<span class="keyword">if</span> (foo &gt; <span class="number">20</span>) <span class="keyword">return</span> foo;</div><div class="line">	<span class="keyword">return</span> b(foo+<span class="number">2</span>);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params">foo</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> c(foo) + <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params">foo</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> a(foo*<span class="number">2</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<div class="alert info"><p>用 let 宣告的變數不會進行hoisting</p>
+</div>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">bar</span>) </span>&#123;</div><div class="line">	<span class="keyword">if</span> (bar) &#123;</div><div class="line">		<span class="built_in">console</span>.log(baz);</div><div class="line">		<span class="keyword">let</span> baz = bar;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo(<span class="string">"bar"</span>);</div></pre></td></tr></table></figure>
+<p>Ref:</p>
+<p><a href="https://frontendmasters.com/courses/advanced-javascript" target="_blank" rel="external">frontendmasters advanced-javascript</a></p>
+<p><a href="https://github.com/getify/You-Dont-Know-JS" target="_blank" rel="external">You-Dont-Know-JS</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      Kyle Simpson 在Frontend masters 的 javascript workshop
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://swarchen.github.io/Blog/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://swarchen.github.io/Blog/tags/javascript/"/>
+    
+      <category term="hoisting" scheme="http://swarchen.github.io/Blog/tags/hoisting/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>javascript - Scope</title>
+    <link href="http://swarchen.github.io/Blog/2016/09/22/javascript-%E7%9A%84Scope-Compiler/"/>
+    <id>http://swarchen.github.io/Blog/2016/09/22/javascript-的Scope-Compiler/</id>
+    <published>2016-09-22T04:20:07.000Z</published>
+    <updated>2016-09-22T14:17:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>透過下面的例子瞭解javascript是怎麼運作的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="string">"bar"</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> foo =<span class="string">"baz"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bax</span>(<span class="params">foo</span>)</span>&#123;</div><div class="line">	foo = <span class="string">"bam"</span>;</div><div class="line">	bam = <span class="string">"yay"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我原本的認知是第一行的code就是一次的宣告指令</p>
+<p>但其實可以透過另一種方式來看這段程式碼</p>
+<p>就是把自己當成naive top down compiler</p>
+<p>並把compile拆成宣告跟執行兩個步驟</p>
+<a id="more"></a>
+<div class="alert success no-icon"><p>編譯</p>
+</div>
+<blockquote>
+<ol>
+<li>第一行，嘿 Scope global ，我找到了一個叫做 foo 的 var 宣告</li>
+<li>第三行，嘿 Scope global ，我找到了一個叫做 bar 的 function 宣告</li>
+<li>第四行，嘿 Scope bar ，我找到了一個叫做 foo 的 var 宣告</li>
+<li>第七行，嘿 Scope blobal ，我找到了一個叫做 baz 的 function 宣告</li>
+<li>第七行的 foo ， 嘿 Scope baz ，我找到了一個叫做 foo 的 var 宣告</li>
+</ol>
+</blockquote>
+<div class="alert success no-icon"><p>執行</p>
+</div>  
+<blockquote>
+<ol>
+<li>第一行的 var 在執行階段已經不在，因為在 compile 階段已經宣告了 foo 成為一個 var，所以第一行在做的事情就是，向當前的 scope 去詢問，嘿 global scope，你有LHS reference 叫做foo的嗎？scope 會回應說有找到，並且直接將RHS assign 進LHS。<ul>
+<li>在 = 左邊為LHS 也就是target, 右邊為RHS 也就是source</li>
+<li>若 reference 不是 LHS，那就會是RHS</li>
+</ul>
+</li>
+<li>假設我們執行了 function bar，這時就會問，嘿 bar scope，你有LHS reference 叫作foo的嗎？scope 會回應說有找到，並且直接將RHS assign 進LHS。</li>
+<li>第七行，嘿， baz scope 你有LHS reference 叫作foo的嗎？scope 會回應說有找到，並且直接將RHS assign 進LHS。</li>
+<li>第九行，嘿， baz scope 你有LHS reference 叫作bam的嗎？這時scope 會回應說沒有，這時候就會往外一層scope去找，再問，嘿，global scope，你有LHS reference 叫作bam的嗎？ 若在 unstrict 模式下 global scope 會回應說，「有啊，我幫你創造了一個」，這時 bam就變成了一個global variable了。</li>
+</ol>
+</blockquote>
+<p>這邊稍微講一下 <span class="highlight-text red">undeclared</span>跟<span class="highlight-text red">undefined</span>的差別</p>
+<div class="alert info"><p>undeclared:沒在任何的scope底下被宣告 </p>
+</div>
+<div class="alert info"><p>undefined:已宣告的變數但沒有任何實際的值 </p>
+</div>
+<p>例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="string">"bar"</span>; <span class="comment">//global scope</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> foo = <span class="string">"baz"</span>; <span class="comment">// bar scope </span></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params">foo</span>) </span>&#123;</div><div class="line">		foo = <span class="string">"bam"</span>; <span class="comment">// baz scope</span></div><div class="line">		bam = <span class="string">"yay"</span>; <span class="comment">// global scope</span></div><div class="line">	&#125;</div><div class="line">	baz();</div><div class="line">&#125;</div><div class="line">bar(); <span class="comment">//</span></div><div class="line">foo;   <span class="comment">// "bar" RHS</span></div><div class="line">bam;   <span class="comment">// "yay" RHS</span></div><div class="line">baz(); <span class="comment">// ReferenceError RHS</span></div></pre></td></tr></table></figure>
+<p>在 LHS reference 沒被宣告的情況下，scope會自動幫你宣告</p>
+<p>但 RHS reference 沒被宣告則會觸發 ReferenceError</p>
+<h3 id="function-declaration"><a href="#function-declaration" class="headerlink" title="function declaration"></a>function declaration</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123; <span class="comment">// bar 是在global scope底下</span></div><div class="line">	<span class="keyword">var</span> foo = <span class="string">"baz"</span>;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params">foo</span>) </span>&#123;</div><div class="line">		foo = bar;</div><div class="line">		foo;</div><div class="line">	&#125;</div><div class="line">	baz();</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo(); <span class="comment">// undeclared</span></div><div class="line">bar();</div></pre></td></tr></table></figure>
+<h3 id="function-expressions"><a href="#function-expressions" class="headerlink" title="function expressions"></a>function expressions</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123; <span class="comment">// bar 是在自己的scope底下</span></div><div class="line">	<span class="keyword">var</span> foo = <span class="string">"baz"</span>;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params">foo</span>) </span>&#123;</div><div class="line">		foo = bar;</div><div class="line">		foo;</div><div class="line">	&#125;</div><div class="line">	baz();</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo();</div><div class="line">bar(); <span class="comment">// Error</span></div></pre></td></tr></table></figure>
+<h3 id="block-scope"><a href="#block-scope" class="headerlink" title="block scope"></a>block scope</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	foo.length;</div><div class="line">&#125;</div><div class="line"><span class="keyword">catch</span> (err) &#123; <span class="comment">// err in catch block scope</span></div><div class="line">	<span class="built_in">console</span>.log(err); <span class="comment">// typeError</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(err); <span class="comment">// ReferenceError</span></div></pre></td></tr></table></figure>
+<h3 id="IIFE-Immediately-invoked-function-expression"><a href="#IIFE-Immediately-invoked-function-expression" class="headerlink" title="IIFE (Immediately-invoked function expression)"></a>IIFE (Immediately-invoked function expression)</h3><p>可以避免global變數被我們寫的code所影響</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="string">"foo"</span>;</div><div class="line"></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">// 建立一個獨立的scope</span></div><div class="line">	<span class="keyword">var</span> foo = <span class="string">"foo2"</span>;</div><div class="line">	<span class="built_in">console</span>.log(foo); <span class="comment">// "foo2"</span></div><div class="line">&#125;)();</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(foo); <span class="comment">// "foo"</span></div></pre></td></tr></table></figure>
+<h3 id="let-ES6"><a href="#let-ES6" class="headerlink" title="let (ES6)"></a>let (ES6)</h3><p>let 是在ES6 syntax中新的語法，讓變數只存在在block中，let不會hoisting，所以必須將let宣告放在最前面</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> bar = <span class="string">"bar"</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;bar.length; i++)&#123; <span class="comment">// 讓i只存在在for loop的scope裡面</span></div><div class="line">		<span class="built_in">console</span>.log(bar.charAt(i));</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">console</span>.log(i); <span class="comment">// RefferenceError</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">foo();</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">bar</span>) </span>&#123;</div><div class="line">	<span class="keyword">if</span> (bar) &#123;</div><div class="line">		<span class="keyword">let</span> baz = bar;</div><div class="line">		<span class="keyword">if</span> (baz) &#123;</div><div class="line">			<span class="keyword">let</span> bam = baz;</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">console</span>.log(bam); <span class="comment">//Error</span></div><div class="line">	&#125;</div><div class="line">	<span class="built_in">console</span>.log(baz); <span class="comment">//Error</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">foo(<span class="string">"bar"</span>);</div></pre></td></tr></table></figure>
+<p>Ref:</p>
+<p><a href="https://frontendmasters.com/courses/advanced-javascript" target="_blank" rel="external">frontendmasters advanced-javascript</a></p>
+<p><a href="https://github.com/getify/You-Dont-Know-JS" target="_blank" rel="external">You-Dont-Know-JS</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      Kyle Simpson 在Frontend masters 的 javascript workshop
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://swarchen.github.io/Blog/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://swarchen.github.io/Blog/tags/javascript/"/>
+    
+      <category term="scope" scheme="http://swarchen.github.io/Blog/tags/scope/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hexo Markdown 的使用</title>
     <link href="http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-的使用/</id>
     <published>2016-09-21T16:53:50.000Z</published>
-    <updated>2016-09-21T18:16:56.000Z</updated>
+    <updated>2016-09-22T11:15:00.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="標題們"><a href="#標題們" class="headerlink" title="標題們"></a>標題們</h1><blockquote>
-<h1 id="h1-title"><a href="#h1-title" class="headerlink" title="# h1 title"></a># h1 title</h1><h2 id="h2-title"><a href="#h2-title" class="headerlink" title="## h2 title"></a>## h2 title</h2></blockquote>
-<h1 id="強調"><a href="#強調" class="headerlink" title="強調"></a>強調</h1><blockquote>
-<p>* <em>italic</em> *</p>
+<h1 id="h1-title"><a href="#h1-title" class="headerlink" title="# h1 title"></a># h1 title</h1><h2 id="h2-title"><a href="#h2-title" class="headerlink" title="## h2 title"></a>## h2 title</h2><a id="more"></a>
+<h1 id="強調"><a href="#強調" class="headerlink" title="強調"></a>強調</h1><p>* <em>italic</em> *</p>
 <p> ** <strong>Bold</strong> **</p>
 </blockquote>
 <h1 id="清單"><a href="#清單" class="headerlink" title="清單"></a>清單</h1><h2 id="無編號"><a href="#無編號" class="headerlink" title="無編號"></a>無編號</h2><blockquote>
@@ -91,8 +294,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;標題們&quot;&gt;&lt;a href=&quot;#標題們&quot; class=&quot;headerlink&quot; title=&quot;標題們&quot;&gt;&lt;/a&gt;標題們&lt;/h1&gt;&lt;blockquote&gt;
-&lt;h1 id=&quot;h1-title&quot;&gt;&lt;a href=&quot;#h1-title&quot; class=&quot;headerlink&quot;
+      一些常用的 Markdown 整理，方便之後寫作快速查詢。
     
     </summary>
     

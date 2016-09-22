@@ -6,27 +6,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="來自馬祖的前端工程師">
-    <title>Hexo Markdown 的使用 - 來自馬祖的前端工程師</title>
+    <title>javascript - Scope - 來自馬祖的前端工程師</title>
     <meta name="author" content="Jhao Cheng Wu">
     
-        <meta name="keywords" content="Markdown,hexo">
+        <meta name="keywords" content="javascript">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/Blog/atom.xml">
     
-    <meta name="description" content="一些常用的 Markdown 整理，方便之後寫作快速查詢。">
+    <meta name="description" content="Kyle Simpson 在Frontend masters 的 javascript workshop">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Hexo Markdown 的使用">
-<meta property="og:url" content="http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-的使用/index.html">
+<meta property="og:title" content="javascript - Scope">
+<meta property="og:url" content="http://swarchen.github.io/Blog/2016/09/22/javascript-的Scope-Compiler/index.html">
 <meta property="og:site_name" content="來自馬祖的前端工程師">
-<meta property="og:description" content="一些常用的 Markdown 整理，方便之後寫作快速查詢。">
-<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png">
-<meta property="og:updated_time" content="2016-09-22T11:15:00.000Z">
+<meta property="og:description" content="Kyle Simpson 在Frontend masters 的 javascript workshop">
+<meta property="og:updated_time" content="2016-09-22T14:17:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo Markdown 的使用">
-<meta name="twitter:description" content="一些常用的 Markdown 整理，方便之後寫作快速查詢。">
-<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png">
+<meta name="twitter:title" content="javascript - Scope">
+<meta name="twitter:description" content="Kyle Simpson 在Frontend masters 的 javascript workshop">
     
     
         
@@ -35,8 +33,8 @@
         <meta property="og:image" content="http://swarchen.github.io/Blog/assets/images/profile.jpg"/>
     
     
-        <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png"/>
-        <meta class="swiftype" name="image" data-type="enum" content="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png" />
+        <meta property="og:image" content="http://i.imgur.com/KCLhCVI.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://i.imgur.com/KCLhCVI.png" />
     
     
     
@@ -191,11 +189,11 @@
         <div class="post-header main-content-wrap text-center">
     
         <h1 class="post-title" itemprop="headline">
-            Hexo Markdown 的使用
+            javascript - Scope
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" datetime="2016-09-22T00:53:50+08:00">
+    <time itemprop="datePublished" datetime="2016-09-22T12:20:07+08:00">
 	
 		    9月 22, 2016
     	
@@ -203,7 +201,7 @@
     
         <span>分類 </span>
         
-    <a class="category-link" href="/Blog/categories/writing/">writing</a>
+    <a class="category-link" href="/Blog/categories/javascript/">javascript</a>
 
 
     
@@ -213,70 +211,58 @@
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <h1 id="標題們"><a href="#標題們" class="headerlink" title="標題們"></a>標題們</h1><blockquote>
-<h1 id="h1-title"><a href="#h1-title" class="headerlink" title="# h1 title"></a># h1 title</h1><h2 id="h2-title"><a href="#h2-title" class="headerlink" title="## h2 title"></a>## h2 title</h2><a id="more"></a>
-<h1 id="強調"><a href="#強調" class="headerlink" title="強調"></a>強調</h1><p>* <em>italic</em> *</p>
-<p> ** <strong>Bold</strong> **</p>
-</blockquote>
-<h1 id="清單"><a href="#清單" class="headerlink" title="清單"></a>清單</h1><h2 id="無編號"><a href="#無編號" class="headerlink" title="無編號"></a>無編號</h2><blockquote>
-<ul>
-<li>* Item1</li>
-<li>* Item2<ul>
-<li>* Item2a</li>
-<li>* Item2b</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h2 id="有編號"><a href="#有編號" class="headerlink" title="有編號"></a>有編號</h2><blockquote>
-<ol>
-<li><ol>
-<li>Item1</li>
-</ol>
-</li>
-<li><ol>
-<li>Item2</li>
-<li>* Item2a</li>
-<li>* Item2b</li>
-</ol>
-</li>
-</ol>
-</blockquote>
-<h1 id="圖片"><a href="#圖片" class="headerlink" title="圖片"></a>圖片</h1><blockquote>
-<p>![Markdown](<a href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png\" target="_blank" rel="external">https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png\</a>)</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png" alt="Markdown"></p>
-</blockquote>
-<h1 id="連結"><a href="#連結" class="headerlink" title="連結"></a>連結</h1><blockquote>
-<p>[Jhaocheng&#39;s GitHub](<a href="http://github.com/swarchen" target="_blank" rel="external">http://github.com/swarchen</a>)</p>
-<p><a href="http://github.com/swarchen" target="_blank" rel="external">Jhaocheng&#39;s GitHub</a></p>
-</blockquote>
-<h1 id="文字區塊"><a href="#文字區塊" class="headerlink" title="文字區塊"></a>文字區塊</h1><blockquote>
-<p>> text</p>
-</blockquote>
-<h1 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h1><blockquote>
-<p>```javascript<br>&nbsp;&nbsp;function fancyAlert(arg) {<br>&nbsp;&nbsp;&nbsp;&nbsp;if(arg) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$.facebox({div:&#39;#foo&#39;})<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;}<br>```
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fancyAlert</span>(<span class="params">arg</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span>(arg) &#123;</div><div class="line">    $.facebox(&#123;<span class="attr">div</span>:<span class="string">'#foo'</span>&#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h1 id="標籤們"><a href="#標籤們" class="headerlink" title="標籤們"></a>標籤們</h1><div class="alert danger no-icon"><p>Here is a danger alert without icon</p>
+            <p>透過下面的例子瞭解javascript是怎麼運作的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="string">"bar"</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> foo =<span class="string">"baz"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bax</span>(<span class="params">foo</span>)</span>&#123;</div><div class="line">	foo = <span class="string">"bam"</span>;</div><div class="line">	bam = <span class="string">"yay"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我原本的認知是第一行的code就是一次的宣告指令</p>
+<p>但其實可以透過另一種方式來看這段程式碼</p>
+<p>就是把自己當成naive top down compiler</p>
+<p>並把compile拆成宣告跟執行兩個步驟</p>
+<a id="more"></a>
+<div class="alert success no-icon"><p>編譯</p>
 </div>
-<div class="alert info no-icon"><p>Here is a danger alert without icon</p>
-</div>
-<div class="alert success"><p>Here is a info alert with icon</p>
-</div>
-<div class="alert warning"><p>Here is a warning alert with icon</p>
-</div>
-<h1 id="高光"><a href="#高光" class="headerlink" title="高光"></a>高光</h1><span class="highlight-text danger">your highlighted text</span>
 <blockquote>
-<ul>
-<li>Class<ul>
-<li>red</li>
-<li>green</li>
-<li>blue</li>
-<li>yellow</li>
+<ol>
+<li>第一行，嘿 Scope global ，我找到了一個叫做 foo 的 var 宣告</li>
+<li>第三行，嘿 Scope global ，我找到了一個叫做 bar 的 function 宣告</li>
+<li>第四行，嘿 Scope bar ，我找到了一個叫做 foo 的 var 宣告</li>
+<li>第七行，嘿 Scope blobal ，我找到了一個叫做 baz 的 function 宣告</li>
+<li>第七行的 foo ， 嘿 Scope baz ，我找到了一個叫做 foo 的 var 宣告</li>
+</ol>
+</blockquote>
+<div class="alert success no-icon"><p>執行</p>
+</div>  
+<blockquote>
+<ol>
+<li>第一行的 var 在執行階段已經不在，因為在 compile 階段已經宣告了 foo 成為一個 var，所以第一行在做的事情就是，向當前的 scope 去詢問，嘿 global scope，你有LHS reference 叫做foo的嗎？scope 會回應說有找到，並且直接將RHS assign 進LHS。<ul>
+<li>在 = 左邊為LHS 也就是target, 右邊為RHS 也就是source</li>
+<li>若 reference 不是 LHS，那就會是RHS</li>
 </ul>
 </li>
-</ul>
+<li>假設我們執行了 function bar，這時就會問，嘿 bar scope，你有LHS reference 叫作foo的嗎？scope 會回應說有找到，並且直接將RHS assign 進LHS。</li>
+<li>第七行，嘿， baz scope 你有LHS reference 叫作foo的嗎？scope 會回應說有找到，並且直接將RHS assign 進LHS。</li>
+<li>第九行，嘿， baz scope 你有LHS reference 叫作bam的嗎？這時scope 會回應說沒有，這時候就會往外一層scope去找，再問，嘿，global scope，你有LHS reference 叫作bam的嗎？ 若在 unstrict 模式下 global scope 會回應說，「有啊，我幫你創造了一個」，這時 bam就變成了一個global variable了。</li>
+</ol>
 </blockquote>
+<p>這邊稍微講一下 <span class="highlight-text red">undeclared</span>跟<span class="highlight-text red">undefined</span>的差別</p>
+<div class="alert info"><p>undeclared:沒在任何的scope底下被宣告 </p>
+</div>
+<div class="alert info"><p>undefined:已宣告的變數但沒有任何實際的值 </p>
+</div>
+<p>例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="string">"bar"</span>; <span class="comment">//global scope</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> foo = <span class="string">"baz"</span>; <span class="comment">// bar scope </span></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params">foo</span>) </span>&#123;</div><div class="line">		foo = <span class="string">"bam"</span>; <span class="comment">// baz scope</span></div><div class="line">		bam = <span class="string">"yay"</span>; <span class="comment">// global scope</span></div><div class="line">	&#125;</div><div class="line">	baz();</div><div class="line">&#125;</div><div class="line">bar(); <span class="comment">//</span></div><div class="line">foo;   <span class="comment">// "bar" RHS</span></div><div class="line">bam;   <span class="comment">// "yay" RHS</span></div><div class="line">baz(); <span class="comment">// ReferenceError RHS</span></div></pre></td></tr></table></figure>
+<p>在 LHS reference 沒被宣告的情況下，scope會自動幫你宣告</p>
+<p>但 RHS reference 沒被宣告則會觸發 ReferenceError</p>
+<h3 id="function-declaration"><a href="#function-declaration" class="headerlink" title="function declaration"></a>function declaration</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123; <span class="comment">// bar 是在global scope底下</span></div><div class="line">	<span class="keyword">var</span> foo = <span class="string">"baz"</span>;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params">foo</span>) </span>&#123;</div><div class="line">		foo = bar;</div><div class="line">		foo;</div><div class="line">	&#125;</div><div class="line">	baz();</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo(); <span class="comment">// undeclared</span></div><div class="line">bar();</div></pre></td></tr></table></figure>
+<h3 id="function-expressions"><a href="#function-expressions" class="headerlink" title="function expressions"></a>function expressions</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123; <span class="comment">// bar 是在自己的scope底下</span></div><div class="line">	<span class="keyword">var</span> foo = <span class="string">"baz"</span>;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params">foo</span>) </span>&#123;</div><div class="line">		foo = bar;</div><div class="line">		foo;</div><div class="line">	&#125;</div><div class="line">	baz();</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo();</div><div class="line">bar(); <span class="comment">// Error</span></div></pre></td></tr></table></figure>
+<h3 id="block-scope"><a href="#block-scope" class="headerlink" title="block scope"></a>block scope</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	foo.length;</div><div class="line">&#125;</div><div class="line"><span class="keyword">catch</span> (err) &#123; <span class="comment">// err in catch block scope</span></div><div class="line">	<span class="built_in">console</span>.log(err); <span class="comment">// typeError</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(err); <span class="comment">// ReferenceError</span></div></pre></td></tr></table></figure>
+<h3 id="IIFE-Immediately-invoked-function-expression"><a href="#IIFE-Immediately-invoked-function-expression" class="headerlink" title="IIFE (Immediately-invoked function expression)"></a>IIFE (Immediately-invoked function expression)</h3><p>可以避免global變數被我們寫的code所影響</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="string">"foo"</span>;</div><div class="line"></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">// 建立一個獨立的scope</span></div><div class="line">	<span class="keyword">var</span> foo = <span class="string">"foo2"</span>;</div><div class="line">	<span class="built_in">console</span>.log(foo); <span class="comment">// "foo2"</span></div><div class="line">&#125;)();</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(foo); <span class="comment">// "foo"</span></div></pre></td></tr></table></figure>
+<h3 id="let-ES6"><a href="#let-ES6" class="headerlink" title="let (ES6)"></a>let (ES6)</h3><p>let 是在ES6 syntax中新的語法，讓變數只存在在block中，let不會hoisting，所以必須將let宣告放在最前面</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> bar = <span class="string">"bar"</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;bar.length; i++)&#123; <span class="comment">// 讓i只存在在for loop的scope裡面</span></div><div class="line">		<span class="built_in">console</span>.log(bar.charAt(i));</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">console</span>.log(i); <span class="comment">// RefferenceError</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">foo();</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">bar</span>) </span>&#123;</div><div class="line">	<span class="keyword">if</span> (bar) &#123;</div><div class="line">		<span class="keyword">let</span> baz = bar;</div><div class="line">		<span class="keyword">if</span> (baz) &#123;</div><div class="line">			<span class="keyword">let</span> bam = baz;</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">console</span>.log(bam); <span class="comment">//Error</span></div><div class="line">	&#125;</div><div class="line">	<span class="built_in">console</span>.log(baz); <span class="comment">//Error</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">foo(<span class="string">"bar"</span>);</div></pre></td></tr></table></figure>
+<p>Ref:</p>
+<p><a href="https://frontendmasters.com/courses/advanced-javascript" target="_blank" rel="external">frontendmasters advanced-javascript</a></p>
+<p><a href="https://github.com/getify/You-Dont-Know-JS" target="_blank" rel="external">You-Dont-Know-JS</a></p>
 
             
         </div>
@@ -286,7 +272,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">標籤</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/Blog/tags/Blog/">Blog</a> <a class="tag tag--primary tag--small t-link" href="/Blog/tags/Markdown/">Markdown</a> <a class="tag tag--primary tag--small t-link" href="/Blog/tags/Writing/">Writing</a> <a class="tag tag--primary tag--small t-link" href="/Blog/tags/寫作/">寫作</a> <a class="tag tag--primary tag--small t-link" href="/Blog/tags/部落格/">部落格</a>
+    <a class="tag tag--primary tag--small t-link" href="/Blog/tags/javascript/">javascript</a> <a class="tag tag--primary tag--small t-link" href="/Blog/tags/scope/">scope</a>
 
             </div>
         
@@ -295,7 +281,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/22/javascript-的Scope-Compiler/"  data-tooltip="javascript - Scope">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/22/hoisting/"  data-tooltip="javascript - Hoisting">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -303,7 +289,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/22/Hexo-Markdown-的使用/" data-tooltip="Hexo Markdown 的使用">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -318,17 +304,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/Blog/2016/09/22/javascript-的Scope-Compiler/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/Blog/2016/09/22/javascript-的Scope-Compiler/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/Blog/2016/09/22/javascript-的Scope-Compiler/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -376,7 +362,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/22/javascript-的Scope-Compiler/"  data-tooltip="javascript - Scope">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/22/hoisting/"  data-tooltip="javascript - Hoisting">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -384,7 +370,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/22/Hexo-Markdown-的使用/" data-tooltip="Hexo Markdown 的使用">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -399,17 +385,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/Blog/2016/09/22/javascript-的Scope-Compiler/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/Blog/2016/09/22/javascript-的Scope-Compiler/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/Blog/2016/09/22/javascript-的Scope-Compiler/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -435,17 +421,17 @@
                 <div id="share-options-bar" class="share-options-bar" data-behavior="4">
     <ul class="share-options">
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/Blog/2016/09/22/javascript-的Scope-Compiler/">
                 <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/Blog/2016/09/22/javascript-的Scope-Compiler/">
                 <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/Blog/2016/09/22/javascript-的Scope-Compiler/">
                 <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
             </a>
         </li>
@@ -647,9 +633,9 @@
     
         <script>
              var disqus_config = function () {
-                 this.page.url = 'http://swarchen.github.io/Blog/Blog/2016/09/22/Hexo-Markdown-的使用/';
+                 this.page.url = 'http://swarchen.github.io/Blog/Blog/2016/09/22/javascript-的Scope-Compiler/';
                  
-                    this.page.identifier = '2016/09/22/Hexo-Markdown-的使用/';
+                    this.page.identifier = '2016/09/22/javascript-的Scope-Compiler/';
                  
              };
             (function() {

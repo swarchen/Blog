@@ -177,7 +177,167 @@
     <section class="postShorten-group main-content-wrap">
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+    <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/Blog/2016/09/22/this/">
+                            javascript - This
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2016-09-22T20:45:10+08:00">
+	
+		    9月 22, 2016
+    	
+    </time>
+    
+        <span>分類 </span>
+        
+    <a class="category-link" href="/Blog/categories/javascript/">javascript</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <p>this有四種綁定的方式</p>
+<p>主要是以callsite發生的時機來決定</p>
+<p>callsite就是()被執行的位置</p>
+<h3 id="1-Default-binding-rule"><a href="#1-Default-binding-rule" class="headerlink" title="1. Default binding rule"></a>1. Default binding rule</h3><p>如果是在 strict mode ， this 指向的是 undefined</p>
+<p>若不是 strict mode ， this 指向的事 global object</p>
+                    
+                        <a href="/Blog/2016/09/22/this/" class="postShorten-excerpt_link link">
+                            繼續閱讀
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+            <a href="/Blog/2016/09/22/this/">
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" itemprop="image" src="http://i.imgur.com/KCLhCVI.png"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/Blog/2016/09/22/hoisting/">
+                            javascript - Hoisting
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2016-09-22T19:28:37+08:00">
+	
+		    9月 22, 2016
+    	
+    </time>
+    
+        <span>分類 </span>
+        
+    <a class="category-link" href="/Blog/categories/javascript/">javascript</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <p>hoisting 是在javascript執行時的一個行為</p>
+<p>javascript會在編譯的過程先將所有宣告(declarations)的變數做reference</p>
+                    
+                        <a href="/Blog/2016/09/22/hoisting/" class="postShorten-excerpt_link link">
+                            繼續閱讀
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+            <a href="/Blog/2016/09/22/hoisting/">
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" itemprop="image" src="http://i.imgur.com/KCLhCVI.png"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/Blog/2016/09/22/javascript-的Scope-Compiler/">
+                            javascript - Scope
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2016-09-22T12:20:07+08:00">
+	
+		    9月 22, 2016
+    	
+    </time>
+    
+        <span>分類 </span>
+        
+    <a class="category-link" href="/Blog/categories/javascript/">javascript</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <p>透過下面的例子瞭解javascript是怎麼運作的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="string">"bar"</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> foo =<span class="string">"baz"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bax</span>(<span class="params">foo</span>)</span>&#123;</div><div class="line">	foo = <span class="string">"bam"</span>;</div><div class="line">	bam = <span class="string">"yay"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我原本的認知是第一行的code就是一次的宣告指令</p>
+<p>但其實可以透過另一種方式來看這段程式碼</p>
+<p>就是把自己當成naive top down compiler</p>
+<p>並把compile拆成宣告跟執行兩個步驟</p>
+                    
+                        <a href="/Blog/2016/09/22/javascript-的Scope-Compiler/" class="postShorten-excerpt_link link">
+                            繼續閱讀
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+            <a href="/Blog/2016/09/22/javascript-的Scope-Compiler/">
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" itemprop="image" src="http://i.imgur.com/KCLhCVI.png"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -205,82 +365,14 @@
 
             </div>
             
-                <div class="postShorten-content" itemprop="articleBody">
+                <div class="postShorten-excerpt" itemprop="articleBody">
                     <h1 id="標題們"><a href="#標題們" class="headerlink" title="標題們"></a>標題們</h1><blockquote>
-<h1 id="h1-title"><a href="#h1-title" class="headerlink" title="# h1 title"></a># h1 title</h1><h2 id="h2-title"><a href="#h2-title" class="headerlink" title="## h2 title"></a>## h2 title</h2></blockquote>
-<h1 id="強調"><a href="#強調" class="headerlink" title="強調"></a>強調</h1><blockquote>
-<p>* <em>italic</em> *</p>
-<p> ** <strong>Bold</strong> **</p>
-</blockquote>
-<h1 id="清單"><a href="#清單" class="headerlink" title="清單"></a>清單</h1><h2 id="無編號"><a href="#無編號" class="headerlink" title="無編號"></a>無編號</h2><blockquote>
-<ul>
-<li>* Item1</li>
-<li>* Item2<ul>
-<li>* Item2a</li>
-<li>* Item2b</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h2 id="有編號"><a href="#有編號" class="headerlink" title="有編號"></a>有編號</h2><blockquote>
-<ol>
-<li><ol>
-<li>Item1</li>
-</ol>
-</li>
-<li><ol>
-<li>Item2</li>
-<li>* Item2a</li>
-<li>* Item2b</li>
-</ol>
-</li>
-</ol>
-</blockquote>
-<h1 id="圖片"><a href="#圖片" class="headerlink" title="圖片"></a>圖片</h1><blockquote>
-<p>![Markdown](<a href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png\" target="_blank" rel="external">https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png\</a>)</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png" alt="Markdown"></p>
-</blockquote>
-<h1 id="連結"><a href="#連結" class="headerlink" title="連結"></a>連結</h1><blockquote>
-<p>[Jhaocheng&#39;s GitHub](<a href="http://github.com/swarchen" target="_blank" rel="external">http://github.com/swarchen</a>)</p>
-<p><a href="http://github.com/swarchen" target="_blank" rel="external">Jhaocheng&#39;s GitHub</a></p>
-</blockquote>
-<h1 id="文字區塊"><a href="#文字區塊" class="headerlink" title="文字區塊"></a>文字區塊</h1><blockquote>
-<p>> text</p>
-</blockquote>
-<h1 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h1><blockquote>
-<p>```javascript<br>&nbsp;&nbsp;function fancyAlert(arg) {<br>&nbsp;&nbsp;&nbsp;&nbsp;if(arg) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$.facebox({div:&#39;#foo&#39;})<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;}<br>```
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fancyAlert</span>(<span class="params">arg</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span>(arg) &#123;</div><div class="line">    $.facebox(&#123;<span class="attr">div</span>:<span class="string">'#foo'</span>&#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h1 id="標籤們"><a href="#標籤們" class="headerlink" title="標籤們"></a>標籤們</h1><div class="alert danger no-icon"><p>Here is a danger alert without icon</p>
-</div>
-<div class="alert info no-icon"><p>Here is a danger alert without icon</p>
-</div>
-<div class="alert success"><p>Here is a info alert with icon</p>
-</div>
-<div class="alert warning"><p>Here is a warning alert with icon</p>
-</div>
-<h1 id="高光"><a href="#高光" class="headerlink" title="高光"></a>高光</h1><span class="highlight-text danger">your highlighted text</span>
-<blockquote>
-<ul>
-<li>Class<ul>
-<li>red</li>
-<li>green</li>
-<li>blue</li>
-<li>yellow</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-
+<h1 id="h1-title"><a href="#h1-title" class="headerlink" title="# h1 title"></a># h1 title</h1><h2 id="h2-title"><a href="#h2-title" class="headerlink" title="## h2 title"></a>## h2 title</h2>
                     
+                        <a href="/Blog/2016/09/22/Hexo-Markdown-的使用/" class="postShorten-excerpt_link link">
+                            繼續閱讀
+                        </a>
                         
-                    
-                    
-                        <p>
-                            <a href="/Blog/2016/09/22/Hexo-Markdown-的使用/#post-footer" class="postShorten-excerpt_link link">
-                                留言與分享
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -392,7 +484,93 @@
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"></div>
+                        <div class="media-content hide-xs font-merryweather"><h1 id="標題們"><a href="#標題們" class="headerlink" title="標題們"></a>標題們</h1><blockquote>
+<h1 id="h1-title"><a href="#h1-title" class="headerlink" title="# h1 title"></a># h1 title</h1><h2 id="h2-title"><a href="#h2-title" class="headerlink" title="## h2 title"></a>## h2 title</h2></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/Blog/2016/09/22/javascript-的Scope-Compiler/">
+                            <img class="media-image" src="http://i.imgur.com/KCLhCVI.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/Blog/2016/09/22/javascript-的Scope-Compiler/">
+                            <h3 class="media-heading">javascript - Scope</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2016年9月22日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>透過下面的例子瞭解javascript是怎麼運作的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="string">"bar"</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> foo =<span class="string">"baz"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bax</span>(<span class="params">foo</span>)</span>&#123;</div><div class="line">	foo = <span class="string">"bam"</span>;</div><div class="line">	bam = <span class="string">"yay"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我原本的認知是第一行的code就是一次的宣告指令</p>
+<p>但其實可以透過另一種方式來看這段程式碼</p>
+<p>就是把自己當成naive top down compiler</p>
+<p>並把compile拆成宣告跟執行兩個步驟</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/Blog/2016/09/22/hoisting/">
+                            <img class="media-image" src="http://i.imgur.com/KCLhCVI.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/Blog/2016/09/22/hoisting/">
+                            <h3 class="media-heading">javascript - Hoisting</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2016年9月22日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>hoisting 是在javascript執行時的一個行為</p>
+<p>javascript會在編譯的過程先將所有宣告(declarations)的變數做reference</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/Blog/2016/09/22/this/">
+                            <img class="media-image" src="http://i.imgur.com/KCLhCVI.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/Blog/2016/09/22/this/">
+                            <h3 class="media-heading">javascript - This</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2016年9月22日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>this有四種綁定的方式</p>
+<p>主要是以callsite發生的時機來決定</p>
+<p>callsite就是()被執行的位置</p>
+<h3 id="1-Default-binding-rule"><a href="#1-Default-binding-rule" class="headerlink" title="1. Default binding rule"></a>1. Default binding rule</h3><p>如果是在 strict mode ， this 指向的是 undefined</p>
+<p>若不是 strict mode ， this 指向的事 global object</p></div>
                     </div>
                     <div style="clear:both;"></div>
                     <hr>
@@ -405,7 +583,7 @@
                 data-message-zero="沒有找到文章"
                 data-message-one="找到 1 篇文章"
                 data-message-other="找到 {n} 篇文章">
-                找到 1 篇文章
+                找到 4 篇文章
             </p>
         </div>
     </div>
