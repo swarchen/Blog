@@ -5,7 +5,7 @@
   <link href="/Blog/atom.xml" rel="self"/>
   
   <link href="http://swarchen.github.io/Blog/"/>
-  <updated>2016-09-22T14:17:52.000Z</updated>
+  <updated>2016-09-22T14:47:08.000Z</updated>
   <id>http://swarchen.github.io/Blog/</id>
   
   <author>
@@ -16,11 +16,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>javascript - Closure</title>
+    <link href="http://swarchen.github.io/Blog/2016/09/22/Closure/"/>
+    <id>http://swarchen.github.io/Blog/2016/09/22/Closure/</id>
+    <published>2016-09-22T14:46:23.000Z</published>
+    <updated>2016-09-22T14:47:08.000Z</updated>
+    
+    <summary type="html">
+    
+      Kyle Simpson 在Frontend masters 的 javascript workshop
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://swarchen.github.io/Blog/categories/javascript/"/>
+    
+    
+      <category term="closure" scheme="http://swarchen.github.io/Blog/tags/closure/"/>
+    
+      <category term="javascript" scheme="http://swarchen.github.io/Blog/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
     <title>javascript - This</title>
     <link href="http://swarchen.github.io/Blog/2016/09/22/this/"/>
     <id>http://swarchen.github.io/Blog/2016/09/22/this/</id>
     <published>2016-09-22T12:45:10.000Z</published>
-    <updated>2016-09-22T14:17:52.000Z</updated>
+    <updated>2016-09-22T15:22:23.000Z</updated>
     
     <content type="html"><![CDATA[<p>this有四種綁定的方式</p>
 <p>主要是以callsite發生的時機來決定</p>
@@ -31,7 +53,7 @@
 <h3 id="2-Implicit-biding-rule"><a href="#2-Implicit-biding-rule" class="headerlink" title="2. Implicit biding rule"></a>2. Implicit biding rule</h3><p>在javascript中所有物件都是reference from object 或者 function</p>
 <p>如下面的例子</p>
 <p>foo,o2.foo,o3.foo都是reference from 第一行定義的 function foo </p>
-<p>o2.foo(),o3.foo()的callsite</p>
+<p>o2.foo(),o3.foo()的callsite 透過 .(dot) reference o2 跟 o3 這兩個object</p>
 <p>所以this keyword 就是指向 o2,o3</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.bar)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="string">"bar1"</span>;</div><div class="line"><span class="keyword">var</span> o2 = &#123; <span class="attr">bar</span>: <span class="string">"bar2"</span>, <span class="attr">foo</span>: foo &#125;;</div><div class="line"><span class="keyword">var</span> o3 = &#123; <span class="attr">bar</span>: <span class="string">"bar3"</span>, <span class="attr">foo</span>: foo &#125;;</div><div class="line"></div><div class="line">foo(); <span class="comment">//"bar1"</span></div><div class="line">o2.foo(); <span class="comment">// "bar2"</span></div><div class="line">o3.foo(); <span class="comment">// "bar3"</span></div></pre></td></tr></table></figure>
 <p>從下面的例子可以更清楚地看到</p>

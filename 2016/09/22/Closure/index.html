@@ -6,20 +6,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="來自馬祖的前端工程師">
-    <title>all-categories - 來自馬祖的前端工程師</title>
+    <title>javascript - Closure - 來自馬祖的前端工程師</title>
     <meta name="author" content="Jhao Cheng Wu">
+    
+        <meta name="keywords" content="javascript">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/Blog/atom.xml">
     
-    <meta property="og:type" content="blog">
-<meta property="og:title" content="all-categories">
-<meta property="og:url" content="http://swarchen.github.io/Blog/all-categories/index.html">
+    <meta name="description" content="Kyle Simpson 在Frontend masters 的 javascript workshop">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="javascript - Closure">
+<meta property="og:url" content="http://swarchen.github.io/Blog/2016/09/22/Closure/index.html">
 <meta property="og:site_name" content="來自馬祖的前端工程師">
-<meta property="og:updated_time" content="2016-09-21T16:35:43.000Z">
+<meta property="og:description" content="Kyle Simpson 在Frontend masters 的 javascript workshop">
+<meta property="og:updated_time" content="2016-09-22T14:47:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="all-categories">
+<meta name="twitter:title" content="javascript - Closure">
+<meta name="twitter:description" content="Kyle Simpson 在Frontend masters 的 javascript workshop">
     
     
         
@@ -27,6 +32,9 @@
     
         <meta property="og:image" content="http://swarchen.github.io/Blog/assets/images/profile.jpg"/>
     
+    
+        <meta property="og:image" content="http://i.imgur.com/KCLhCVI.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://i.imgur.com/KCLhCVI.png" />
     
     
     
@@ -62,7 +70,7 @@
         
     
 
-<header id="header" data-behavior="1">
+<header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a class="header-title-link" href="/Blog/ ">來自馬祖的前端工程師</a>
@@ -86,7 +94,7 @@
         
     
 
-<nav id="sidebar" data-behavior="1">
+<nav id="sidebar" data-behavior="4">
     <div class="sidebar-container">
         
             <div class="sidebar-profile">
@@ -170,44 +178,123 @@
 </nav>
 
             
-            <div id="main" data-behavior="1"
+            <div id="main" data-behavior="4"
                  class="
                         hasCoverMetaIn
                         ">
                 
-<div id="categories-archives" class="main-content-wrap">
-    <form id="filter-form" action="##">
-        <input name="category" type="text" class="form-control input--xlarge"
-               placeholder="搜尋分類" autofocus="autofocus">
-    </form>
-    <h5 class="archive-result text-color-base text-xlarge"
-        data-message-zero="没有找到分類"
-        data-message-one="找到 1 個分類"
-        data-message-other="找到 {n} 個分類"></h5>
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title" itemprop="headline">
+            javascript - Closure
+        </h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" datetime="2016-09-22T22:46:23+08:00">
+	
+		    9月 22, 2016
+    	
+    </time>
+    
+        <span>分類 </span>
+        
+    <a class="category-link" href="/Blog/categories/javascript/">javascript</a>
 
-        <section class="boxes">
-        
-            
-                <div><a href="#posts-list-javascript" class="category-anchor" data-category="javascript" data-parent-categories="">javascript</a></div>
-            
-        
-            
-                <div><a href="#posts-list-writing" class="category-anchor" data-category="writing" data-parent-categories="">writing</a></div>
-            
-        
-    </section>
-    <section class="boxes">
-        
-            
-                    <div id="posts-list-javascript" class="archive box" data-category="javascript" data-parent-categories=""><h4 class="archive-title text-xlarge"><a class="link-unstyled" href="/Blog/categories/javascript/">javascript (4)</a></h4><ul class="archive-posts"><li class="archive-post"><a class="archive-post-title" href="/Blog/2016/09/22/Closure/">javascript - Closure</a><span class="archive-post-date"> - 9月 22, 2016</span></li><li class="archive-post"><a class="archive-post-title" href="/Blog/2016/09/22/this/">javascript - This</a><span class="archive-post-date"> - 9月 22, 2016</span></li><li class="archive-post"><a class="archive-post-title" href="/Blog/2016/09/22/hoisting/">javascript - Hoisting</a><span class="archive-post-date"> - 9月 22, 2016</span></li><li class="archive-post"><a class="archive-post-title" href="/Blog/2016/09/22/javascript-的Scope-Compiler/">javascript - Scope</a><span class="archive-post-date"> - 9月 22, 2016</span></li></ul></div>
-            
-        
-            
-                    <div id="posts-list-writing" class="archive box" data-category="writing" data-parent-categories=""><h4 class="archive-title text-xlarge"><a class="link-unstyled" href="/Blog/categories/writing/">writing (1)</a></h4><ul class="archive-posts"><li class="archive-post"><a class="archive-post-title" href="/Blog/2016/09/22/Hexo-Markdown-的使用/">Hexo Markdown 的使用</a><span class="archive-post-date"> - 9月 22, 2016</span></li></ul></div>
-            
-        
-    </section>
+
+    
 </div>
+
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">標籤</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/Blog/tags/closure/">closure</a> <a class="tag tag--primary tag--small t-link" href="/Blog/tags/javascript/">javascript</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/22/this/" data-tooltip="javascript - This">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/Blog/2016/09/22/Closure/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/Blog/2016/09/22/Closure/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/Blog/2016/09/22/Closure/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
@@ -216,6 +303,90 @@
 </footer>
 
             </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/22/this/" data-tooltip="javascript - This">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/Blog/2016/09/22/Closure/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/Blog/2016/09/22/Closure/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/Blog/2016/09/22/Closure/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/Blog/2016/09/22/Closure/">
+                <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/Blog/2016/09/22/Closure/">
+                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/Blog/2016/09/22/Closure/">
+                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
             
         </div>
         
@@ -431,6 +602,25 @@
 <script src="/Blog/assets/js/jquery.fancybox-thumbs.js"></script>
 <script src="/Blog/assets/js/tranquilpeak.js"></script>
 <!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+                 this.page.url = 'http://swarchen.github.io/Blog/Blog/2016/09/22/Closure/';
+                 
+                    this.page.identifier = '2016/09/22/Closure/';
+                 
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'swarchen';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
 
 
 

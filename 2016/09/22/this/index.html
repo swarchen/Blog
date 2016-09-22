@@ -21,7 +21,7 @@
 <meta property="og:url" content="http://swarchen.github.io/Blog/2016/09/22/this/index.html">
 <meta property="og:site_name" content="來自馬祖的前端工程師">
 <meta property="og:description" content="Kyle Simpson 在Frontend masters 的 javascript workshop">
-<meta property="og:updated_time" content="2016-09-22T14:17:52.000Z">
+<meta property="og:updated_time" content="2016-09-22T15:22:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript - This">
 <meta name="twitter:description" content="Kyle Simpson 在Frontend masters 的 javascript workshop">
@@ -220,7 +220,7 @@
 <h3 id="2-Implicit-biding-rule"><a href="#2-Implicit-biding-rule" class="headerlink" title="2. Implicit biding rule"></a>2. Implicit biding rule</h3><p>在javascript中所有物件都是reference from object 或者 function</p>
 <p>如下面的例子</p>
 <p>foo,o2.foo,o3.foo都是reference from 第一行定義的 function foo </p>
-<p>o2.foo(),o3.foo()的callsite</p>
+<p>o2.foo(),o3.foo()的callsite 透過 .(dot) reference o2 跟 o3 這兩個object</p>
 <p>所以this keyword 就是指向 o2,o3</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.bar)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="string">"bar1"</span>;</div><div class="line"><span class="keyword">var</span> o2 = &#123; <span class="attr">bar</span>: <span class="string">"bar2"</span>, <span class="attr">foo</span>: foo &#125;;</div><div class="line"><span class="keyword">var</span> o3 = &#123; <span class="attr">bar</span>: <span class="string">"bar3"</span>, <span class="attr">foo</span>: foo &#125;;</div><div class="line"></div><div class="line">foo(); <span class="comment">//"bar1"</span></div><div class="line">o2.foo(); <span class="comment">// "bar2"</span></div><div class="line">o3.foo(); <span class="comment">// "bar3"</span></div></pre></td></tr></table></figure>
 <p>從下面的例子可以更清楚地看到</p>
@@ -283,7 +283,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/22/Closure/"  data-tooltip="javascript - Closure">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -364,7 +364,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/22/Closure/"  data-tooltip="javascript - Closure">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -611,6 +611,31 @@
                     <hr>
                 </div>
                 
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/Blog/2016/09/22/Closure/">
+                            <img class="media-image" src="http://i.imgur.com/KCLhCVI.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/Blog/2016/09/22/Closure/">
+                            <h3 class="media-heading">javascript - Closure</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2016年9月22日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
             </div>
         </div>
         <div class="modal-footer">
@@ -618,7 +643,7 @@
                 data-message-zero="沒有找到文章"
                 data-message-one="找到 1 篇文章"
                 data-message-other="找到 {n} 篇文章">
-                找到 4 篇文章
+                找到 5 篇文章
             </p>
         </div>
     </div>
