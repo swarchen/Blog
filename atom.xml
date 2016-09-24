@@ -5,7 +5,7 @@
   <link href="/Blog/atom.xml" rel="self"/>
   
   <link href="http://swarchen.github.io/Blog/"/>
-  <updated>2016-09-22T14:47:08.000Z</updated>
+  <updated>2016-09-24T11:58:56.000Z</updated>
   <id>http://swarchen.github.io/Blog/</id>
   
   <author>
@@ -20,7 +20,42 @@
     <link href="http://swarchen.github.io/Blog/2016/09/22/Closure/"/>
     <id>http://swarchen.github.io/Blog/2016/09/22/Closure/</id>
     <published>2016-09-22T14:46:23.000Z</published>
-    <updated>2016-09-22T14:47:08.000Z</updated>
+    <updated>2016-09-24T11:58:56.000Z</updated>
+    
+    <content type="html"><![CDATA[<div class="alert info no-icon"><p>Closure is when a &quot;function&quot; &quot;remembers&quot; its lexical scope even when the function is executed outside that lexical scope.
+Closure 是指說一個function記住了他在被定義的當下時的lexical scope，即使function在執行的時候是在當時的lexical scope之外</p>
+</div>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> bar = <span class="string">"bar"</span>;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(bar); <span class="comment">// reference bar </span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	bam(baz); <span class="comment">// 透過bam 傳出去</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bam</span>(<span class="params">baz</span>) </span>&#123;</div><div class="line">	baz(); <span class="comment">// 在不同的環境下執行</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">foo();</div></pre></td></tr></table></figure>
+<p>function baz 裡面的bar 由於reference了 foo function中的bar</p>
+<p>讓bar 變數可以在foo執行完後繼續存在在記憶體中 </p>
+<p>而不會被garbage collected</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> bar = <span class="string">"bar"</span>;</div><div class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(bar)</div><div class="line">  &#125;,<span class="number">1000</span>);</div><div class="line">  bar = <span class="string">"bar2"</span> </div><div class="line">&#125;</div><div class="line">foo() <span class="comment">//  "bar2"</span></div></pre></td></tr></table></figure>
+<p>因為bar reference的是變數</p>
+<p>而不是變數的當下的值</p>
+<p>所以當bar的值被改變成 &quot;bar2&quot; 後</p>
+<p>console 出來的結果就會是 &quot;bar2&quot;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">1</span>; i&lt;=<span class="number">5</span>; i++)&#123;</div><div class="line">	setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">"i: "</span> + i);</div><div class="line">	&#125;, i * <span class="number">1000</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>這段程式碼執行出來的結果會是
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">i: <span class="number">6</span></div><div class="line">i: <span class="number">6</span></div><div class="line">i: <span class="number">6</span></div><div class="line">i: <span class="number">6</span></div><div class="line">i: <span class="number">6</span></div></pre></td></tr></table></figure></p>
+<p>原因是在於所有的i都是reference 了 global scope底下的i</p>
+<p>當loop結束後 setTimeout的event被觸發時</p>
+<p>所console.log出來的結果就會像上面顯示的那樣</p>
+<p>這樣的情況要如何解決呢？</p>
+<p>可以透過function去create出一個新的scope</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">1</span>; i&lt;=<span class="number">5</span>; i++)&#123;</div><div class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">"i: "</span> + i);</div><div class="line">    &#125;, i * <span class="number">1000</span>)</div><div class="line">  &#125;)(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面的code會console出&quot;bar&quot;</p>
+<p>但他是closure嗎？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> o = &#123; <span class="attr">bar</span>: <span class="string">"bar"</span> &#125;;</div><div class="line">  <span class="keyword">return</span> &#123;<span class="attr">obj</span>: o&#125;;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(foo.obj.bar); <span class="comment">// "bar"</span></div></pre></td></tr></table></figure>
+<div class="alert info no-icon"><p>Closure 是指說一個function記住了他在被定義的當下時的lexical scope，即使function在執行的時候是在當時的lexical scope之外</p>
+</div>
+<p>上述的例子並不是透過function去reference，而只是單純的object reference</p>
+<h3 id="module-pattern-javascript"><a href="#module-pattern-javascript" class="headerlink" title="module pattern javascript"></a>module pattern javascript</h3><p>用Closure可以將javascript module化</p>
+<p>將原有的function包在IIFE當中</p>
+<p>透過return 內部的function 作為public API</p>
+<p>讓外部程式可以執行module內部的程式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> publicAPI = &#123;</div><div class="line">    <span class="attr">bar</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      publicAPI.baz();</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">baz</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">"baz"</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> publicAPI;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line"></div><div class="line">foo.baz()</div></pre></td></tr></table></figure>
+]]></content>
     
     <summary type="html">
     
@@ -31,9 +66,9 @@
       <category term="javascript" scheme="http://swarchen.github.io/Blog/categories/javascript/"/>
     
     
-      <category term="closure" scheme="http://swarchen.github.io/Blog/tags/closure/"/>
-    
       <category term="javascript" scheme="http://swarchen.github.io/Blog/tags/javascript/"/>
+    
+      <category term="closure" scheme="http://swarchen.github.io/Blog/tags/closure/"/>
     
   </entry>
   
