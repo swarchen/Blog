@@ -5,7 +5,7 @@
   <link href="/Blog/atom.xml" rel="self"/>
   
   <link href="http://swarchen.github.io/"/>
-  <updated>2016-09-26T12:12:39.000Z</updated>
+  <updated>2016-09-26T09:25:57.000Z</updated>
   <id>http://swarchen.github.io/</id>
   
   <author>
@@ -14,34 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>先學走，再學跑系列 CSS: Selectors</title>
-    <link href="http://swarchen.github.io/2016/09/26/%E5%85%88%E5%AD%B8%E8%B5%B0%E5%86%8D%E6%9C%83%E8%B7%91CSS-The-Missing-Manual/"/>
-    <id>http://swarchen.github.io/2016/09/26/先學走再會跑CSS-The-Missing-Manual/</id>
-    <published>2016-09-26T05:08:12.000Z</published>
-    <updated>2016-09-26T12:12:39.000Z</updated>
-    
-    <content type="html"><![CDATA[<!-- excerpt -->
-<div class="alert info no-icon"><p>閱讀書籍：<a href="http://shop.oreilly.com/product/0636920036357.do" target="_blank" rel="external">CSS: The Missing Manual</a></p>
-</div>
-<h1 id="Pseudo-Classes-and-Pseudo-Elements"><a href="#Pseudo-Classes-and-Pseudo-Elements" class="headerlink" title="Pseudo-Classes and Pseudo-Elements"></a>Pseudo-Classes and Pseudo-Elements</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Pseudo-Classes 在CSS3是用一個分號來表示 */</span></div><div class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> <span class="comment">/* 使用者還沒點擊過的連結 */</span></div><div class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> <span class="comment">/* 使用者點擊過的連結 */</span></div><div class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> <span class="comment">/* 使用者滑鼠移上去的連結 */</span></div><div class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span> <span class="comment">/* 使用者正在點擊的連結 */</span></div><div class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:focus</span> <span class="comment">/* 使用者正在對input做編輯 */</span></div></pre></td></tr></table></figure>
-<iframe scrolling="no" width="100%" height="200px" src="https://jsfiddle.net/hyvj67xw/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Pseudo-Elements 在CSS3是用兩個分號來表示 */</span></div><div class="line"><span class="selector-tag">p</span><span class="selector-pseudo">::first-letter</span> <span class="comment">/* 段落的第一個文字的樣式 */</span></div><div class="line"><span class="selector-tag">p</span><span class="selector-pseudo">::first-line</span> <span class="comment">/* 段落的第一行文字的樣式 */</span></div><div class="line"><span class="selector-tag">p</span><span class="selector-pseudo">::before</span></div><div class="line"><span class="selector-tag">p</span><span class="selector-pseudo">::after</span> <span class="comment">/* before和after是可以插入content文字的Pseudo-Element而不用額外寫在HTML當中 */</span></div><div class="line"><span class="selector-pseudo">::selection</span> <span class="comment">/* 使用者在畫面中選取起來的文字 */</span></div></pre></td></tr></table></figure>
-<iframe scrolling="no" width="100%" height="200px" src="https://jsfiddle.net/xfc4hstz/3/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe>]]></content>
-    
-    <summary type="html">
-    
-      透過閱讀前端經典好書，來補齊前端工程的知識點
-    
-    </summary>
-    
-    
-      <category term="CSS" scheme="http://swarchen.github.io/tags/CSS/"/>
-    
-      <category term="先學走，再學跑" scheme="http://swarchen.github.io/tags/%E5%85%88%E5%AD%B8%E8%B5%B0%EF%BC%8C%E5%86%8D%E5%AD%B8%E8%B7%91/"/>
-    
-  </entry>
   
   <entry>
     <title>用 Modernizr 來判斷瀏覽器是否支援 html5 的 features</title>
@@ -81,6 +53,34 @@
       <category term="modernizr" scheme="http://swarchen.github.io/tags/modernizr/"/>
     
       <category term="html5" scheme="http://swarchen.github.io/tags/html5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>先學走，再學跑系列 CSS: Selectors</title>
+    <link href="http://swarchen.github.io/2016/09/26/%E5%85%88%E5%AD%B8%E8%B5%B0%EF%BC%8C%E5%86%8D%E5%AD%B8%E8%B7%91%E7%B3%BB%E5%88%97%20CSS:%20Selectors/"/>
+    <id>http://swarchen.github.io/2016/09/26/先學走，再學跑系列 CSS: Selectors/</id>
+    <published>2016-09-26T05:08:12.000Z</published>
+    <updated>2016-09-26T12:12:39.000Z</updated>
+    
+    <content type="html"><![CDATA[<!-- excerpt -->
+<div class="alert info no-icon"><p>閱讀書籍：<a href="http://shop.oreilly.com/product/0636920036357.do" target="_blank" rel="external">CSS: The Missing Manual</a></p>
+</div>
+<h1 id="Pseudo-Classes-and-Pseudo-Elements"><a href="#Pseudo-Classes-and-Pseudo-Elements" class="headerlink" title="Pseudo-Classes and Pseudo-Elements"></a>Pseudo-Classes and Pseudo-Elements</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Pseudo-Classes 在CSS3是用一個分號來表示 */</span></div><div class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> <span class="comment">/* 使用者還沒點擊過的連結 */</span></div><div class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> <span class="comment">/* 使用者點擊過的連結 */</span></div><div class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> <span class="comment">/* 使用者滑鼠移上去的連結 */</span></div><div class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span> <span class="comment">/* 使用者正在點擊的連結 */</span></div><div class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:focus</span> <span class="comment">/* 使用者正在對input做編輯 */</span></div></pre></td></tr></table></figure>
+<iframe scrolling="no" width="100%" height="200px" src="//jsfiddle.net/hyvj67xw/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Pseudo-Elements 在CSS3是用兩個分號來表示 */</span></div><div class="line"><span class="selector-tag">p</span><span class="selector-pseudo">::first-letter</span> <span class="comment">/* 段落的第一個文字的樣式 */</span></div><div class="line"><span class="selector-tag">p</span><span class="selector-pseudo">::first-line</span> <span class="comment">/* 段落的第一行文字的樣式 */</span></div><div class="line"><span class="selector-tag">p</span><span class="selector-pseudo">::before</span></div><div class="line"><span class="selector-tag">p</span><span class="selector-pseudo">::after</span> <span class="comment">/* before和after是可以插入content文字的Pseudo-Element而不用額外寫在HTML當中 */</span></div><div class="line"><span class="selector-pseudo">::selection</span> <span class="comment">/* 使用者在畫面中選取起來的文字 */</span></div></pre></td></tr></table></figure>
+<iframe scrolling="no" width="100%" height="200px" src="//jsfiddle.net/xfc4hstz/3/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe>]]></content>
+    
+    <summary type="html">
+    
+      透過閱讀前端經典好書，來補齊前端工程的知識點
+    
+    </summary>
+    
+    
+      <category term="CSS" scheme="http://swarchen.github.io/tags/CSS/"/>
+    
+      <category term="先學走，再學跑" scheme="http://swarchen.github.io/tags/%E5%85%88%E5%AD%B8%E8%B5%B0%EF%BC%8C%E5%86%8D%E5%AD%B8%E8%B7%91/"/>
     
   </entry>
   
@@ -135,9 +135,9 @@ Closure 是指說一個function記住了他在被定義的當下時的lexical sc
       <category term="javascript" scheme="http://swarchen.github.io/categories/javascript/"/>
     
     
-      <category term="javascript" scheme="http://swarchen.github.io/tags/javascript/"/>
-    
       <category term="closure" scheme="http://swarchen.github.io/tags/closure/"/>
+    
+      <category term="javascript" scheme="http://swarchen.github.io/tags/javascript/"/>
     
   </entry>
   
