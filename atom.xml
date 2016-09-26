@@ -4,9 +4,9 @@
   <subtitle>Jhao Cheng Wu</subtitle>
   <link href="/Blog/atom.xml" rel="self"/>
   
-  <link href="http://swarchen.github.io/Blog/"/>
-  <updated>2016-09-26T05:29:23.000Z</updated>
-  <id>http://swarchen.github.io/Blog/</id>
+  <link href="http://swarchen.github.io/"/>
+  <updated>2016-09-26T09:21:08.000Z</updated>
+  <id>http://swarchen.github.io/</id>
   
   <author>
     <name>Jhao Cheng Wu</name>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>用 Modernizr 來判斷瀏覽器是否支援 html5 的 features</title>
-    <link href="http://swarchen.github.io/Blog/2016/09/26/%E7%94%A8Modernizr-%E4%BE%86%E5%88%A4%E6%96%B7%E7%80%8F%E8%A6%BD%E5%99%A8%E6%98%AF%E5%90%A6%E6%94%AF%E6%8F%B4html5%E7%9A%84features/"/>
-    <id>http://swarchen.github.io/Blog/2016/09/26/用Modernizr-來判斷瀏覽器是否支援html5的features/</id>
+    <link href="http://swarchen.github.io/2016/09/26/%E7%94%A8Modernizr-%E4%BE%86%E5%88%A4%E6%96%B7%E7%80%8F%E8%A6%BD%E5%99%A8%E6%98%AF%E5%90%A6%E6%94%AF%E6%8F%B4html5%E7%9A%84features/"/>
+    <id>http://swarchen.github.io/2016/09/26/用Modernizr-來判斷瀏覽器是否支援html5的features/</id>
     <published>2016-09-26T05:08:12.000Z</published>
-    <updated>2016-09-26T05:29:23.000Z</updated>
+    <updated>2016-09-26T09:21:08.000Z</updated>
     
     <content type="html"><![CDATA[<p>先到<a href="https://modernizr.com" target="_blank" rel="external">modernizr</a>下載modernizr的js檔案</p>
 <p>並且選擇自己需要的features再按build</p>
@@ -46,19 +46,19 @@
     
     </summary>
     
-      <category term="html5" scheme="http://swarchen.github.io/Blog/categories/html5/"/>
+      <category term="html5" scheme="http://swarchen.github.io/categories/html5/"/>
     
     
-      <category term="modernizr" scheme="http://swarchen.github.io/Blog/tags/modernizr/"/>
+      <category term="modernizr" scheme="http://swarchen.github.io/tags/modernizr/"/>
     
-      <category term="html5" scheme="http://swarchen.github.io/Blog/tags/html5/"/>
+      <category term="html5" scheme="http://swarchen.github.io/tags/html5/"/>
     
   </entry>
   
   <entry>
     <title>javascript - Closure</title>
-    <link href="http://swarchen.github.io/Blog/2016/09/22/Closure/"/>
-    <id>http://swarchen.github.io/Blog/2016/09/22/Closure/</id>
+    <link href="http://swarchen.github.io/2016/09/22/Closure/"/>
+    <id>http://swarchen.github.io/2016/09/22/Closure/</id>
     <published>2016-09-22T14:46:23.000Z</published>
     <updated>2016-09-24T11:58:56.000Z</updated>
     
@@ -103,19 +103,19 @@ Closure 是指說一個function記住了他在被定義的當下時的lexical sc
     
     </summary>
     
-      <category term="javascript" scheme="http://swarchen.github.io/Blog/categories/javascript/"/>
+      <category term="javascript" scheme="http://swarchen.github.io/categories/javascript/"/>
     
     
-      <category term="javascript" scheme="http://swarchen.github.io/Blog/tags/javascript/"/>
+      <category term="javascript" scheme="http://swarchen.github.io/tags/javascript/"/>
     
-      <category term="closure" scheme="http://swarchen.github.io/Blog/tags/closure/"/>
+      <category term="closure" scheme="http://swarchen.github.io/tags/closure/"/>
     
   </entry>
   
   <entry>
     <title>javascript - This</title>
-    <link href="http://swarchen.github.io/Blog/2016/09/22/this/"/>
-    <id>http://swarchen.github.io/Blog/2016/09/22/this/</id>
+    <link href="http://swarchen.github.io/2016/09/22/this/"/>
+    <id>http://swarchen.github.io/2016/09/22/this/</id>
     <published>2016-09-22T12:45:10.000Z</published>
     <updated>2016-09-22T15:22:23.000Z</updated>
     
@@ -181,19 +181,19 @@ Closure 是指說一個function記住了他在被定義的當下時的lexical sc
     
     </summary>
     
-      <category term="javascript" scheme="http://swarchen.github.io/Blog/categories/javascript/"/>
+      <category term="javascript" scheme="http://swarchen.github.io/categories/javascript/"/>
     
     
-      <category term="javascript" scheme="http://swarchen.github.io/Blog/tags/javascript/"/>
+      <category term="javascript" scheme="http://swarchen.github.io/tags/javascript/"/>
     
-      <category term="this" scheme="http://swarchen.github.io/Blog/tags/this/"/>
+      <category term="this" scheme="http://swarchen.github.io/tags/this/"/>
     
   </entry>
   
   <entry>
     <title>javascript - Hoisting</title>
-    <link href="http://swarchen.github.io/Blog/2016/09/22/hoisting/"/>
-    <id>http://swarchen.github.io/Blog/2016/09/22/hoisting/</id>
+    <link href="http://swarchen.github.io/2016/09/22/hoisting/"/>
+    <id>http://swarchen.github.io/2016/09/22/hoisting/</id>
     <published>2016-09-22T11:28:37.000Z</published>
     <updated>2016-09-22T14:17:50.000Z</updated>
     
@@ -231,19 +231,19 @@ Closure 是指說一個function記住了他在被定義的當下時的lexical sc
     
     </summary>
     
-      <category term="javascript" scheme="http://swarchen.github.io/Blog/categories/javascript/"/>
+      <category term="javascript" scheme="http://swarchen.github.io/categories/javascript/"/>
     
     
-      <category term="javascript" scheme="http://swarchen.github.io/Blog/tags/javascript/"/>
+      <category term="javascript" scheme="http://swarchen.github.io/tags/javascript/"/>
     
-      <category term="hoisting" scheme="http://swarchen.github.io/Blog/tags/hoisting/"/>
+      <category term="hoisting" scheme="http://swarchen.github.io/tags/hoisting/"/>
     
   </entry>
   
   <entry>
     <title>javascript - Scope</title>
-    <link href="http://swarchen.github.io/Blog/2016/09/22/javascript-%E7%9A%84Scope-Compiler/"/>
-    <id>http://swarchen.github.io/Blog/2016/09/22/javascript-的Scope-Compiler/</id>
+    <link href="http://swarchen.github.io/2016/09/22/javascript-%E7%9A%84Scope-Compiler/"/>
+    <id>http://swarchen.github.io/2016/09/22/javascript-的Scope-Compiler/</id>
     <published>2016-09-22T04:20:07.000Z</published>
     <updated>2016-09-22T14:17:40.000Z</updated>
     
@@ -307,19 +307,19 @@ Closure 是指說一個function記住了他在被定義的當下時的lexical sc
     
     </summary>
     
-      <category term="javascript" scheme="http://swarchen.github.io/Blog/categories/javascript/"/>
+      <category term="javascript" scheme="http://swarchen.github.io/categories/javascript/"/>
     
     
-      <category term="javascript" scheme="http://swarchen.github.io/Blog/tags/javascript/"/>
+      <category term="javascript" scheme="http://swarchen.github.io/tags/javascript/"/>
     
-      <category term="scope" scheme="http://swarchen.github.io/Blog/tags/scope/"/>
+      <category term="scope" scheme="http://swarchen.github.io/tags/scope/"/>
     
   </entry>
   
   <entry>
     <title>Hexo Markdown 的使用</title>
-    <link href="http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-的使用/</id>
+    <link href="http://swarchen.github.io/2016/09/22/Hexo-Markdown-%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://swarchen.github.io/2016/09/22/Hexo-Markdown-的使用/</id>
     <published>2016-09-21T16:53:50.000Z</published>
     <updated>2016-09-22T11:15:00.000Z</updated>
     
@@ -395,18 +395,18 @@ Closure 是指說一個function記住了他在被定義的當下時的lexical sc
     
     </summary>
     
-      <category term="writing" scheme="http://swarchen.github.io/Blog/categories/writing/"/>
+      <category term="writing" scheme="http://swarchen.github.io/categories/writing/"/>
     
     
-      <category term="Markdown" scheme="http://swarchen.github.io/Blog/tags/Markdown/"/>
+      <category term="Markdown" scheme="http://swarchen.github.io/tags/Markdown/"/>
     
-      <category term="Blog" scheme="http://swarchen.github.io/Blog/tags/Blog/"/>
+      <category term="Blog" scheme="http://swarchen.github.io/tags/Blog/"/>
     
-      <category term="Writing" scheme="http://swarchen.github.io/Blog/tags/Writing/"/>
+      <category term="Writing" scheme="http://swarchen.github.io/tags/Writing/"/>
     
-      <category term="部落格" scheme="http://swarchen.github.io/Blog/tags/%E9%83%A8%E8%90%BD%E6%A0%BC/"/>
+      <category term="部落格" scheme="http://swarchen.github.io/tags/%E9%83%A8%E8%90%BD%E6%A0%BC/"/>
     
-      <category term="寫作" scheme="http://swarchen.github.io/Blog/tags/%E5%AF%AB%E4%BD%9C/"/>
+      <category term="寫作" scheme="http://swarchen.github.io/tags/%E5%AF%AB%E4%BD%9C/"/>
     
   </entry>
   
