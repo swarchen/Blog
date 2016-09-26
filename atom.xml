@@ -5,7 +5,7 @@
   <link href="/Blog/atom.xml" rel="self"/>
   
   <link href="http://swarchen.github.io/"/>
-  <updated>2016-09-26T16:15:12.000Z</updated>
+  <updated>2016-09-26T17:12:22.000Z</updated>
   <id>http://swarchen.github.io/</id>
   
   <author>
@@ -14,6 +14,69 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Font-Size</title>
+    <link href="http://swarchen.github.io/2016/09/27/font-size/"/>
+    <id>http://swarchen.github.io/2016/09/27/font-size/</id>
+    <published>2016-09-26T16:20:17.000Z</published>
+    <updated>2016-09-26T17:12:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>CSS提供了非常多font-size的單位</p>
+<p>用在網頁顯示上的 
+<span class="highlight-text danger">keywords</span>, 
+<span class="highlight-text danger">ems</span>, 
+<span class="highlight-text danger">exes</span>, 
+<span class="highlight-text danger">pixels</span>, 
+<span class="highlight-text danger">percentages</span>
+<br>
+用在列印的
+<span class="highlight-text danger">picas</span>, 
+<span class="highlight-text danger">points</span>, 
+<span class="highlight-text danger">inches</span>, 
+<span class="highlight-text danger">centimeters</span>, 
+<span class="highlight-text danger">millimeters</span>.</p>
+<a id="more"></a>
+<h2 id="Pixels"><a href="#Pixels" class="headerlink" title="Pixels"></a>Pixels</h2><blockquote>
+<p>透過 Pixel 設定字型大小是最直接的方式，瀏覽器會依照設定的pixel顯示字型。</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">font-size</span>: 36<span class="selector-tag">px</span>;</div></pre></td></tr></table></figure>
+<h2 id="Keywords"><a href="#Keywords" class="headerlink" title="Keywords"></a>Keywords</h2><blockquote>
+<p>透過 Keywords 設定字型大小，使用上會有所限制，只有七種大小能夠選擇</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">font-size</span>: <span class="selector-tag">xx-small</span>, <span class="selector-tag">x-small</span>, <span class="selector-tag">small</span>, <span class="selector-tag">medium</span>, <span class="selector-tag">large</span>, <span class="selector-tag">x-large</span>, <span class="selector-tag">xx-large</span>;</div></pre></td></tr></table></figure>
+<h2 id="Percentages"><a href="#Percentages" class="headerlink" title="Percentages"></a>Percentages</h2><blockquote>
+<p>透過 Keywords 設定字型大小，直接用倍數乘上Base text size</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">font-size</span>: 200%;</div></pre></td></tr></table></figure>
+<div class="alert info"><p>Base text size 大部分瀏覽器初始的font-size設定為16px</p>
+</div>
+<h2 id="ems"><a href="#ems" class="headerlink" title="ems"></a>ems</h2><blockquote>
+<p>透過 em 設定字型大小，跟百分比很像，也是用倍數乘上Base text size</p>
+</blockquote>
+<div class="alert danger no-icon"><p>em 會讓文字的大小透過元素inherit(傳承)下去</p>
+</div>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Base text size == 16px */</span></div><div class="line"></div><div class="line"><span class="selector-class">.page</span>&#123;</div><div class="line">	<span class="attribute">font-size</span>: .<span class="number">5em</span>; <span class="comment">/* 16px * 0.5 = 8px */</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.page</span> <span class="selector-tag">p</span>&#123;</div><div class="line">	<span class="attribute">font-size</span>: .<span class="number">5em</span>; <span class="comment">/* 16px * 0.5 * 0.5 = 4px */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="rems"><a href="#rems" class="headerlink" title="rems"></a>rems</h2><blockquote>
+<p>透過 rem 設定字型大小，可以改善em 所造成的傳承疊加的問題</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Base text size == 16px */</span></div><div class="line"></div><div class="line"><span class="selector-class">.page</span>&#123;</div><div class="line">	<span class="attribute">font-size</span>: .<span class="number">5rem</span>; <span class="comment">/* 16px * 0.5 = 8px */</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.page</span> <span class="selector-tag">p</span>&#123;</div><div class="line">	<span class="attribute">font-size</span>: .<span class="number">5rem</span>; <span class="comment">/* 16px * 0.5 = 8px */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      透過閱讀前端經典好書，來補齊前端工程的知識點
+    
+    </summary>
+    
+      <category term="CSS" scheme="http://swarchen.github.io/categories/CSS/"/>
+    
+    
+      <category term="CSS" scheme="http://swarchen.github.io/tags/CSS/"/>
+    
+      <category term="先學走，再學跑" scheme="http://swarchen.github.io/tags/%E5%85%88%E5%AD%B8%E8%B5%B0%EF%BC%8C%E5%86%8D%E5%AD%B8%E8%B7%91/"/>
+    
+  </entry>
   
   <entry>
     <title>Pseudo-Classes and Pseudo-Elements</title>
