@@ -6,28 +6,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="來自馬祖的前端工程師">
-    <title>用 Modernizr 來判斷瀏覽器是否支援 html5 的 features - 來自馬祖的前端工程師</title>
+    <title>分類: CSS - 來自馬祖的前端工程師</title>
     <meta name="author" content="Jhao Cheng Wu">
-    
-        <meta name="keywords" content="html5,modernizr">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/Blog/atom.xml">
     
-    <meta name="description" content="用 Modernizr 來判斷瀏覽器是否支援 html5 的 features">
-<meta property="og:type" content="blog">
-<meta property="og:title" content="用 Modernizr 來判斷瀏覽器是否支援 html5 的 features">
-<meta property="og:url" content="http://swarchen.github.io/2016/09/26/用Modernizr-來判斷瀏覽器是否支援html5的features/index.html">
+    <meta property="og:type" content="blog">
+<meta property="og:title" content="來自馬祖的前端工程師">
+<meta property="og:url" content="http://swarchen.github.io/categories/CSS/index.html">
 <meta property="og:site_name" content="來自馬祖的前端工程師">
-<meta property="og:description" content="用 Modernizr 來判斷瀏覽器是否支援 html5 的 features">
-<meta property="og:image" content="http://i.imgur.com/bieMWuA.png">
-<meta property="og:image" content="http://dqbgk6hf2uifn.cloudfront.net/_img/e7ce6d2e-eb03-ec68-612a-52a0df562133_0">
-<meta property="og:updated_time" content="2016-09-26T09:25:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="用 Modernizr 來判斷瀏覽器是否支援 html5 的 features">
-<meta name="twitter:description" content="用 Modernizr 來判斷瀏覽器是否支援 html5 的 features">
-<meta name="twitter:image" content="http://i.imgur.com/bieMWuA.png">
+<meta name="twitter:title" content="來自馬祖的前端工程師">
     
     
         
@@ -35,9 +26,6 @@
     
         <meta property="og:image" content="http://swarchen.github.io/assets/images/profile.jpg"/>
     
-    
-        <meta property="og:image" content="http://dqbgk6hf2uifn.cloudfront.net/_img/e7ce6d2e-eb03-ec68-612a-52a0df562133_0"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://dqbgk6hf2uifn.cloudfront.net/_img/e7ce6d2e-eb03-ec68-612a-52a0df562133_0" />
     
     
     
@@ -73,7 +61,7 @@
         
     
 
-<header id="header" data-behavior="4">
+<header id="header" data-behavior="1">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a class="header-title-link" href="/Blog/ ">來自馬祖的前端工程師</a>
@@ -97,7 +85,7 @@
         
     
 
-<nav id="sidebar" data-behavior="4">
+<nav id="sidebar" data-behavior="1">
     <div class="sidebar-container">
         
             <div class="sidebar-profile">
@@ -181,21 +169,26 @@
 </nav>
 
             
-            <div id="main" data-behavior="4"
+            <div id="main" data-behavior="1"
                  class="
                         hasCoverMetaIn
                         ">
                 
-<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    <section class="postShorten-group main-content-wrap">
     
     
-        <div class="post-header main-content-wrap text-center">
-    
-        <h1 class="post-title" itemprop="headline">
-            用 Modernizr 來判斷瀏覽器是否支援 html5 的 features
-        </h1>
-    
-    <div class="post-meta">
+    <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/Blog/2016/09/26/Pseudo-Classes-and-Pseudo-Elements/">
+                            Pseudo-Classes and Pseudo-Elements
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
     <time itemprop="datePublished" datetime="2016-09-26T13:08:12+08:00">
 	
 		    9月 26, 2016
@@ -204,115 +197,52 @@
     
         <span>分類 </span>
         
-    <a class="category-link" href="/Blog/categories/html5/">html5</a>
+    <a class="category-link" href="/Blog/categories/CSS/">CSS</a>
 
 
     
 </div>
-
-</div>
-    
-    <div class="post-content markdown" itemprop="articleBody">
-        <div class="main-content-wrap">
-            <p>先到<a href="https://modernizr.com" target="_blank" rel="external">modernizr</a>下載modernizr的js檔案</p>
-<p>並且選擇自己需要的features再按build</p>
-<p>就會取得一個 <em>modernizr-custom.min.js</em> 的檔案</p>
-<a id="more"></a>
-<p>之後將js檔加入到html檔案當中</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">title</span>&gt;</span>HTML5 Feature Detection<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"modernizr-custom.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">   ...</div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>之後當你的網站讀取時</p>
-<p>Modernizr就會先做快速的測試</p>
-<p>然後回傳一個 叫作 Modernizr javascript object</p>
-<p><img src="http://i.imgur.com/bieMWuA.png" alt="Modernizr"></p>
-<p>之後便可以透過這個Modernizr去動態的操作網頁在不同瀏覽器的顯示狀態</p>
-<p>達到更好的使用者體驗<del>IE</del></p>
-<p>Modernizr不只有支援 HTML</p>
-<p>還有CSS and JavaScript的相容性測試</p>
-<p>更多關於Modernizr的使用方式可以直接看官方的docs</p>
-<p><a href="https://modernizr.com/docs" target="_blank" rel="external">Modernizr docs</a></p>
-<p><img src="http://dqbgk6hf2uifn.cloudfront.net/_img/e7ce6d2e-eb03-ec68-612a-52a0df562133_0" alt=""></p>
-
-            
-        </div>
-    </div>
-    <div id="post-footer" class="post-footer main-content-wrap">
-        
-            <div class="post-footer-tags">
-                <span class="text-color-light text-small">標籤</span><br/>
-                
-    <a class="tag tag--primary tag--small t-link" href="/Blog/tags/html5/">html5</a> <a class="tag tag--primary tag--small t-link" href="/Blog/tags/modernizr/">modernizr</a>
 
             </div>
-        
-        <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/26/Pseudo-Classes-and-Pseudo-Elements/"  data-tooltip="Pseudo-Classes and Pseudo-Elements">
-                
-                    <i class="fa fa-angle-left"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
-                </a>
-            </li>
-            <li class="post-action">
-                
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/22/Closure/" data-tooltip="javascript - Closure">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
-                <i class="fa fa-share-alt"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/09/26/用Modernizr-來判斷瀏覽器是否支援html5的features/">
-                <i class="fa fa-google-plus"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/09/26/用Modernizr-來判斷瀏覽器是否支援html5的features/">
-                <i class="fa fa-facebook-official"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/09/26/用Modernizr-來判斷瀏覽器是否支援html5的features/">
-                <i class="fa fa-twitter"></i>
-            </a>
-        </li>
-        
-            <li class="post-action">
-                <a class="post-action-btn btn btn--default" href="#disqus_thread">
-                    <i class="fa fa-comment-o"></i>
-                </a>
-            </li>
-        
-        <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#">
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <a id="more"></a>
+<p>回想自己在前端開發的路上</p>
+<p>先學會了一些HTML tags跟一點點的CSS, javascript就開始寫網頁了</p>
+<p>接著就是jQuery,Bootstrap,AngularJS等等一大堆的框架</p>
+<p>並沒有好好的將網頁三劍客(HTML, CSS, Javascript)踏實的走好</p>
+<p>因此想透過閱讀經典前端書籍</p>
+<p>建立穩固的知識點</p>
+<span class="highlight-text danger">先學走，再學跑</span>
+<p><a href="http://shop.oreilly.com/product/0636920036357.do" target="_blank" rel="external">CSS: The Missing Manual</a></p>
+                    
+                        <a href="/Blog/2016/09/26/Pseudo-Classes-and-Pseudo-Elements/" class="postShorten-excerpt_link link">
+                            繼續閱讀
+                        </a>
+                        
+                    
+                </div>
             
-                <i class="fa fa-list"></i>
+        </div>
+        
+            <a href="/Blog/2016/09/26/Pseudo-Classes-and-Pseudo-Elements/">
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" itemprop="image" src="https://images-na.ssl-images-amazon.com/images/I/41GlH6s9oiL._SX379_BO1,204,203,200_.jpg"/>
+                </div>
             </a>
-        </li>
+            
+        
+    </article>
+    
+    <div class="pagination-bar">
+    <ul class="pagination">
+        
+        
+        <li class="pagination-number">第 1 頁 共 1 頁</li>
     </ul>
 </div>
 
-
-        
-            
-                <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-            
-        
-    </div>
-</article>
+</section>
 
 
 
@@ -323,90 +253,6 @@
 </footer>
 
             </div>
-            
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
-                    <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/26/Pseudo-Classes-and-Pseudo-Elements/"  data-tooltip="Pseudo-Classes and Pseudo-Elements">
-                
-                    <i class="fa fa-angle-left"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
-                </a>
-            </li>
-            <li class="post-action">
-                
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/22/Closure/" data-tooltip="javascript - Closure">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
-                <i class="fa fa-share-alt"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/09/26/用Modernizr-來判斷瀏覽器是否支援html5的features/">
-                <i class="fa fa-google-plus"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/09/26/用Modernizr-來判斷瀏覽器是否支援html5的features/">
-                <i class="fa fa-facebook-official"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/09/26/用Modernizr-來判斷瀏覽器是否支援html5的features/">
-                <i class="fa fa-twitter"></i>
-            </a>
-        </li>
-        
-            <li class="post-action">
-                <a class="post-action-btn btn btn--default" href="#disqus_thread">
-                    <i class="fa fa-comment-o"></i>
-                </a>
-            </li>
-        
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#">
-            
-                <i class="fa fa-list"></i>
-            </a>
-        </li>
-    </ul>
-</div>
-
-
-                </div>
-                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
-    <ul class="share-options">
-        <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/09/26/用Modernizr-來判斷瀏覽器是否支援html5的features/">
-                <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
-            </a>
-        </li>
-        <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/09/26/用Modernizr-來判斷瀏覽器是否支援html5的features/">
-                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
-            </a>
-        </li>
-        <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/09/26/用Modernizr-來判斷瀏覽器是否支援html5的features/">
-                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
-            </a>
-        </li>
-    </ul>
-</div>
-<div id="share-options-mask" class="share-options-mask"></div>
-
             
         </div>
         
@@ -684,25 +530,6 @@ Closure 是指說一個function記住了他在被定義的當下時的lexical sc
 <script src="/Blog/assets/js/jquery.fancybox-thumbs.js"></script>
 <script src="/Blog/assets/js/tranquilpeak.js"></script>
 <!--SCRIPTS END-->
-
-    
-        <script>
-             var disqus_config = function () {
-                 this.page.url = 'http://swarchen.github.io/Blog/2016/09/26/用Modernizr-來判斷瀏覽器是否支援html5的features/';
-                 
-                    this.page.identifier = '2016/09/26/用Modernizr-來判斷瀏覽器是否支援html5的features/';
-                 
-             };
-            (function() {
-                var d = document, s = d.createElement('script');
-                var disqus_shortname = 'swarchen';
-                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            })();
-        </script>
-    
 
 
 
