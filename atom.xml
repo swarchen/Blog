@@ -5,7 +5,7 @@
   <link href="/Blog/atom.xml" rel="self"/>
   
   <link href="http://swarchen.github.io/"/>
-  <updated>2016-09-27T07:36:20.000Z</updated>
+  <updated>2016-09-27T11:01:45.000Z</updated>
   <id>http://swarchen.github.io/</id>
   
   <author>
@@ -14,6 +14,77 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Transition</title>
+    <link href="http://swarchen.github.io/2016/09/27/Transition/"/>
+    <id>http://swarchen.github.io/2016/09/27/Transition/</id>
+    <published>2016-09-27T07:57:30.000Z</published>
+    <updated>2016-09-27T11:01:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Transition可以讓元素在兩個不同的Css style之間作轉換</p>
+<p>讓網站更具互動性</p>
+<a id="more"></a>
+<p>要達到Trasition的動畫效果</p>
+<p>首先要讓元素有<span class="highlight-text green">兩種style </span>
+
+再加上<span class="highlight-text green">transition</span></p>
+<p>並且讓trasition有個<span class="highlight-text green">trigger</span>(啟動)的條件</p>
+<p>直接來看要怎麼讓一個方形元素的背景色做變化</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.rect</span>&#123;</div><div class="line">  <span class="attribute">background-color</span>:LightSeaGreen; <span class="comment">/* 第一種style */</span></div><div class="line">  <span class="attribute">width</span>:<span class="number">100px</span>;</div><div class="line">  <span class="attribute">height</span>:<span class="number">100px</span>;</div><div class="line">  <span class="attribute">transition-property</span>: background-color; <span class="comment">/* 選擇要做變化的style */</span></div><div class="line">  <span class="attribute">transition-duration</span>: <span class="number">1s</span>; <span class="comment">/* 變化所需的時間 */</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.rect</span><span class="selector-pseudo">:hover</span>&#123; <span class="comment">/* Hover是這個trasition的trigger */</span></div><div class="line">  <span class="attribute">background-color</span>:Tomato; <span class="comment">/* 第二種style */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/0hcn951q/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe>
+<p>而這是針對一種transition時可以這樣寫</p>
+<p>如果一次有多個變化要一起表現呢？</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.rect</span>&#123;</div><div class="line">  <span class="comment">/* ... */</span></div><div class="line">  <span class="attribute">transition-property</span>: background-color,width,height; <span class="comment">/* 選擇所有要做變化的style並且用逗號隔開 */</span></div><div class="line">  <span class="attribute">transition-duration</span>: <span class="number">1s</span>,.<span class="number">5s</span>,.<span class="number">8s</span>; <span class="comment">/* 個別變化所需的時間 */</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.rect</span><span class="selector-pseudo">:hover</span>&#123; </div><div class="line">  <span class="comment">/* ... */</span></div><div class="line">  <span class="attribute">width</span>:<span class="number">150px</span>; <span class="comment">/* 新的變化 */</span></div><div class="line">  <span class="attribute">height</span>:<span class="number">150px</span>; <span class="comment">/* 新的變化 */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/0hcn951q/1/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe>
+<h2 id="Transition-Delay"><a href="#Transition-Delay" class="headerlink" title="Transition Delay"></a>Transition Delay</h2><p>如果想要讓某個transition延遲觸發</p>
+<p>可以透過transition-delay來達成</p>
+<p>來試著讓方塊在放大之後才開始變色</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.rect</span>&#123;</div><div class="line">  <span class="comment">/* ... */</span></div><div class="line">    <span class="attribute">transition-delay</span>: .<span class="number">8s</span>,<span class="number">0s</span>,<span class="number">0s</span>; <span class="comment">/* 個別transition delay的時間 */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/0hcn951q/2/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe>
+<h2 id="Transition-Timing"><a href="#Transition-Timing" class="headerlink" title="Transition Timing"></a>Transition Timing</h2><p>Transition Timing 可以調整變化的過程的速度</p>
+<p>CSS提供預設的5種keywords可以使用</p>
+<blockquote>
+<p>linear, ease, ease-in, ease-out, and ease-in-out</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">transition-timing-function</span><span class="selector-pseudo">:linear</span>;</div></pre></td></tr></table></figure>
+<iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/4fjuozke/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe>
+<h3 id="cubic-bezier"><a href="#cubic-bezier" class="headerlink" title="cubic-bezier"></a>cubic-bezier</h3><p>cubic-bezier 可以讓我們更靈活的運用動畫</p>
+<p>使動畫的變化更活潑</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">transition-timing-function</span>: <span class="selector-tag">cubic-bezier</span>(<span class="selector-class">.20</span>, <span class="selector-class">.96</span>, <span class="selector-class">.74</span>, <span class="selector-class">.07</span>);</div></pre></td></tr></table></figure>
+<p>用圖形來表示cubic-bezier</p>
+<p>橫軸為時間，縱軸為動畫的進度</p>
+<p><img src="http://i.imgur.com/dOQTIFs.png" height="200px" alt="cubic-bezier"></p>
+<p>平緩的線代表動畫速度較慢</p>
+<p>越陡的線代表動畫速度較快</p>
+<p>要憑空想出來這個曲線是不可能的</p>
+<p>所以推薦一個網站可以動態的去調整自己想要的曲線</p>
+<p><a href="http://cubic-bezier.com/" target="_blank" rel="external">cubic-bezier</a></p>
+<h2 id="Transition-Shorthand"><a href="#Transition-Shorthand" class="headerlink" title="Transition Shorthand"></a>Transition Shorthand</h2><p>如果動畫一多起來</p>
+<p>總不希望每個動畫都要寫一次CSS的property,duration之類的</p>
+<p>CSS提供了下面的寫法來簡化</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">transition</span>: <span class="selector-tag">all</span> 1<span class="selector-tag">s</span> <span class="selector-tag">ease-in</span> <span class="selector-class">.5s</span>;</div></pre></td></tr></table></figure>
+<p>就可以一次將所有的設定套用在每個transition上面</p>
+<iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/0hcn951q/3/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe>
+<p>也可以透過換行來定義不同的transition</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">transition</span>: <span class="selector-tag">background-color</span> 1<span class="selector-tag">s</span> <span class="selector-tag">ease-in</span> <span class="selector-class">.8s</span>, <span class="comment">/* 順序分別是style,duration,timing,delay */</span></div><div class="line">			<span class="selector-tag">width</span> <span class="selector-class">.5s</span>,</div><div class="line">			<span class="selector-tag">height</span> <span class="selector-class">.8s</span>;</div></pre></td></tr></table></figure>
+<iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/0hcn951q/4/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe>
+]]></content>
+    
+    <summary type="html">
+    
+      透過閱讀前端經典好書，來補齊前端工程的知識點
+    
+    </summary>
+    
+      <category term="CSS" scheme="http://swarchen.github.io/categories/CSS/"/>
+    
+    
+      <category term="CSS" scheme="http://swarchen.github.io/tags/CSS/"/>
+    
+      <category term="先學走，再學跑" scheme="http://swarchen.github.io/tags/%E5%85%88%E5%AD%B8%E8%B5%B0%EF%BC%8C%E5%86%8D%E5%AD%B8%E8%B7%91/"/>
+    
+  </entry>
   
   <entry>
     <title>transform</title>
