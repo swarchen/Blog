@@ -5,7 +5,7 @@
   <link href="/Blog/atom.xml" rel="self"/>
   
   <link href="http://swarchen.github.io/"/>
-  <updated>2016-09-26T17:12:22.000Z</updated>
+  <updated>2016-09-27T07:36:20.000Z</updated>
   <id>http://swarchen.github.io/</id>
   
   <author>
@@ -14,6 +14,67 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>transform</title>
+    <link href="http://swarchen.github.io/2016/09/27/transform/"/>
+    <id>http://swarchen.github.io/2016/09/27/transform/</id>
+    <published>2016-09-27T06:41:51.000Z</published>
+    <updated>2016-09-27T07:36:20.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>CSS中的transform可以直接改變網頁中的元素</p>
+<p>套用transform之後並不會改變元素本來在html中版面的位置或大小</p>
+<p>而是顯示上被改變了</p>
+<p>用下面的例子可以看到放大的元素不會因為放大而自動往下排版</p>
+<p>而是直接覆蓋過附近的元素</p>
+<iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/dp4jx4wp/3/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe>
+<a id="more"></a>
+<h5 id="Table-of-Contents"><a href="#Table-of-Contents" class="headerlink" title="Table of Contents"></a>Table of Contents</h5><ul>
+<li><a href="#normal">常用的transform</a><ul>
+<li><a href="#rotate">Rotate</a>  </li>
+<li><a href="#scale">Scale</a>  </li>
+<li><a href="#skew">Skew</a>  </li>
+</ul>
+</li>
+<li><a href="#origin">Transform-origin</a></li>
+</ul>
+<p><a name="normal"></a></p>
+<h1 id="常用的transform"><a href="#常用的transform" class="headerlink" title="常用的transform"></a>常用的transform</h1><p><a name="rotate"></a></p>
+<h2 id="Rotate"><a href="#Rotate" class="headerlink" title="Rotate"></a>Rotate</h2><p>Rotate就是將畫面中的元素旋轉</p>
+<p>用法：
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">transform</span>: <span class="selector-tag">rotate</span>(45<span class="selector-tag">deg</span>);<span class="comment">/* 順時鐘旋轉45度 */</span></div></pre></td></tr></table></figure></p>
+<iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/5a33sash/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe>
+<p><a name="scale"></a></p>
+<h2 id="Scale"><a href="#Scale" class="headerlink" title="Scale"></a>Scale</h2><p>Rotate就是將畫面中的元素放大縮小</p>
+<p>用法：
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">transform</span>: <span class="selector-tag">scale</span>(2);</div><div class="line"><span class="selector-tag">transform</span>: <span class="selector-tag">scale</span>(0<span class="selector-class">.3</span>);</div><div class="line"><span class="selector-tag">transform</span>: <span class="selector-tag">scale</span>(<span class="selector-class">.5</span>,2); <span class="comment">/* x軸方向縮小一半，y方向放大兩倍 */</span></div></pre></td></tr></table></figure></p>
+<iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/dp4jx4wp/4/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe>
+<p><a name="skew"></a></p>
+<h2 id="Skew"><a href="#Skew" class="headerlink" title="Skew"></a>Skew</h2><p>Skew就是將畫面中的元素作傾斜</p>
+<p>用法：
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">transform</span>: <span class="selector-tag">skew</span>(45<span class="selector-tag">deg</span>, 0);<span class="comment">/* 相對垂直軸傾斜45度 */</span></div><div class="line"><span class="selector-tag">transform</span>: <span class="selector-tag">skew</span>(0, 45<span class="selector-tag">deg</span>);<span class="comment">/* 相對水平軸傾斜45度 */</span></div></pre></td></tr></table></figure></p>
+<iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/dp4jx4wp/5/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe>
+<p><a name="origin"></a></p>
+<h2 id="Origin"><a href="#Origin" class="headerlink" title="Origin"></a>Origin</h2><p>通常在套用transform的時候</p>
+<p>瀏覽器會自動以元素的中心點作為transform的參考點</p>
+<p>我們也可以透過 transform-origin 來作改變</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">transform-origin</span>: <span class="selector-tag">left</span> <span class="selector-tag">top</span>; <span class="comment">/* 透過keywords去調整 */</span></div><div class="line"><span class="selector-tag">transform-origin</span>: 0 0; <span class="comment">/* 透過px值去調整 */</span></div><div class="line"><span class="selector-tag">transform-origin</span>: 0% 0%; <span class="comment">/* 透過百分比去調整 */</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      透過閱讀前端經典好書，來補齊前端工程的知識點
+    
+    </summary>
+    
+      <category term="CSS" scheme="http://swarchen.github.io/categories/CSS/"/>
+    
+    
+      <category term="CSS" scheme="http://swarchen.github.io/tags/CSS/"/>
+    
+      <category term="先學走，再學跑" scheme="http://swarchen.github.io/tags/%E5%85%88%E5%AD%B8%E8%B5%B0%EF%BC%8C%E5%86%8D%E5%AD%B8%E8%B7%91/"/>
+    
+  </entry>
   
   <entry>
     <title>Font-Size</title>
