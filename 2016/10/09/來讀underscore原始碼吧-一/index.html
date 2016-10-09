@@ -6,27 +6,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="來自馬祖的前端工程師">
-    <title>Hexo Markdown 的使用 - 來自馬祖的前端工程師</title>
+    <title>來讀underscore原始碼吧(一) - 來自馬祖的前端工程師</title>
     <meta name="author" content="Jhao Cheng Wu">
     
-        <meta name="keywords" content="Markdown,hexo">
+        <meta name="keywords" content="underscore,javascript">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/Blog/atom.xml">
     
-    <meta name="description" content="一些常用的 Markdown 整理，方便之後寫作快速查詢。">
+    <meta name="description" content="學會js很簡單，但要精通需要非常多的時間，透過閱讀一些經典library，來學習大神們怎麼用更有效率的方式解決問題，那麼就先來讀讀underscore吧！">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Hexo Markdown 的使用">
-<meta property="og:url" content="http://swarchen.github.io/2016/09/22/Hexo-Markdown-的使用/index.html">
+<meta property="og:title" content="來讀underscore原始碼吧(一)">
+<meta property="og:url" content="http://swarchen.github.io/2016/10/09/來讀underscore原始碼吧-一/index.html">
 <meta property="og:site_name" content="來自馬祖的前端工程師">
-<meta property="og:description" content="一些常用的 Markdown 整理，方便之後寫作快速查詢。">
-<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png">
-<meta property="og:updated_time" content="2016-09-22T11:15:00.000Z">
+<meta property="og:description" content="學會js很簡單，但要精通需要非常多的時間，透過閱讀一些經典library，來學習大神們怎麼用更有效率的方式解決問題，那麼就先來讀讀underscore吧！">
+<meta property="og:updated_time" content="2016-10-09T09:41:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo Markdown 的使用">
-<meta name="twitter:description" content="一些常用的 Markdown 整理，方便之後寫作快速查詢。">
-<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png">
+<meta name="twitter:title" content="來讀underscore原始碼吧(一)">
+<meta name="twitter:description" content="學會js很簡單，但要精通需要非常多的時間，透過閱讀一些經典library，來學習大神們怎麼用更有效率的方式解決問題，那麼就先來讀讀underscore吧！">
     
     
         
@@ -35,8 +33,8 @@
         <meta property="og:image" content="http://swarchen.github.io/assets/images/profile.jpg"/>
     
     
-        <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png"/>
-        <meta class="swiftype" name="image" data-type="enum" content="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png" />
+        <meta property="og:image" content="https://cdn-images-1.medium.com/max/624/1*6NkpTUi00kskQdCx-ZRvvA.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://cdn-images-1.medium.com/max/624/1*6NkpTUi00kskQdCx-ZRvvA.png" />
     
     
     
@@ -191,19 +189,19 @@
         <div class="post-header main-content-wrap text-center">
     
         <h1 class="post-title" itemprop="headline">
-            Hexo Markdown 的使用
+            來讀underscore原始碼吧(一)
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" datetime="2016-09-22T00:53:50+08:00">
+    <time itemprop="datePublished" datetime="2016-10-09T17:28:41+08:00">
 	
-		    9月 22, 2016
+		    10月 09, 2016
     	
     </time>
     
         <span>分類 </span>
         
-    <a class="category-link" href="/Blog/categories/writing/">writing</a>
+    <a class="category-link" href="/Blog/categories/javascript/">javascript</a>
 
 
     
@@ -213,70 +211,83 @@
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <h1 id="標題們"><a href="#標題們" class="headerlink" title="標題們"></a>標題們</h1><blockquote>
-<h1 id="h1-title"><a href="#h1-title" class="headerlink" title="# h1 title"></a># h1 title</h1><h2 id="h2-title"><a href="#h2-title" class="headerlink" title="## h2 title"></a>## h2 title</h2><a id="more"></a>
-<h1 id="強調"><a href="#強調" class="headerlink" title="強調"></a>強調</h1><p>* <em>italic</em> *</p>
-<p> ** <strong>Bold</strong> **</p>
-</blockquote>
-<h1 id="清單"><a href="#清單" class="headerlink" title="清單"></a>清單</h1><h2 id="無編號"><a href="#無編號" class="headerlink" title="無編號"></a>無編號</h2><blockquote>
-<ul>
-<li>* Item1</li>
-<li>* Item2<ul>
-<li>* Item2a</li>
-<li>* Item2b</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h2 id="有編號"><a href="#有編號" class="headerlink" title="有編號"></a>有編號</h2><blockquote>
-<ol>
-<li><ol>
-<li>Item1</li>
-</ol>
-</li>
-<li><ol>
-<li>Item2</li>
-<li>* Item2a</li>
-<li>* Item2b</li>
-</ol>
-</li>
-</ol>
-</blockquote>
-<h1 id="圖片"><a href="#圖片" class="headerlink" title="圖片"></a>圖片</h1><blockquote>
-<p>![Markdown](<a href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png\" target="_blank" rel="external">https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png\</a>)</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png" alt="Markdown"></p>
-</blockquote>
-<h1 id="連結"><a href="#連結" class="headerlink" title="連結"></a>連結</h1><blockquote>
-<p>[Jhaocheng&#39;s GitHub](<a href="http://github.com/swarchen" target="_blank" rel="external">http://github.com/swarchen</a>)</p>
-<p><a href="http://github.com/swarchen" target="_blank" rel="external">Jhaocheng&#39;s GitHub</a></p>
-</blockquote>
-<h1 id="文字區塊"><a href="#文字區塊" class="headerlink" title="文字區塊"></a>文字區塊</h1><blockquote>
-<p>> text</p>
-</blockquote>
-<h1 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h1><blockquote>
-<p>```javascript<br>&nbsp;&nbsp;function fancyAlert(arg) {<br>&nbsp;&nbsp;&nbsp;&nbsp;if(arg) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$.facebox({div:&#39;#foo&#39;})<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;}<br>```
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fancyAlert</span>(<span class="params">arg</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span>(arg) &#123;</div><div class="line">    $.facebox(&#123;<span class="attr">div</span>:<span class="string">'#foo'</span>&#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h1 id="標籤們"><a href="#標籤們" class="headerlink" title="標籤們"></a>標籤們</h1><div class="alert danger no-icon"><p>Here is a danger alert without icon</p>
-</div>
-<div class="alert info no-icon"><p>Here is a danger alert without icon</p>
-</div>
-<div class="alert success"><p>Here is a info alert with icon</p>
-</div>
-<div class="alert warning"><p>Here is a warning alert with icon</p>
-</div>
-<h1 id="高光"><a href="#高光" class="headerlink" title="高光"></a>高光</h1><span class="highlight-text danger">your highlighted text</span>
+            <p>學會js很簡單，但要精通需要非常多的時間</p>
+<p>透過閱讀一些經典library</p>
+<p>來學習大神們怎麼用更有效率的方式解決問題</p>
+<p>那麼就先來讀讀underscore吧！</p>
 <blockquote>
-<ul>
-<li>Class<ul>
-<li>red</li>
-<li>green</li>
-<li>blue</li>
-<li>yellow</li>
-</ul>
-</li>
-</ul>
+<p>Underscore.js 版本 1.8.3</p>
 </blockquote>
+<a id="more"></a>
+<figure class="highlight js"><figcaption><span>line:6</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	</div><div class="line">&#125;());</div></pre></td></tr></table></figure>
+<p>透過 IIFE(Immediately Invoked Function Expression) 立即執行函示</p>
+<p>建立一個private的 scope 避免全域變數被污染</p>
+<figure class="highlight js"><figcaption><span>line:14</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> root = <span class="keyword">typeof</span> self == <span class="string">'object'</span> &amp;&amp; self.self === self &amp;&amp; self ||</div><div class="line">            <span class="keyword">typeof</span> global == <span class="string">'object'</span> &amp;&amp; global.global === global &amp;&amp; global ||</div><div class="line">            <span class="keyword">this</span>;</div></pre></td></tr></table></figure>
+<p>這邊主要是在指定root object</p>
+<p>並且可以拆成三個部分來看</p>
+<p>第一個是針對瀏覽器</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typeof</span> self == <span class="string">'object'</span> &amp;&amp; self.self === self &amp;&amp; self</div></pre></td></tr></table></figure>
+<p>在最後一個&amp;&amp;之前是true的話會回傳self</p>
+<p>第二個是針對node的環境</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typeof</span> global == <span class="string">'object'</span> &amp;&amp; global.global === global &amp;&amp; global</div></pre></td></tr></table></figure>
+<p>若是在node 環境下就會回傳global</p>
+<p>而最後一行的this就是針對一些虛擬機的root</p>
+<figure class="highlight js"><figcaption><span>line:22</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ArrayProto = <span class="built_in">Array</span>.prototype, ObjProto = <span class="built_in">Object</span>.prototype;</div><div class="line"><span class="keyword">var</span> SymbolProto = <span class="keyword">typeof</span> <span class="built_in">Symbol</span> !== <span class="string">'undefined'</span> ? <span class="built_in">Symbol</span>.prototype : <span class="literal">null</span>;</div></pre></td></tr></table></figure>
+<p>這裡是先將常用的prototype透過變數暫存起來</p>
+<p>並且在要將整個原始碼minified的時候可以減少檔案的大小</p>
+<p>下面這樣的原始碼是不可以壓縮的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.someMethod = ....</div></pre></td></tr></table></figure>
+<p>但若是用像是ArrayProto變數存起來</p>
+<p>則可以將原始碼壓縮成</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a.someMethod = ...</div></pre></td></tr></table></figure>
+<p>接下來是先將原始碼中常用的native function做個reference</p>
+<p>在未來使用上可以不用一直的做look up</p>
+<p>也方便做更改
+<figure class="highlight js"><figcaption><span>line: 25</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> push = ArrayProto.push,</div><div class="line">    slice = ArrayProto.slice,</div><div class="line">    toString = ObjProto.toString,</div><div class="line">    hasOwnProperty = ObjProto.hasOwnProperty;</div><div class="line"></div><div class="line"><span class="keyword">var</span> nativeIsArray = <span class="built_in">Array</span>.isArray,</div><div class="line">    nativeKeys = <span class="built_in">Object</span>.keys,</div><div class="line">    nativeCreate = <span class="built_in">Object</span>.create;</div></pre></td></tr></table></figure></p>
+<p>下面兩段程式碼要一起看</p>
+<figure class="highlight js"><figcaption><span>line: 37</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">var</span> Ctor = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line"></div><div class="line"><span class="comment">// line: 132</span></div><div class="line">  <span class="keyword">var</span> baseCreate = <span class="function"><span class="keyword">function</span>(<span class="params">prototype</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!_.isObject(prototype)) <span class="keyword">return</span> &#123;&#125;;</div><div class="line">    <span class="keyword">if</span> (nativeCreate) <span class="keyword">return</span> nativeCreate(prototype);</div><div class="line">    Ctor.prototype = prototype; <span class="comment">// 繼承prototype</span></div><div class="line">    <span class="keyword">var</span> result = <span class="keyword">new</span> Ctor; <span class="comment">// 建立一個繼承了prototype的物件</span></div><div class="line">    Ctor.prototype = <span class="literal">null</span>; <span class="comment">// 將Ctor的prototype清除</span></div><div class="line">    <span class="keyword">return</span> result; <span class="comment">// 回傳繼承prototype的物件</span></div><div class="line">  &#125;;</div></pre></td></tr></table></figure>
+<p>在第37行的時候定義了一個空的function</p>
+<p>是為了之後要建立一個新的物件並且從其他物件繼承prototype時所需要的</p>
+<p>為了避免某些環境沒有Object.create</p>
+<p>因此透過 surrogate-prototype-swapping 來做物件的繼承</p>
+<figure class="highlight js"><figcaption><span>line: 40</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> _ = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> _) <span class="keyword">return</span> obj;</div><div class="line">  <span class="keyword">if</span> (!(<span class="keyword">this</span> <span class="keyword">instanceof</span> _)) <span class="keyword">return</span> <span class="keyword">new</span> _(obj);</div><div class="line">  <span class="keyword">this</span>._wrapped = obj; <span class="comment">// 還不確定</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>這邊會確保 _ 是透過 new 的方式去建立的Object</p>
+<p>若是透過 _(obj) 去執行</p>
+<p>此時的this指向的是全域</p>
+<p>會形成全域變數</p>
+<p>因此這段程式碼會執行第二個判斷式</p>
+<p>確保 _(obj) 是透過 new 關鍵字所建立的Object</p>
+<figure class="highlight js"><figcaption><span>line 52</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> exports != <span class="string">'undefined'</span> &amp;&amp; !exports.nodeType) &#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">module</span> != <span class="string">'undefined'</span> &amp;&amp; !<span class="built_in">module</span>.nodeType &amp;&amp; <span class="built_in">module</span>.exports) &#123;</div><div class="line">    exports = <span class="built_in">module</span>.exports = _;</div><div class="line">  &#125;</div><div class="line">  exports._ = _;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  root._ = _;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>這段主要就是讓root scope可以使用underscore的API</p>
+<figure class="highlight js"><figcaption><span>line: 67</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> optimizeCb = <span class="function"><span class="keyword">function</span>(<span class="params">func, context, argCount</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (context === <span class="keyword">void</span> <span class="number">0</span>) <span class="keyword">return</span> func;</div><div class="line">    <span class="keyword">switch</span> (argCount == <span class="literal">null</span> ? <span class="number">3</span> : argCount) &#123;</div><div class="line">      <span class="keyword">case</span> <span class="number">1</span>: <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> func.call(context, value);</div><div class="line">      &#125;;</div><div class="line">      <span class="comment">// The 2-parameter case has been omitted only because no current consumers</span></div><div class="line">      <span class="comment">// made use of it.</span></div><div class="line">      <span class="keyword">case</span> <span class="number">3</span>: <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">value, index, collection</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> func.call(context, value, index, collection);</div><div class="line">      &#125;;</div><div class="line">      <span class="keyword">case</span> <span class="number">4</span>: <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">accumulator, value, index, collection</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> func.call(context, accumulator, value, index, collection);</div><div class="line">      &#125;;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> func.apply(context, <span class="built_in">arguments</span>);</div><div class="line">    &#125;;</div><div class="line">  &#125;;</div></pre></td></tr></table></figure>
+<p>這段希望能夠優化程式內部使用function的時候的速度</p>
+<p>透過下面這段程式碼可以看到call的執行速度可以比apply快上不少</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">function work(a, b, c) &#123;</div><div class="line">    return a * b * c;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var a = [1, 2, 3];</div><div class="line"></div><div class="line">console.time(&apos;apply-cost&apos;);</div><div class="line">for (var i = 0; i &lt; 1000000; i++) &#123;</div><div class="line">  work.apply(this, a);</div><div class="line">&#125;</div><div class="line">console.timeEnd(&apos;apply-cost&apos;);</div><div class="line"></div><div class="line">console.time(&apos;call-cost&apos;);</div><div class="line">for (var i = 0; i &lt; 1000000; i++) &#123;</div><div class="line">  work.call(this, 1, 2, 3);</div><div class="line">&#125;</div><div class="line">console.timeEnd(&apos;call-cost&apos;);</div><div class="line"></div><div class="line">// output</div><div class="line">// apply-cost: 47.439ms</div><div class="line">// call-cost: 8.755ms</div></pre></td></tr></table></figure>
+<p>因此透過optimizeCb在function能夠透過call執行時就透過call</p>
+<p>若例外才用apply來執行</p>
+<figure class="highlight js"><figcaption><span>line: 87</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> builtinIteratee;</div></pre></td></tr></table></figure>
+<p>內建的iteratee(迭代器)</p>
+<figure class="highlight js"><figcaption><span>line: 92</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cb = <span class="function"><span class="keyword">function</span>(<span class="params">value, context, argCount</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (_.iteratee !== builtinIteratee) <span class="keyword">return</span> _.iteratee(value, context);</div><div class="line">    <span class="keyword">if</span> (value == <span class="literal">null</span>) <span class="keyword">return</span> _.identity;</div><div class="line">    <span class="keyword">if</span> (_.isFunction(value)) <span class="keyword">return</span> optimizeCb(value, context, argCount);</div><div class="line">    <span class="keyword">if</span> (_.isObject(value)) <span class="keyword">return</span> _.matcher(value);</div><div class="line">    <span class="keyword">return</span> _.property(value);</div><div class="line">  &#125;;</div><div class="line"></div><div class="line"><span class="comment">// line: 103</span></div><div class="line">  _.iteratee = builtinIteratee = <span class="function"><span class="keyword">function</span>(<span class="params">value, context</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> cb(value, context, <span class="literal">Infinity</span>);</div><div class="line">  &#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在了解後面function用法後補上</p>
+</blockquote>
+<figure class="highlight js"><figcaption><span>line: 109</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> restArgs = <span class="function"><span class="keyword">function</span>(<span class="params">func, startIndex</span>) </span>&#123;</div><div class="line">    startIndex = startIndex == <span class="literal">null</span> ? func.length - <span class="number">1</span> : +startIndex;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> length = <span class="built_in">Math</span>.max(<span class="built_in">arguments</span>.length - startIndex, <span class="number">0</span>),</div><div class="line">          rest = <span class="built_in">Array</span>(length),</div><div class="line">          index = <span class="number">0</span>;</div><div class="line">      <span class="keyword">for</span> (; index &lt; length; index++) &#123;</div><div class="line">        rest[index] = <span class="built_in">arguments</span>[index + startIndex];</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">switch</span> (startIndex) &#123;</div><div class="line">        <span class="keyword">case</span> <span class="number">0</span>: <span class="keyword">return</span> func.call(<span class="keyword">this</span>, rest);</div><div class="line">        <span class="keyword">case</span> <span class="number">1</span>: <span class="keyword">return</span> func.call(<span class="keyword">this</span>, <span class="built_in">arguments</span>[<span class="number">0</span>], rest);</div><div class="line">        <span class="keyword">case</span> <span class="number">2</span>: <span class="keyword">return</span> func.call(<span class="keyword">this</span>, <span class="built_in">arguments</span>[<span class="number">0</span>], <span class="built_in">arguments</span>[<span class="number">1</span>], rest);</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">var</span> args = <span class="built_in">Array</span>(startIndex + <span class="number">1</span>);</div><div class="line">      <span class="keyword">for</span> (index = <span class="number">0</span>; index &lt; startIndex; index++) &#123;</div><div class="line">        args[index] = <span class="built_in">arguments</span>[index];</div><div class="line">      &#125;</div><div class="line">      args[startIndex] = rest;</div><div class="line">      <span class="keyword">return</span> func.apply(<span class="keyword">this</span>, args);</div><div class="line">    &#125;;</div><div class="line">  &#125;;</div></pre></td></tr></table></figure>
+<p>restArgs接受兩個參數，第一個是func，第二個是startIndex</p>
+<p>並回傳一個function執行傳入的func</p>
+<p>在過程中將func中的參數做成Array的封裝</p>
+<p>原先當我們的function接收的參數是動態的時候</p>
+<p>我們會透過</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> args = <span class="built_in">Array</span>.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</div></pre></td></tr></table></figure>
+<p>來把arguments變成Array來做操作</p>
+<figure class="highlight js"><figcaption><span>line: 142</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> property = <span class="function"><span class="keyword">function</span>(<span class="params">key</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> obj == <span class="literal">null</span> ? <span class="keyword">void</span> <span class="number">0</span> : obj[key];</div><div class="line">    &#125;;</div><div class="line">  &#125;;</div></pre></td></tr></table></figure>
+<p>property 是 underscore的 private function</p>
+<p>是一個檢驗property的factory</p>
+<p>透過下面的例子來看</p>
+<figure class="highlight js"><figcaption><span>line: 152</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> MAX_ARRAY_INDEX = <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> getLength = property(<span class="string">'length'</span>);</div><div class="line"><span class="keyword">var</span> isArrayLike = <span class="function"><span class="keyword">function</span>(<span class="params">collection</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> length = getLength(collection);</div><div class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> length == <span class="string">'number'</span> &amp;&amp; length &gt;= <span class="number">0</span> &amp;&amp; length &lt;= MAX_ARRAY_INDEX;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>我們透過 property(&#39;length&#39;) 建立一個 getLength的function</p>
+<p>這個function可以接收一個object</p>
+<p>若object有&#39;length&#39; 的 property 就會回傳相對應的value</p>
+<p>否則就 void 0 (什麼都不做)</p>
 
             
         </div>
@@ -286,7 +297,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">標籤</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/Blog/tags/Blog/">Blog</a> <a class="tag tag--primary tag--small t-link" href="/Blog/tags/Markdown/">Markdown</a> <a class="tag tag--primary tag--small t-link" href="/Blog/tags/Writing/">Writing</a> <a class="tag tag--primary tag--small t-link" href="/Blog/tags/寫作/">寫作</a> <a class="tag tag--primary tag--small t-link" href="/Blog/tags/部落格/">部落格</a>
+    <a class="tag tag--primary tag--small t-link" href="/Blog/tags/javascript/">javascript</a> <a class="tag tag--primary tag--small t-link" href="/Blog/tags/underscore/">underscore</a>
 
             </div>
         
@@ -295,7 +306,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/22/javascript-的Scope-Compiler/"  data-tooltip="javascript - Scope">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -303,7 +314,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/27/Transition/" data-tooltip="Transition">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -318,17 +329,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/10/09/來讀underscore原始碼吧-一/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/10/09/來讀underscore原始碼吧-一/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/10/09/來讀underscore原始碼吧-一/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -376,7 +387,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/22/javascript-的Scope-Compiler/"  data-tooltip="javascript - Scope">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -384,7 +395,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/27/Transition/" data-tooltip="Transition">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -399,17 +410,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/10/09/來讀underscore原始碼吧-一/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/10/09/來讀underscore原始碼吧-一/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/10/09/來讀underscore原始碼吧-一/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -435,17 +446,17 @@
                 <div id="share-options-bar" class="share-options-bar" data-behavior="4">
     <ul class="share-options">
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/10/09/來讀underscore原始碼吧-一/">
                 <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/10/09/來讀underscore原始碼吧-一/">
                 <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-的使用/">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/10/09/來讀underscore原始碼吧-一/">
                 <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
             </a>
         </li>
@@ -828,9 +839,9 @@ Closure 是指說一個function記住了他在被定義的當下時的lexical sc
     
         <script>
              var disqus_config = function () {
-                 this.page.url = 'http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-的使用/';
+                 this.page.url = 'http://swarchen.github.io/Blog/2016/10/09/來讀underscore原始碼吧-一/';
                  
-                    this.page.identifier = '2016/09/22/Hexo-Markdown-的使用/';
+                    this.page.identifier = '2016/10/09/來讀underscore原始碼吧-一/';
                  
              };
             (function() {
