@@ -21,7 +21,7 @@
 <meta property="og:url" content="http://swarchen.github.io/2016/10/10/來讀underscore原始碼吧-二/index.html">
 <meta property="og:site_name" content="來自馬祖的前端工程師">
 <meta property="og:description" content="學會js很簡單，但要精通需要非常多的時間，透過閱讀一些經典library，來學習大神們怎麼用更有效率的方式解決問題，那麼就先來讀讀underscore吧！">
-<meta property="og:updated_time" content="2016-10-09T16:23:01.000Z">
+<meta property="og:updated_time" content="2016-10-09T16:26:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="來讀underscore原始碼吧(二)">
 <meta name="twitter:description" content="學會js很簡單，但要精通需要非常多的時間，透過閱讀一些經典library，來學習大神們怎麼用更有效率的方式解決問題，那麼就先來讀讀underscore吧！">
@@ -336,18 +336,21 @@
 <p>利用iteratee去產生key</p>
 <p>透過behavior去產生不同的result</p>
 <p>接下來看不同的behavior可以產生什麼樣的result</p>
-<figure class="highlight js"><figcaption><span>line: 422</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">_.groupBy = group(<span class="function"><span class="keyword">function</span>(<span class="params">result, value, key</span>) </span>&#123;</div><div class="line">   <span class="keyword">if</span> (_.has(result, key)) result[key].push(value); <span class="keyword">else</span> result[key] = [value];</div><div class="line"> &#125;);</div><div class="line"></div><div class="line"> _.indexBy = group(<span class="function"><span class="keyword">function</span>(<span class="params">result, value, key</span>) </span>&#123;</div><div class="line">   result[key] = value;</div><div class="line"> &#125;);</div><div class="line"></div><div class="line"> _.countBy = group(<span class="function"><span class="keyword">function</span>(<span class="params">result, value, key</span>) </span>&#123;</div><div class="line">   <span class="keyword">if</span> (_.has(result, key)) result[key]++; <span class="keyword">else</span> result[key] = <span class="number">1</span>;</div><div class="line"> &#125;);</div><div class="line"></div><div class="line"> _.partition = group(<span class="function"><span class="keyword">function</span>(<span class="params">result, value, pass</span>) </span>&#123;</div><div class="line">   result[pass ? <span class="number">0</span> : <span class="number">1</span>].push(value);</div><div class="line"> &#125;, <span class="literal">true</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>line: 422</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">_.groupBy = group(<span class="function"><span class="keyword">function</span>(<span class="params">result, value, key</span>) </span>&#123;</div><div class="line">   <span class="keyword">if</span> (_.has(result, key)) result[key].push(value); <span class="keyword">else</span> result[key] = [value];</div><div class="line"> &#125;);</div></pre></td></tr></table></figure>
 <p>第一個_.groupBy 的behavior很簡單</p>
 <p>透過 _.has來檢驗result有沒有相對應的key </p>
 <p>若有則直接push value到相對應key底下的array</p>
 <p>若沒有則產生一個新的key 並將 [value] 指定在該key底下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">_.indexBy = group(<span class="function"><span class="keyword">function</span>(<span class="params">result, value, key</span>) </span>&#123;</div><div class="line">  result[key] = value;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>再來 _.indexBy</p>
 <p>直接產生一個新的key 並將 [value] 指定在該key底下</p>
 <p>因此要先確定key都是唯一的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">_.countBy = group(<span class="function"><span class="keyword">function</span>(<span class="params">result, value, key</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (_.has(result, key)) result[key]++; <span class="keyword">else</span> result[key] = <span class="number">1</span>;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>第三個 _.countBy</p>
 <p>透過 _.has來檢驗result有沒有相對應的key </p>
 <p>若有直接將相對應的key的value + 1</p>
 <p>若沒有則產生一個新的key 並將 value 初始成1</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">_.partition = group(<span class="function"><span class="keyword">function</span>(<span class="params">result, value, pass</span>) </span>&#123;</div><div class="line">  result[pass ? <span class="number">0</span> : <span class="number">1</span>].push(value);</div><div class="line">&#125;, <span class="literal">true</span>);</div></pre></td></tr></table></figure>
 <p>最後一個 _.partition （二分法）</p>
 <p>在前面介紹underscore group function的時候跳過了一段</p>
 <p>就是 </p>
