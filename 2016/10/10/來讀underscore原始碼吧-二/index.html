@@ -1,0 +1,929 @@
+
+<!DOCTYPE html>
+<html lang="zh-tw">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="來自馬祖的前端工程師">
+    <title>來讀underscore原始碼吧(二) - 來自馬祖的前端工程師</title>
+    <meta name="author" content="Jhao Cheng Wu">
+    
+        <meta name="keywords" content="underscore,javascript">
+    
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/Blog/atom.xml">
+    
+    <meta name="description" content="學會js很簡單，但要精通需要非常多的時間，透過閱讀一些經典library，來學習大神們怎麼用更有效率的方式解決問題，那麼就先來讀讀underscore吧！">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="來讀underscore原始碼吧(二)">
+<meta property="og:url" content="http://swarchen.github.io/2016/10/10/來讀underscore原始碼吧-二/index.html">
+<meta property="og:site_name" content="來自馬祖的前端工程師">
+<meta property="og:description" content="學會js很簡單，但要精通需要非常多的時間，透過閱讀一些經典library，來學習大神們怎麼用更有效率的方式解決問題，那麼就先來讀讀underscore吧！">
+<meta property="og:updated_time" content="2016-10-09T16:23:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="來讀underscore原始碼吧(二)">
+<meta name="twitter:description" content="學會js很簡單，但要精通需要非常多的時間，透過閱讀一些經典library，來學習大神們怎麼用更有效率的方式解決問題，那麼就先來讀讀underscore吧！">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://swarchen.github.io/assets/images/profile.jpg"/>
+    
+    
+        <meta property="og:image" content="https://cdn-images-1.medium.com/max/624/1*6NkpTUi00kskQdCx-ZRvvA.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://cdn-images-1.medium.com/max/624/1*6NkpTUi00kskQdCx-ZRvvA.png" />
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/Blog/assets/css/font-awesome.css">
+    <link rel="stylesheet" href="/Blog/assets/css/jquery.fancybox.css">
+    <link rel="stylesheet" href="/Blog/assets/css/jquery.fancybox-thumbs.css">
+    <link rel="stylesheet" href="/Blog/assets/css/tranquilpeak.css">
+    <!--STYLES END-->
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-70280709-7']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/Blog/ ">來自馬祖的前端工程師</a>
+    </div>
+    
+        
+            <a  class="header-right-picture "
+                href="#about">
+        
+        
+            <img class="header-picture" src="/Blog/assets/images/profile.jpg" alt="作者的圖片"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/Blog/#about">
+                    <img class="sidebar-profile-picture" src="/Blog/assets/images/profile.jpg" alt="作者的圖片"/>
+                </a>
+                <h4 class="sidebar-profile-name">Jhao Cheng Wu</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>前端變化得太快，腦容量不夠只好記錄在這邊。</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/Blog/ "
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                        <span class="sidebar-button-desc">首頁</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/Blog/all-categories"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                        <span class="sidebar-button-desc">分類</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/Blog/all-tags"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                        <span class="sidebar-button-desc">標籤</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/Blog/all-archives"
+                            
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                        <span class="sidebar-button-desc">所有文章</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://swarchen.github.io/" target="_blank">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                        <span class="sidebar-button-desc">關於</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title" itemprop="headline">
+            來讀underscore原始碼吧(二)
+        </h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" datetime="2016-10-10T00:19:40+08:00">
+	
+		    10月 10, 2016
+    	
+    </time>
+    
+        <span>分類 </span>
+        
+    <a class="category-link" href="/Blog/categories/javascript/">javascript</a>
+
+
+    
+</div>
+
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <!-- excerpt -->
+<h1 id="Collection-Functions-1"><a href="#Collection-Functions-1" class="headerlink" title="Collection Functions"></a>Collection Functions</h1><h3 id="Each"><a href="#Each" class="headerlink" title="Each"></a>Each</h3><figure class="highlight js"><figcaption><span>line: 165</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">_.each = _.forEach = <span class="function"><span class="keyword">function</span>(<span class="params">obj, iteratee, context</span>) </span>&#123;</div><div class="line">  iteratee = optimizeCb(iteratee, context);</div><div class="line">  <span class="keyword">var</span> i, length;</div><div class="line">  <span class="keyword">if</span> (isArrayLike(obj)) &#123;</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>, length = obj.length; i &lt; length; i++) &#123;</div><div class="line">      iteratee(obj[i], i, obj);</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">var</span> keys = _.keys(obj);</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>, length = keys.length; i &lt; length; i++) &#123;</div><div class="line">      iteratee(obj[keys[i]], keys[i], obj);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> obj;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>先透過optimizeCb將傳入的迭代器作優化</p>
+<p>再來透過 isArrayLike判斷物件為Array或者是Object</p>
+<p>再分別用不同的方式迭代</p>
+<blockquote>
+<p>Array 可以直接透過index, Object則要先取得各個key value pair的key去做迭代</p>
+</blockquote>
+<p>並套用先前優化過的迭代器</p>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><figure class="highlight js"><figcaption><span>line: 182</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">_.map = _.collect = <span class="function"><span class="keyword">function</span>(<span class="params">obj, iteratee, context</span>) </span>&#123;</div><div class="line">  iteratee = cb(iteratee, context);</div><div class="line">  <span class="keyword">var</span> keys = !isArrayLike(obj) &amp;&amp; _.keys(obj),</div><div class="line">      length = (keys || obj).length,</div><div class="line">      results = <span class="built_in">Array</span>(length);</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> index = <span class="number">0</span>; index &lt; length; index++) &#123;</div><div class="line">    <span class="keyword">var</span> currentKey = keys ? keys[index] : index;</div><div class="line">    results[index] = iteratee(obj[currentKey], currentKey, obj);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> results;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>這段程式碼一開始是先透過cb取得相對應的callback function</p>
+<p>透過cb,optimizeCb這兩個function</p>
+<p>iteratee 應該會變成這樣接受3個參數的function
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iteratee(value, index, collection)</div></pre></td></tr></table></figure></p>
+<p>接下來是要遍歷整個Object或者Array並且透過iteratee來做迭代</p>
+<p>並將迭代的值傳入results</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> keys = !isArrayLike(obj) &amp;&amp; _.keys(obj), </div><div class="line">	<span class="comment">// 如果不是Array 就取得所有的key</span></div><div class="line">	length = (keys || obj).length,</div><div class="line">	<span class="comment">// 取得Array 和 ArrayOf(keys)的長度</span></div><div class="line">	results = <span class="built_in">Array</span>(length);</div><div class="line">	<span class="comment">// 建立一個長度為length的空Array</span></div></pre></td></tr></table></figure>
+<h3 id="createReduce"><a href="#createReduce" class="headerlink" title="createReduce"></a>createReduce</h3><figure class="highlight js"><figcaption><span>line 195</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> createReduce = <span class="function"><span class="keyword">function</span>(<span class="params">dir</span>) </span>&#123;</div><div class="line">  <span class="comment">// Wrap code that reassigns argument variables in a separate function than</span></div><div class="line">  <span class="comment">// the one that accesses `arguments.length` to avoid a perf hit. (#1991)</span></div><div class="line">  <span class="keyword">var</span> reducer = <span class="function"><span class="keyword">function</span>(<span class="params">obj, iteratee, memo, initial</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> keys = !isArrayLike(obj) &amp;&amp; _.keys(obj),</div><div class="line">        length = (keys || obj).length,</div><div class="line">        index = dir &gt; <span class="number">0</span> ? <span class="number">0</span> : length - <span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span> (!initial) &#123;</div><div class="line">      memo = obj[keys ? keys[index] : index];</div><div class="line">      index += dir;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (; index &gt;= <span class="number">0</span> &amp;&amp; index &lt; length; index += dir) &#123;</div><div class="line">      <span class="keyword">var</span> currentKey = keys ? keys[index] : index;</div><div class="line">      memo = iteratee(memo, obj[currentKey], currentKey, obj);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> memo;</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">obj, iteratee, memo, context</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> initial = <span class="built_in">arguments</span>.length &gt;= <span class="number">3</span>;</div><div class="line">    <span class="keyword">return</span> reducer(obj, optimizeCb(iteratee, context, <span class="number">4</span>), memo, initial);</div><div class="line">  &#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>createReduce這個function執行後會回傳一個匿名function</p>
+<p>可以接受4個參數</p>
+<p>這個function在arguments小於三的時候要進行initialize</p>
+<p>而reducer的部分</p>
+<p>一開始是和_.map一樣取得length</p>
+<p>這裡不一樣的是reduce有方向</p>
+<p>若是dir = 1則是從左邊開始 此時index = 0</p>
+<p>dir = -1則是從右邊開始 此時 index = length - 1</p>
+<p>memo是先暫存當前index的值也就是 obj[0 || length-1]</p>
+<p>再來就是把index指向memo的下一個位置 不論是向左reduce或者向右reduce</p>
+<p>接者進到for迴圈當中進行reduce</p>
+<p>for迴圈內部的iteratee 是經過optimizeCb所優化的callback function</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">iteratee</span>(<span class="params">accumulator, value, index, collection</span>);</span></div></pre></td></tr></table></figure>
+<p>而accumulator就是我們的memo當前的值</p>
+<p>透過這樣的方式就可以建立一個reduce function</p>
+<h3 id="Reduce"><a href="#Reduce" class="headerlink" title="Reduce"></a>Reduce</h3><figure class="highlight js"><figcaption><span>line: 221</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">_.reduce = _.foldl = _.inject = createReduce(<span class="number">1</span>);</div><div class="line"></div><div class="line">_.reduceRight = _.foldr = createReduce(<span class="number">-1</span>);</div></pre></td></tr></table></figure>
+<p>所有的reduce function都可以透過createReduce來產生</p>
+<h3 id="Find"><a href="#Find" class="headerlink" title="Find"></a>Find</h3><p>要使用_.find 之前要先看 createPredicateIndexFinder</p>
+<figure class="highlight js"><figcaption><span>line: 629</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> createPredicateIndexFinder = <span class="function"><span class="keyword">function</span>(<span class="params">dir</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">array, predicate, context</span>) </span>&#123;</div><div class="line">    predicate = cb(predicate, context);</div><div class="line">    <span class="keyword">var</span> length = getLength(array);</div><div class="line">    <span class="keyword">var</span> index = dir &gt; <span class="number">0</span> ? <span class="number">0</span> : length - <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span> (; index &gt;= <span class="number">0</span> &amp;&amp; index &lt; length; index += dir) &#123;</div><div class="line">      <span class="keyword">if</span> (predicate(array[index], index, array)) <span class="keyword">return</span> index;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">  &#125;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">_.findIndex = createPredicateIndexFinder(<span class="number">1</span>);</div><div class="line">_.findLastIndex = createPredicateIndexFinder(<span class="number">-1</span>);</div></pre></td></tr></table></figure>
+<p>透過createPredicateIndexFinder來產生 <em>.findIndex,</em>.findLastIndex這兩個函式</p>
+<p>predicate(判斷函示)其實也就是個回傳true,false的function</p>
+<p>createPredicateIndexFinder會先將predicate丟到cb裡</p>
+<p>由於predicate是個函式</p>
+<p>所以會透過optimizeCb去做優化</p>
+<p>再來就是遍歷整個Array來找到回傳true的值時的index</p>
+<p>並回傳出去</p>
+<p>結束整個find的過程</p>
+<p>再來則是針對Object的findKey</p>
+<figure class="highlight js"><figcaption><span>line: 1070</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">_.findKey = <span class="function"><span class="keyword">function</span>(<span class="params">obj, predicate, context</span>) </span>&#123;</div><div class="line">   predicate = cb(predicate, context);</div><div class="line">   <span class="keyword">var</span> keys = _.keys(obj), key;</div><div class="line">   <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, length = keys.length; i &lt; length; i++) &#123;</div><div class="line">     key = keys[i];</div><div class="line">     <span class="keyword">if</span> (predicate(obj[key], key, obj)) <span class="keyword">return</span> key;</div><div class="line">   &#125;</div><div class="line"> &#125;;</div></pre></td></tr></table></figure>
+<p>大致上的邏輯和先前許多例子差不多</p>
+<figure class="highlight js"><figcaption><span>line: 227</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">_.find = _.detect = <span class="function"><span class="keyword">function</span>(<span class="params">obj, predicate, context</span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> keyFinder = isArrayLike(obj) ? _.findIndex : _.findKey;</div><div class="line">   <span class="keyword">var</span> key = keyFinder(obj, predicate, context);</div><div class="line">   <span class="keyword">if</span> (key !== <span class="keyword">void</span> <span class="number">0</span> &amp;&amp; key !== <span class="number">-1</span>) <span class="keyword">return</span> obj[key];</div><div class="line"> &#125;;</div></pre></td></tr></table></figure>
+<p>在看完上面的findIndex跟findKey</p>
+<p>之後大概就可以知道find就是將Array的find 跟 Object的 findKey集合在一起的函式</p>
+<p>並透過obj[key]來得到value</p>
+<h3 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h3><figure class="highlight js"><figcaption><span>line: 235</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">_.filter = _.select = <span class="function"><span class="keyword">function</span>(<span class="params">obj, predicate, context</span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> results = [];</div><div class="line">   predicate = cb(predicate, context);</div><div class="line">   _.each(obj, <span class="function"><span class="keyword">function</span>(<span class="params">value, index, list</span>) </span>&#123;</div><div class="line">     <span class="keyword">if</span> (predicate(value, index, list)) results.push(value);</div><div class="line">   &#125;);</div><div class="line">   <span class="keyword">return</span> results;</div><div class="line"> &#125;;</div><div class="line"></div><div class="line"> <span class="comment">// Return all the elements for which a truth test fails.</span></div><div class="line"> _.reject = <span class="function"><span class="keyword">function</span>(<span class="params">obj, predicate, context</span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> _.filter(obj, _.negate(cb(predicate)), context);</div><div class="line"> &#125;;</div></pre></td></tr></table></figure>
+<p>filter將傳入的obj透過_.each遍歷一遍</p>
+<p>並將predicate函式執行為true的值push到results內</p>
+<p>最後回傳results</p>
+<p>而reject則是透過_.negate取得相反的結果</p>
+<figure class="highlight js"><figcaption><span>line: 839</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">_.negate = <span class="function"><span class="keyword">function</span>(<span class="params">predicate</span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="keyword">return</span> !predicate.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</div><div class="line">   &#125;;</div><div class="line"> &#125;;</div></pre></td></tr></table></figure>
+<h3 id="Every"><a href="#Every" class="headerlink" title="Every"></a>Every</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">_.every = _.all = <span class="function"><span class="keyword">function</span>(<span class="params">obj, predicate, context</span>) </span>&#123;</div><div class="line">   predicate = cb(predicate, context);</div><div class="line">   <span class="keyword">var</span> keys = !isArrayLike(obj) &amp;&amp; _.keys(obj),</div><div class="line">       length = (keys || obj).length;</div><div class="line">   <span class="keyword">for</span> (<span class="keyword">var</span> index = <span class="number">0</span>; index &lt; length; index++) &#123;</div><div class="line">     <span class="keyword">var</span> currentKey = keys ? keys[index] : index;</div><div class="line">     <span class="keyword">if</span> (!predicate(obj[currentKey], currentKey, obj)) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line"> &#125;;</div><div class="line"></div><div class="line"> <span class="comment">// Determine if at least one element in the object matches a truth test.</span></div><div class="line"> <span class="comment">// Aliased as `any`.</span></div><div class="line"> _.some = _.any = <span class="function"><span class="keyword">function</span>(<span class="params">obj, predicate, context</span>) </span>&#123;</div><div class="line">   predicate = cb(predicate, context);</div><div class="line">   <span class="keyword">var</span> keys = !isArrayLike(obj) &amp;&amp; _.keys(obj),</div><div class="line">       length = (keys || obj).length;</div><div class="line">   <span class="keyword">for</span> (<span class="keyword">var</span> index = <span class="number">0</span>; index &lt; length; index++) &#123;</div><div class="line">     <span class="keyword">var</span> currentKey = keys ? keys[index] : index;</div><div class="line">     <span class="keyword">if</span> (predicate(obj[currentKey], currentKey, obj)) <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line"> &#125;;</div></pre></td></tr></table></figure>
+<p>這幾個函式分別是檢測Obj能否通過predicate判斷</p>
+<p>包含全部都通過 <em>.every = </em>.all</p>
+<p>部分通過 <em>.some = </em>.any</p>
+<h3 id="Contains"><a href="#Contains" class="headerlink" title="Contains"></a>Contains</h3><figure class="highlight js"><figcaption><span>line:277</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">_.contains = _.includes = _.include = <span class="function"><span class="keyword">function</span>(<span class="params">obj, item, fromIndex, guard</span>) </span>&#123;</div><div class="line">   <span class="keyword">if</span> (!isArrayLike(obj)) obj = _.values(obj);</div><div class="line">   <span class="keyword">if</span> (<span class="keyword">typeof</span> fromIndex != <span class="string">'number'</span> || guard) fromIndex = <span class="number">0</span>;</div><div class="line">   <span class="keyword">return</span> _.indexOf(obj, item, fromIndex) &gt;= <span class="number">0</span>;</div><div class="line"> &#125;;</div></pre></td></tr></table></figure>
+<p>單純就是檢驗Array,Object內有沒有某個item</p>
+<p>第一個if是將Object的所有value變成一個ArrayLikeObj</p>
+<h3 id="Invoke"><a href="#Invoke" class="headerlink" title="Invoke"></a>Invoke</h3><figure class="highlight js"><figcaption><span>line: 284</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">_.invoke = restArgs(<span class="function"><span class="keyword">function</span>(<span class="params">obj, method, args</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> isFunc = _.isFunction(method);</div><div class="line">  <span class="keyword">return</span> _.map(obj, <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> func = isFunc ? method : value[method];</div><div class="line">    <span class="keyword">return</span> func == <span class="literal">null</span> ? func : func.apply(value, args);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>_.invoke是透過restArgs來呼叫</p>
+<p>這邊就可以透過很好的例子來理解restArgs到底是做什麼用的</p>
+<p>先透過_.isFunction來判斷method是否是一個function</p>
+<p>再來透過_.map去遍歷obj中所有的物件</p>
+<p>接著若isFunc是真就代表method本身就是個function</p>
+<p>否則就去試著用value[mehtod]取得遍歷的物件的method</p>
+<p>若都沒有則回傳null</p>
+<p>最後舉個例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var Arr = [[1,2,3,4,5],[2,3,4,1,5,6],[1,5,3,3,6,3,2]];</div><div class="line"></div><div class="line">_.invoke(Arr,&apos;slice&apos;,0,2); //[[1, 2], [2, 3], [1, 5]]</div></pre></td></tr></table></figure>
+<p>這邊restArgs會將 最後的兩的args 0,2變成Array</p>
+<p>所以map出來的function會變成[].slice.apply(value,[0,2])</p>
+<h3 id="Convenience-version-of-XXX"><a href="#Convenience-version-of-XXX" class="headerlink" title="Convenience version of XXX"></a>Convenience version of XXX</h3><figure class="highlight js"><figcaption><span>line: 293</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Convenience version of a common use case of `map`: fetching a property.</span></div><div class="line">_.pluck = <span class="function"><span class="keyword">function</span>(<span class="params">obj, key</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> _.map(obj, _.property(key));</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// Convenience version of a common use case of `filter`: selecting only objects</span></div><div class="line"><span class="comment">// containing specific `key:value` pairs.</span></div><div class="line">_.where = <span class="function"><span class="keyword">function</span>(<span class="params">obj, attrs</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> _.filter(obj, _.matcher(attrs));</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// Convenience version of a common use case of `find`: getting the first object</span></div><div class="line"><span class="comment">// containing specific `key:value` pairs.</span></div><div class="line">_.findWhere = <span class="function"><span class="keyword">function</span>(<span class="params">obj, attrs</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> _.find(obj, _.matcher(attrs));</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="Max-amp-Min"><a href="#Max-amp-Min" class="headerlink" title="Max &amp; Min"></a>Max &amp; Min</h3><figure class="highlight js"><figcaption><span>line: 310</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">_.max = <span class="function"><span class="keyword">function</span>(<span class="params">obj, iteratee, context</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> result = -<span class="literal">Infinity</span>, lastComputed = -<span class="literal">Infinity</span>,</div><div class="line">      value, computed;</div><div class="line">  <span class="keyword">if</span> (iteratee == <span class="literal">null</span> || (<span class="keyword">typeof</span> iteratee == <span class="string">'number'</span> &amp;&amp; <span class="keyword">typeof</span> obj[<span class="number">0</span>] != <span class="string">'object'</span>) &amp;&amp; obj != <span class="literal">null</span>) &#123;</div><div class="line">    obj = isArrayLike(obj) ? obj : _.values(obj);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, length = obj.length; i &lt; length; i++) &#123;</div><div class="line">      value = obj[i];</div><div class="line">      <span class="keyword">if</span> (value != <span class="literal">null</span> &amp;&amp; value &gt; result) &#123;</div><div class="line">        result = value;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    iteratee = cb(iteratee, context);</div><div class="line">    _.each(obj, <span class="function"><span class="keyword">function</span>(<span class="params">v, index, list</span>) </span>&#123;</div><div class="line">      computed = iteratee(v, index, list);</div><div class="line">      <span class="keyword">if</span> (computed &gt; lastComputed || computed === -<span class="literal">Infinity</span> &amp;&amp; result === -<span class="literal">Infinity</span>) &#123;</div><div class="line">        result = v;</div><div class="line">        lastComputed = computed;</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> result;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">_.min = <span class="function"><span class="keyword">function</span>(<span class="params">obj, iteratee, context</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> result = <span class="literal">Infinity</span>, lastComputed = <span class="literal">Infinity</span>,</div><div class="line">      value, computed;</div><div class="line">  <span class="keyword">if</span> (iteratee == <span class="literal">null</span> || (<span class="keyword">typeof</span> iteratee == <span class="string">'number'</span> &amp;&amp; <span class="keyword">typeof</span> obj[<span class="number">0</span>] != <span class="string">'object'</span>) &amp;&amp; obj != <span class="literal">null</span>) &#123;</div><div class="line">    obj = isArrayLike(obj) ? obj : _.values(obj);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, length = obj.length; i &lt; length; i++) &#123;</div><div class="line">      value = obj[i];</div><div class="line">      <span class="keyword">if</span> (value != <span class="literal">null</span> &amp;&amp; value &lt; result) &#123;</div><div class="line">        result = value;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    iteratee = cb(iteratee, context);</div><div class="line">    _.each(obj, <span class="function"><span class="keyword">function</span>(<span class="params">v, index, list</span>) </span>&#123;</div><div class="line">      computed = iteratee(v, index, list);</div><div class="line">      <span class="keyword">if</span> (computed &lt; lastComputed || computed === <span class="literal">Infinity</span> &amp;&amp; result === <span class="literal">Infinity</span>) &#123;</div><div class="line">        result = v;</div><div class="line">        lastComputed = computed;</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> result;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p><em>.max 跟 </em>.min可以單純比較數值的大小</p>
+<p>也能透過iteratee去迭代後比較大小</p>
+<p>並且回傳原來的值</p>
+<h3 id="sample-amp-shuffle"><a href="#sample-amp-shuffle" class="headerlink" title="sample &amp; shuffle"></a>sample &amp; shuffle</h3><figure class="highlight js"><figcaption><span>line: 360</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">_.shuffle = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> _.sample(obj, <span class="literal">Infinity</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">_.sample = <span class="function"><span class="keyword">function</span>(<span class="params">obj, n, guard</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (n == <span class="literal">null</span> || guard) &#123;</div><div class="line">    <span class="keyword">if</span> (!isArrayLike(obj)) obj = _.values(obj);</div><div class="line">    <span class="keyword">return</span> obj[_.random(obj.length - <span class="number">1</span>)];</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">var</span> sample = isArrayLike(obj) ? _.clone(obj) : _.values(obj);</div><div class="line">  <span class="keyword">var</span> length = getLength(sample);</div><div class="line">  n = <span class="built_in">Math</span>.max(<span class="built_in">Math</span>.min(n, length), <span class="number">0</span>);</div><div class="line">  <span class="keyword">var</span> last = length - <span class="number">1</span>;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> index = <span class="number">0</span>; index &lt; n; index++) &#123;</div><div class="line">    <span class="keyword">var</span> rand = _.random(index, last);</div><div class="line">    <span class="keyword">var</span> temp = sample[index];</div><div class="line">    sample[index] = sample[rand];</div><div class="line">    sample[rand] = temp;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> sample.slice(<span class="number">0</span>, n);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>Sample 是透過 <a href="http://en.wikipedia.org/wiki/Fisher–Yates_shuffle" target="_blank" rel="external">Fisher-Yates shuffle</a> 實作</p>
+<p>從obj中取出隨機的n個值</p>
+<p>_.sample 接受三個參數 obj, n, guard</p>
+<p>若n === null 或者有gurad 則回傳obj中隨機的一個值</p>
+<p>首先 sample 先複製一份一模一樣的值存在Array當中</p>
+<p>n 為指定的smaple數量 若大於obj長度 則以obj長度為n</p>
+<p>for迴圈中跑的就是Fisher-Yates shffle</p>
+<p>最後return 時透過slice達到sample的效果</p>
+<p>因此_.shuffle的實作就非常簡單</p>
+<p>只要將n指定為Infinity就可以了</p>
+<h3 id="sortBy"><a href="#sortBy" class="headerlink" title="sortBy"></a>sortBy</h3><figure class="highlight js"><figcaption><span>line: 387</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">_.sortBy = <span class="function"><span class="keyword">function</span>(<span class="params">obj, iteratee, context</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> index = <span class="number">0</span>;</div><div class="line">  iteratee = cb(iteratee, context);</div><div class="line">  <span class="keyword">return</span> _.pluck(_.map(obj, <span class="function"><span class="keyword">function</span>(<span class="params">value, key, list</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      <span class="attr">value</span>: value,</div><div class="line">      <span class="attr">index</span>: index++,</div><div class="line">      <span class="attr">criteria</span>: iteratee(value, key, list)</div><div class="line">    &#125;;</div><div class="line">  &#125;).sort(<span class="function"><span class="keyword">function</span>(<span class="params">left, right</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> a = left.criteria;</div><div class="line">    <span class="keyword">var</span> b = right.criteria;</div><div class="line">    <span class="keyword">if</span> (a !== b) &#123;</div><div class="line">      <span class="keyword">if</span> (a &gt; b || a === <span class="keyword">void</span> <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">      <span class="keyword">if</span> (a &lt; b || b === <span class="keyword">void</span> <span class="number">0</span>) <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> left.index - right.index;</div><div class="line">  &#125;), <span class="string">'value'</span>);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>這段程式碼呼叫了兩個underscore的function</p>
+<p>和一個javascript內建的sort function</p>
+<p>先從map來看</p>
+<p>將Obj內的element先map到一個新的object</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">value</span>: value, <span class="comment">// Object內的Element 可以是任何js的型別</span></div><div class="line">	indes: index++, <span class="comment">// 從0遞增的index</span></div><div class="line">	criteria: iteratee(value, key, list) <span class="comment">// 符合iteratee所回傳的值，也是我們要用來比較的依據</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Object中的iteratee也是透過 cb 來回傳的iteratee</p>
+<p>因此可以是一個function,object或者是一個字串</p>
+<p>以字串為例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">iteratee = cb(<span class="string">'name'</span>, context);</div><div class="line"><span class="comment">// iteratee 就等於 _.property('name')</span></div></pre></td></tr></table></figure>
+<p>所以criteria存的值就會是value的name property</p>
+<p>在map完之後透過sort去自行定義一個compareFunction</p>
+<p>並去比較criteria</p>
+<p>藉此完成sorting</p>
+<p>但此時sorting完的Array我們mapping完的格式</p>
+<p>因此可以透過_.pluck的方式將value property的值取出來</p>
+<p>得到我們要的結果</p>
+<h3 id="Group"><a href="#Group" class="headerlink" title="Group"></a>Group</h3><figure class="highlight js"><figcaption><span>line: 408</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> group = <span class="function"><span class="keyword">function</span>(<span class="params">behavior, partition</span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">obj, iteratee, context</span>) </span>&#123;</div><div class="line">     <span class="keyword">var</span> result = partition ? [[], []] : &#123;&#125;;</div><div class="line">     iteratee = cb(iteratee, context);</div><div class="line">     _.each(obj, <span class="function"><span class="keyword">function</span>(<span class="params">value, index</span>) </span>&#123;</div><div class="line">       <span class="keyword">var</span> key = iteratee(value, index, obj);</div><div class="line">       behavior(result, value, key);</div><div class="line">     &#125;);</div><div class="line">     <span class="keyword">return</span> result;</div><div class="line">   &#125;;</div><div class="line"> &#125;;</div></pre></td></tr></table></figure>
+<p>先看group function</p>
+<p>這是個underscore 內部使用的function</p>
+<p>用來產生<em>.groupBy, </em>.indexBy, _.countBy 等function</p>
+<p>group接受兩個參數 behavior, partition</p>
+<p>並且回傳一個function</p>
+<p>而behavior簡單來說就是 依照相對應的value跟key</p>
+<p>我要怎麼去產生result</p>
+<p>所以group的邏輯就是</p>
+<p>回傳一個function可以接受三個參數 obj, iteratee, context</p>
+<p>跟之前一樣透過 cb 產生相對應的 iteratee</p>
+<p>透過_.each去遍歷obj中的每一個物件</p>
+<p>利用iteratee去產生key</p>
+<p>透過behavior去產生不同的result</p>
+<p>接下來看不同的behavior可以產生什麼樣的result</p>
+<figure class="highlight js"><figcaption><span>line: 422</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">_.groupBy = group(<span class="function"><span class="keyword">function</span>(<span class="params">result, value, key</span>) </span>&#123;</div><div class="line">   <span class="keyword">if</span> (_.has(result, key)) result[key].push(value); <span class="keyword">else</span> result[key] = [value];</div><div class="line"> &#125;);</div><div class="line"></div><div class="line"> _.indexBy = group(<span class="function"><span class="keyword">function</span>(<span class="params">result, value, key</span>) </span>&#123;</div><div class="line">   result[key] = value;</div><div class="line"> &#125;);</div><div class="line"></div><div class="line"> _.countBy = group(<span class="function"><span class="keyword">function</span>(<span class="params">result, value, key</span>) </span>&#123;</div><div class="line">   <span class="keyword">if</span> (_.has(result, key)) result[key]++; <span class="keyword">else</span> result[key] = <span class="number">1</span>;</div><div class="line"> &#125;);</div><div class="line"></div><div class="line"> _.partition = group(<span class="function"><span class="keyword">function</span>(<span class="params">result, value, pass</span>) </span>&#123;</div><div class="line">   result[pass ? <span class="number">0</span> : <span class="number">1</span>].push(value);</div><div class="line"> &#125;, <span class="literal">true</span>);</div></pre></td></tr></table></figure>
+<p>第一個_.groupBy 的behavior很簡單</p>
+<p>透過 _.has來檢驗result有沒有相對應的key </p>
+<p>若有則直接push value到相對應key底下的array</p>
+<p>若沒有則產生一個新的key 並將 [value] 指定在該key底下</p>
+<p>再來 _.indexBy</p>
+<p>直接產生一個新的key 並將 [value] 指定在該key底下</p>
+<p>因此要先確定key都是唯一的</p>
+<p>第三個 _.countBy</p>
+<p>透過 _.has來檢驗result有沒有相對應的key </p>
+<p>若有直接將相對應的key的value + 1</p>
+<p>若沒有則產生一個新的key 並將 value 初始成1</p>
+<p>最後一個 _.partition （二分法）</p>
+<p>在前面介紹underscore group function的時候跳過了一段</p>
+<p>就是 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> result = partition ? [[], []] : &#123;&#125;;</div></pre></td></tr></table></figure>
+<p>在大部分情況下我們做Gourping都會回傳一個Obj</p>
+<p>而_.partition 就是一個例外的情況</p>
+<p>在這個情況下我們的結果會是一個Array 裡面有兩的Array 的Element</p>
+<p>透過iteratee去判斷輸入obj是否通過</p>
+<p>藉此將value分別push到不同的Array當中</p>
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">標籤</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/Blog/tags/javascript/">javascript</a> <a class="tag tag--primary tag--small t-link" href="/Blog/tags/underscore/">underscore</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/10/09/來讀underscore原始碼吧-一/" data-tooltip="來讀underscore原始碼吧(一)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/10/10/來讀underscore原始碼吧-二/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/10/10/來讀underscore原始碼吧-二/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/10/10/來讀underscore原始碼吧-二/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Jhao Cheng Wu. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/10/09/來讀underscore原始碼吧-一/" data-tooltip="來讀underscore原始碼吧(一)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/10/10/來讀underscore原始碼吧-二/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/10/10/來讀underscore原始碼吧-二/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/10/10/來讀underscore原始碼吧-二/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/10/10/來讀underscore原始碼吧-二/">
+                <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/10/10/來讀underscore原始碼吧-二/">
+                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/10/10/來讀underscore原始碼吧-二/">
+                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/Blog/assets/images/profile.jpg" alt="作者的圖片"/>
+        
+            <h4 id="about-card-name">Jhao Cheng Wu</h4>
+        
+            <div id="about-card-bio"><p>前端變化得太快，腦容量不夠只好記錄在這邊。</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>Looking for my next adventure!</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                Matsu, Taiwan
+            </div>
+        
+    </div>
+</div>
+
+        <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-close"></i></span>
+            <a href="https://algolia.com" target="_blank" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search"
+                    class="form-control input--large search-input" placeholder="Search "
+                    autofocus="autofocus"/>
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">沒有找到文章</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-的使用/">
+                            <img class="media-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/2016/09/22/Hexo-Markdown-的使用/">
+                            <h3 class="media-heading">Hexo Markdown 的使用</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2016年9月22日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><h1 id="標題們"><a href="#標題們" class="headerlink" title="標題們"></a>標題們</h1><blockquote>
+<h1 id="h1-title"><a href="#h1-title" class="headerlink" title="# h1 title"></a># h1 title</h1><h2 id="h2-title"><a href="#h2-title" class="headerlink" title="## h2 title"></a>## h2 title</h2></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/2016/09/22/javascript-的Scope-Compiler/">
+                            <img class="media-image" src="http://i.imgur.com/KCLhCVI.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/2016/09/22/javascript-的Scope-Compiler/">
+                            <h3 class="media-heading">javascript - Scope</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2016年9月22日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>透過下面的例子瞭解javascript是怎麼運作的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="string">"bar"</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> foo =<span class="string">"baz"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bax</span>(<span class="params">foo</span>)</span>&#123;</div><div class="line">	foo = <span class="string">"bam"</span>;</div><div class="line">	bam = <span class="string">"yay"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我原本的認知是第一行的code就是一次的宣告指令</p>
+<p>但其實可以透過另一種方式來看這段程式碼</p>
+<p>就是把自己當成naive top down compiler</p>
+<p>並把compile拆成宣告跟執行兩個步驟</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/2016/09/22/hoisting/">
+                            <img class="media-image" src="http://i.imgur.com/KCLhCVI.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/2016/09/22/hoisting/">
+                            <h3 class="media-heading">javascript - Hoisting</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2016年9月22日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>hoisting 是在javascript執行時的一個行為</p>
+<p>javascript會在編譯的過程先將所有宣告(declarations)的變數做reference</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/2016/09/22/this/">
+                            <img class="media-image" src="http://i.imgur.com/KCLhCVI.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/2016/09/22/this/">
+                            <h3 class="media-heading">javascript - This</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2016年9月22日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>this有四種綁定的方式</p>
+<p>主要是以callsite發生的時機來決定</p>
+<p>callsite就是()被執行的位置</p>
+<h3 id="1-Default-binding-rule"><a href="#1-Default-binding-rule" class="headerlink" title="1. Default binding rule"></a>1. Default binding rule</h3><p>如果是在 strict mode ， this 指向的是 undefined</p>
+<p>若不是 strict mode ， this 指向的事 global object</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/2016/09/22/Closure/">
+                            <img class="media-image" src="http://i.imgur.com/KCLhCVI.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/2016/09/22/Closure/">
+                            <h3 class="media-heading">javascript - Closure</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2016年9月22日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><div class="alert info no-icon"><p>Closure is when a &quot;function&quot; &quot;remembers&quot; its lexical scope even when the function is executed outside that lexical scope.
+Closure 是指說一個function記住了他在被定義的當下時的lexical scope，即使function在執行的時候是在當時的lexical scope之外</p>
+</div></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/2016/09/26/Pseudo-Classes-and-Pseudo-Elements/">
+                            <img class="media-image" src="https://images-na.ssl-images-amazon.com/images/I/41GlH6s9oiL._SX379_BO1,204,203,200_.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/2016/09/26/Pseudo-Classes-and-Pseudo-Elements/">
+                            <h3 class="media-heading">Pseudo-Classes and Pseudo-Elements</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2016年9月26日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><a id="more"></a>
+<p>回想自己在前端開發的路上</p>
+<p>先學會了一些HTML tags跟一點點的CSS, javascript就開始寫網頁了</p>
+<p>接著就是jQuery,Bootstrap,AngularJS等等一大堆的框架</p>
+<p>並沒有好好的將網頁三劍客(HTML, CSS, Javascript)踏實的走好</p>
+<p>因此想透過閱讀經典前端書籍</p>
+<p>建立穩固的知識點</p>
+<span class="highlight-text danger">先學走，再學跑</span>
+<p><a href="http://shop.oreilly.com/product/0636920036357.do" target="_blank" rel="external">CSS: The Missing Manual</a></p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/2016/09/26/用Modernizr-來判斷瀏覽器是否支援html5的features/">
+                            <img class="media-image" src="http://dqbgk6hf2uifn.cloudfront.net/_img/e7ce6d2e-eb03-ec68-612a-52a0df562133_0" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/2016/09/26/用Modernizr-來判斷瀏覽器是否支援html5的features/">
+                            <h3 class="media-heading">用 Modernizr 來判斷瀏覽器是否支援 html5 的 features</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2016年9月26日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>先到<a href="https://modernizr.com">modernizr</a>下載modernizr的js檔案</p>
+<p>並且選擇自己需要的features再按build</p>
+<p>就會取得一個 <em>modernizr-custom.min.js</em> 的檔案</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/2016/09/27/font-size/">
+                            <img class="media-image" src="https://images-na.ssl-images-amazon.com/images/I/41GlH6s9oiL._SX379_BO1,204,203,200_.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/2016/09/27/font-size/">
+                            <h3 class="media-heading">Font-Size</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2016年9月27日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>CSS提供了非常多font-size的單位</p>
+<p>用在網頁顯示上的 
+<span class="highlight-text danger">keywords</span>, 
+<span class="highlight-text danger">ems</span>, 
+<span class="highlight-text danger">exes</span>, 
+<span class="highlight-text danger">pixels</span>, 
+<span class="highlight-text danger">percentages</span>
+<br>
+用在列印的
+<span class="highlight-text danger">picas</span>, 
+<span class="highlight-text danger">points</span>, 
+<span class="highlight-text danger">inches</span>, 
+<span class="highlight-text danger">centimeters</span>, 
+<span class="highlight-text danger">millimeters</span>.</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/2016/09/27/transform/">
+                            <img class="media-image" src="https://images-na.ssl-images-amazon.com/images/I/41GlH6s9oiL._SX379_BO1,204,203,200_.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/2016/09/27/transform/">
+                            <h3 class="media-heading">Transform</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2016年9月27日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>CSS中的Transform可以直接改變網頁中的元素</p>
+<p>套用Transform之後並不會改變元素本來在HTML中版面的位置或大小</p>
+<p>而是顯示上被改變了</p>
+<p>用下面的例子可以看到放大的元素不會因為放大而自動往下排版</p>
+<p>而是直接覆蓋過附近的元素</p>
+<iframe scrolling="no" width="100%" height="300" src="//jsfiddle.net/dp4jx4wp/3/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/2016/09/27/Transition/">
+                            <img class="media-image" src="https://images-na.ssl-images-amazon.com/images/I/41GlH6s9oiL._SX379_BO1,204,203,200_.jpg" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://swarchen.github.io/Blog/2016/09/27/Transition/">
+                            <h3 class="media-heading">Transition</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2016年9月27日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>Transition可以讓元素在兩個不同的CSS style之間作轉換</p>
+<p>讓網站更具互動性</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium"
+                data-message-zero="沒有找到文章"
+                data-message-one="找到 1 篇文章"
+                data-message-other="找到 {n} 篇文章">
+                找到 12 篇文章
+            </p>
+        </div>
+    </div>
+</div>
+        
+<div id="cover" style="background-image:url('/Blog/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/Blog/assets/js/jquery.js"></script>
+<script src="/Blog/assets/js/jquery.fancybox.js"></script>
+<script src="/Blog/assets/js/jquery.fancybox-thumbs.js"></script>
+<script src="/Blog/assets/js/tranquilpeak.js"></script>
+<!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+                 this.page.url = 'http://swarchen.github.io/Blog/2016/10/10/來讀underscore原始碼吧-二/';
+                 
+                    this.page.identifier = '2016/10/10/來讀underscore原始碼吧-二/';
+                 
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'swarchen';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+
+
+
+    </body>
+</html>
