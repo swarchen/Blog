@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="來自馬祖的前端工程師">
-    <title>來讀underscore原始碼吧(一) - 來自馬祖的前端工程師</title>
+    <title>來讀underscore原始碼吧(三) - 來自馬祖的前端工程師</title>
     <meta name="author" content="Jhao Cheng Wu">
     
         <meta name="keywords" content="underscore,javascript">
@@ -17,13 +17,13 @@
     
     <meta name="description" content="學會js很簡單，但要精通需要非常多的時間，透過閱讀一些經典library，來學習大神們怎麼用更有效率的方式解決問題，那麼就先來讀讀underscore吧！">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="來讀underscore原始碼吧(一)">
-<meta property="og:url" content="http://swarchen.github.io/2016/10/09/來讀underscore原始碼吧-一/index.html">
+<meta property="og:title" content="來讀underscore原始碼吧(三)">
+<meta property="og:url" content="http://swarchen.github.io/2016/10/13/來讀underscore原始碼吧-三/index.html">
 <meta property="og:site_name" content="來自馬祖的前端工程師">
 <meta property="og:description" content="學會js很簡單，但要精通需要非常多的時間，透過閱讀一些經典library，來學習大神們怎麼用更有效率的方式解決問題，那麼就先來讀讀underscore吧！">
-<meta property="og:updated_time" content="2016-10-11T16:48:59.000Z">
+<meta property="og:updated_time" content="2016-10-12T16:26:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="來讀underscore原始碼吧(一)">
+<meta name="twitter:title" content="來讀underscore原始碼吧(三)">
 <meta name="twitter:description" content="學會js很簡單，但要精通需要非常多的時間，透過閱讀一些經典library，來學習大神們怎麼用更有效率的方式解決問題，那麼就先來讀讀underscore吧！">
     
     
@@ -189,13 +189,13 @@
         <div class="post-header main-content-wrap text-center">
     
         <h1 class="post-title" itemprop="headline">
-            來讀underscore原始碼吧(一)
+            來讀underscore原始碼吧(三)
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" datetime="2016-10-09T17:28:41+08:00">
+    <time itemprop="datePublished" datetime="2016-10-13T00:25:09+08:00">
 	
-		    10月 09, 2016
+		    10月 13, 2016
     	
     </time>
     
@@ -212,78 +212,83 @@
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
             <!-- excerpt -->
-<h1 id="Baseline-setup-1"><a href="#Baseline-setup-1" class="headerlink" title="Baseline setup"></a>Baseline setup</h1><figure class="highlight js"><figcaption><span>line:6</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	</div><div class="line">&#125;());</div></pre></td></tr></table></figure>
-<p>透過 IIFE(Immediately Invoked Function Expression) 立即執行函示</p>
-<p>建立一個private的 scope 避免全域變數被污染</p>
-<h3 id="root"><a href="#root" class="headerlink" title="root"></a>root</h3><figure class="highlight js"><figcaption><span>line:14</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> root = <span class="keyword">typeof</span> self == <span class="string">'object'</span> &amp;&amp; self.self === self &amp;&amp; self ||</div><div class="line">            <span class="keyword">typeof</span> global == <span class="string">'object'</span> &amp;&amp; global.global === global &amp;&amp; global ||</div><div class="line">            <span class="keyword">this</span>;</div></pre></td></tr></table></figure>
-<p>這邊主要是在指定root object</p>
-<p>並且可以拆成三個部分來看</p>
-<p>第一個是針對瀏覽器</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typeof</span> self == <span class="string">'object'</span> &amp;&amp; self.self === self &amp;&amp; self</div></pre></td></tr></table></figure>
-<p>在最後一個&amp;&amp;之前是true的話會回傳self</p>
-<p>第二個是針對node的環境</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typeof</span> global == <span class="string">'object'</span> &amp;&amp; global.global === global &amp;&amp; global</div></pre></td></tr></table></figure>
-<p>若是在node 環境下就會回傳global</p>
-<p>而最後一行的this就是針對一些虛擬機的root</p>
-<h3 id="Protos"><a href="#Protos" class="headerlink" title="Protos"></a>Protos</h3><figure class="highlight js"><figcaption><span>line:22</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ArrayProto = <span class="built_in">Array</span>.prototype, ObjProto = <span class="built_in">Object</span>.prototype;</div><div class="line"><span class="keyword">var</span> SymbolProto = <span class="keyword">typeof</span> <span class="built_in">Symbol</span> !== <span class="string">'undefined'</span> ? <span class="built_in">Symbol</span>.prototype : <span class="literal">null</span>;</div></pre></td></tr></table></figure>
-<p>這裡是先將常用的prototype透過變數暫存起來</p>
-<p>並且在要將整個原始碼minified的時候可以減少檔案的大小</p>
-<p>下面這樣的原始碼是不可以壓縮的</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.someMethod = ....</div></pre></td></tr></table></figure>
-<p>但若是用像是ArrayProto變數存起來</p>
-<p>則可以將原始碼壓縮成</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a.someMethod = ...</div></pre></td></tr></table></figure>
-<h3 id="Native-function"><a href="#Native-function" class="headerlink" title="Native function"></a>Native function</h3><p>接下來是先將原始碼中常用的native function做個reference</p>
-<p>在未來使用上可以不用一直的做look up</p>
-<p>也方便做更改
-<figure class="highlight js"><figcaption><span>line: 25</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> push = ArrayProto.push,</div><div class="line">    slice = ArrayProto.slice,</div><div class="line">    toString = ObjProto.toString,</div><div class="line">    hasOwnProperty = ObjProto.hasOwnProperty;</div><div class="line"></div><div class="line"><span class="keyword">var</span> nativeIsArray = <span class="built_in">Array</span>.isArray,</div><div class="line">    nativeKeys = <span class="built_in">Object</span>.keys,</div><div class="line">    nativeCreate = <span class="built_in">Object</span>.create;</div></pre></td></tr></table></figure></p>
-<h3 id="surrogate-prototype-swapping"><a href="#surrogate-prototype-swapping" class="headerlink" title="surrogate-prototype-swapping"></a>surrogate-prototype-swapping</h3><p>下面兩段程式碼要一起看</p>
-<figure class="highlight js"><figcaption><span>line: 37</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">var</span> Ctor = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line"></div><div class="line"><span class="comment">// line: 132</span></div><div class="line">  <span class="keyword">var</span> baseCreate = <span class="function"><span class="keyword">function</span>(<span class="params">prototype</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!_.isObject(prototype)) <span class="keyword">return</span> &#123;&#125;;</div><div class="line">    <span class="keyword">if</span> (nativeCreate) <span class="keyword">return</span> nativeCreate(prototype);</div><div class="line">    Ctor.prototype = prototype; <span class="comment">// 繼承prototype</span></div><div class="line">    <span class="keyword">var</span> result = <span class="keyword">new</span> Ctor; <span class="comment">// 建立一個繼承了prototype的物件</span></div><div class="line">    Ctor.prototype = <span class="literal">null</span>; <span class="comment">// 將Ctor的prototype清除</span></div><div class="line">    <span class="keyword">return</span> result; <span class="comment">// 回傳繼承prototype的物件</span></div><div class="line">  &#125;;</div></pre></td></tr></table></figure>
-<p>在第37行的時候定義了一個空的function</p>
-<p>是為了之後要建立一個新的物件並且從其他物件繼承prototype時所需要的</p>
-<p>為了避免某些環境沒有Object.create</p>
-<p>因此透過 surrogate-prototype-swapping 來做物件的繼承</p>
-<h3 id="safe-reference"><a href="#safe-reference" class="headerlink" title="safe reference"></a>safe reference</h3><figure class="highlight js"><figcaption><span>line: 40</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> _ = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> _) <span class="keyword">return</span> obj;</div><div class="line">  <span class="keyword">if</span> (!(<span class="keyword">this</span> <span class="keyword">instanceof</span> _)) <span class="keyword">return</span> <span class="keyword">new</span> _(obj);</div><div class="line">  <span class="keyword">this</span>._wrapped = obj;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>這邊會確保 _ 是透過 new 的方式去建立的Object</p>
-<p>若是透過 _(obj) 去執行</p>
-<p>此時的this指向的是全域</p>
-<p>會形成全域變數</p>
-<p>因此這段程式碼會執行第二個判斷式</p>
-<p>確保 _(obj) 是透過 new 關鍵字所建立的Object</p>
-<h3 id="exports"><a href="#exports" class="headerlink" title="exports"></a>exports</h3><figure class="highlight js"><figcaption><span>line 52</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> exports != <span class="string">'undefined'</span> &amp;&amp; !exports.nodeType) &#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">module</span> != <span class="string">'undefined'</span> &amp;&amp; !<span class="built_in">module</span>.nodeType &amp;&amp; <span class="built_in">module</span>.exports) &#123;</div><div class="line">    exports = <span class="built_in">module</span>.exports = _;</div><div class="line">  &#125;</div><div class="line">  exports._ = _;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  root._ = _;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>這段主要就是讓root scope可以使用underscore的API</p>
-<h3 id="optimizeCb"><a href="#optimizeCb" class="headerlink" title="optimizeCb"></a>optimizeCb</h3><figure class="highlight js"><figcaption><span>line: 67</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> optimizeCb = <span class="function"><span class="keyword">function</span>(<span class="params">func, context, argCount</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (context === <span class="keyword">void</span> <span class="number">0</span>) <span class="keyword">return</span> func;</div><div class="line">    <span class="keyword">switch</span> (argCount == <span class="literal">null</span> ? <span class="number">3</span> : argCount) &#123;</div><div class="line">      <span class="keyword">case</span> <span class="number">1</span>: <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> func.call(context, value);</div><div class="line">      &#125;;</div><div class="line">      <span class="comment">// The 2-parameter case has been omitted only because no current consumers</span></div><div class="line">      <span class="comment">// made use of it.</span></div><div class="line">      <span class="keyword">case</span> <span class="number">3</span>: <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">value, index, collection</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> func.call(context, value, index, collection);</div><div class="line">      &#125;;</div><div class="line">      <span class="keyword">case</span> <span class="number">4</span>: <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">accumulator, value, index, collection</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> func.call(context, accumulator, value, index, collection);</div><div class="line">      &#125;;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> func.apply(context, <span class="built_in">arguments</span>);</div><div class="line">    &#125;;</div><div class="line">  &#125;;</div></pre></td></tr></table></figure>
-<p>這段希望能夠優化程式內部使用function的時候的速度</p>
-<p>透過下面這段程式碼可以看到call的執行速度可以比apply快上不少</p>
-<figure class="highlight js"><figcaption><span>test_apply_call.js </span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">work</span>(<span class="params">a, b, c</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> a * b * c;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</div><div class="line"></div><div class="line"><span class="built_in">console</span>.time(<span class="string">'apply-cost'</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000000</span>; i++) &#123;</div><div class="line">  work.apply(<span class="keyword">this</span>, a);</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'apply-cost'</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.time(<span class="string">'call-cost'</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000000</span>; i++) &#123;</div><div class="line">  work.call(<span class="keyword">this</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'call-cost'</span>);</div><div class="line"></div><div class="line"><span class="comment">// output</span></div><div class="line"><span class="comment">// apply-cost: 47.439ms</span></div><div class="line"><span class="comment">// call-cost: 8.755ms</span></div></pre></td></tr></table></figure>
-<p>因此透過optimizeCb在function能夠透過call執行時就透過call</p>
-<p>若例外才用apply來執行</p>
-<h3 id="cb"><a href="#cb" class="headerlink" title="cb"></a>cb</h3><figure class="highlight js"><figcaption><span>line: 87</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> builtinIteratee;</div></pre></td></tr></table></figure>
-<p>內建的iteratee(迭代器)</p>
-<figure class="highlight js"><figcaption><span>line: 92</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cb = <span class="function"><span class="keyword">function</span>(<span class="params">value, context, argCount</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (_.iteratee !== builtinIteratee) <span class="keyword">return</span> _.iteratee(value, context);</div><div class="line">    <span class="keyword">if</span> (value == <span class="literal">null</span>) <span class="keyword">return</span> _.identity;</div><div class="line">    <span class="keyword">if</span> (_.isFunction(value)) <span class="keyword">return</span> optimizeCb(value, context, argCount);</div><div class="line">    <span class="keyword">if</span> (_.isObject(value)) <span class="keyword">return</span> _.matcher(value);</div><div class="line">    <span class="keyword">return</span> _.property(value);</div><div class="line">  &#125;;</div><div class="line"></div><div class="line"><span class="comment">// line: 103</span></div><div class="line">  _.iteratee = builtinIteratee = <span class="function"><span class="keyword">function</span>(<span class="params">value, context</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> cb(value, context, <span class="literal">Infinity</span>);</div><div class="line">  &#125;;</div></pre></td></tr></table></figure>
-<p>cb 則是根據value的類型來回傳相對應的callback function</p>
-<h3 id="restArgs"><a href="#restArgs" class="headerlink" title="restArgs"></a>restArgs</h3><figure class="highlight js"><figcaption><span>line: 109</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> restArgs = <span class="function"><span class="keyword">function</span>(<span class="params">func, startIndex</span>) </span>&#123;</div><div class="line">    startIndex = startIndex == <span class="literal">null</span> ? func.length - <span class="number">1</span> : +startIndex;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> length = <span class="built_in">Math</span>.max(<span class="built_in">arguments</span>.length - startIndex, <span class="number">0</span>),</div><div class="line">          rest = <span class="built_in">Array</span>(length),</div><div class="line">          index = <span class="number">0</span>;</div><div class="line">      <span class="keyword">for</span> (; index &lt; length; index++) &#123;</div><div class="line">        rest[index] = <span class="built_in">arguments</span>[index + startIndex];</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">switch</span> (startIndex) &#123;</div><div class="line">        <span class="keyword">case</span> <span class="number">0</span>: <span class="keyword">return</span> func.call(<span class="keyword">this</span>, rest);</div><div class="line">        <span class="keyword">case</span> <span class="number">1</span>: <span class="keyword">return</span> func.call(<span class="keyword">this</span>, <span class="built_in">arguments</span>[<span class="number">0</span>], rest);</div><div class="line">        <span class="keyword">case</span> <span class="number">2</span>: <span class="keyword">return</span> func.call(<span class="keyword">this</span>, <span class="built_in">arguments</span>[<span class="number">0</span>], <span class="built_in">arguments</span>[<span class="number">1</span>], rest);</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">var</span> args = <span class="built_in">Array</span>(startIndex + <span class="number">1</span>);</div><div class="line">      <span class="keyword">for</span> (index = <span class="number">0</span>; index &lt; startIndex; index++) &#123;</div><div class="line">        args[index] = <span class="built_in">arguments</span>[index];</div><div class="line">      &#125;</div><div class="line">      args[startIndex] = rest;</div><div class="line">      <span class="keyword">return</span> func.apply(<span class="keyword">this</span>, args);</div><div class="line">    &#125;;</div><div class="line">  &#125;;</div></pre></td></tr></table></figure>
-<p>restArgs接受兩個參數，第一個是func，第二個是startIndex</p>
-<p>並回傳一個function執行傳入的func</p>
-<p>在過程中將func中的參數做成Array的封裝</p>
-<p>原先當我們的function接收的參數是動態的時候</p>
-<p>我們會透過</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> args = <span class="built_in">Array</span>.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</div></pre></td></tr></table></figure>
-<p>來把arguments變成Array來做操作</p>
-<p>restArgs在underscore內部的作用為</p>
-<p>將多餘的參數用Array的方式保存成為最後一個參數</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">orig</span>(<span class="params">a, b, rest</span>) </span>&#123;</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> test = restArgs(orig, <span class="number">2</span>);</div><div class="line"></div><div class="line">test(<span class="number">1</span>, <span class="number">2</span>) =&gt; a: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">rest</span>: [],</div><div class="line">test(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>) =&gt; a: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">rest</span>: [<span class="number">3</span>],</div><div class="line">test(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>) =&gt; a: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">rest</span>: [<span class="number">3</span>, <span class="number">4</span>],</div></pre></td></tr></table></figure>
-<h3 id="property"><a href="#property" class="headerlink" title="property"></a>property</h3><figure class="highlight js"><figcaption><span>line: 142</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> property = <span class="function"><span class="keyword">function</span>(<span class="params">key</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> obj == <span class="literal">null</span> ? <span class="keyword">void</span> <span class="number">0</span> : obj[key];</div><div class="line">    &#125;;</div><div class="line">  &#125;;</div></pre></td></tr></table></figure>
-<p>underscore的 private function</p>
-<p>算是一個檢驗property的factory</p>
-<p>透過下面的例子來看</p>
-<figure class="highlight js"><figcaption><span>line: 152</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> MAX_ARRAY_INDEX = <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> getLength = property(<span class="string">'length'</span>);</div><div class="line"><span class="keyword">var</span> isArrayLike = <span class="function"><span class="keyword">function</span>(<span class="params">collection</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> length = getLength(collection);</div><div class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> length == <span class="string">'number'</span> &amp;&amp; length &gt;= <span class="number">0</span> &amp;&amp; length &lt;= MAX_ARRAY_INDEX;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>我們透過 property(&#39;length&#39;) 建立一個 getLength的function</p>
-<p>這個function可以接收一個object</p>
-<p>若object有&#39;length&#39; 的 property 就會回傳相對應的value</p>
-<p>否則就 void 0 (什麼都不做)</p>
-<p>最後透過檢驗Object的長度是否存在及合法</p>
-<p>來檢驗Object是不是一個ArrayLike的物件</p>
+<h1 id="Array-Functions-1"><a href="#Array-Functions-1" class="headerlink" title="Array Functions"></a>Array Functions</h1><h3 id="First"><a href="#First" class="headerlink" title="First"></a>First</h3><figure class="highlight js"><figcaption><span>line: 470</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">_.first = _.head = _.take = <span class="function"><span class="keyword">function</span>(<span class="params">array, n, guard</span>) </span>&#123;</div><div class="line">   <span class="keyword">if</span> (array == <span class="literal">null</span> || array.length &lt; <span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">void</span> <span class="number">0</span>;</div><div class="line">   <span class="keyword">if</span> (n == <span class="literal">null</span> || guard) <span class="keyword">return</span> array[<span class="number">0</span>];</div><div class="line">   <span class="keyword">return</span> _.initial(array, array.length - n);</div><div class="line"> &#125;;</div><div class="line"></div><div class="line"> _.initial = <span class="function"><span class="keyword">function</span>(<span class="params">array, n, guard</span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> slice.call(array, <span class="number">0</span>, <span class="built_in">Math</span>.max(<span class="number">0</span>, array.length - (n == <span class="literal">null</span> || guard ? <span class="number">1</span> : n)));</div><div class="line"> &#125;;</div></pre></td></tr></table></figure>
+<p>_.first可以回傳Array裡面的前n個Elements</p>
+<p>若n沒有指定或者有guard 則回傳第一個Element</p>
+<p><em>.first是透過</em>.initial來實作</p>
+<p>那就來看一下_.initial做了什麼</p>
+<p>_.initial裡面所呼叫的slice就是在underscore 一開始定義的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> slice = ArrayProto.slice</div></pre></td></tr></table></figure>
+<p>這邊的邏輯就很簡單</p>
+<p>若有guard或者n=null就將傳入的Array去掉最後一個值並回傳</p>
+<p>否則就是回傳0到n位置的Elements</p>
+<figure class="highlight js"><figcaption><span>line: 485</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">_.last = <span class="function"><span class="keyword">function</span>(<span class="params">array, n, guard</span>) </span>&#123;</div><div class="line">   <span class="keyword">if</span> (array == <span class="literal">null</span> || array.length &lt; <span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">void</span> <span class="number">0</span>;</div><div class="line">   <span class="keyword">if</span> (n == <span class="literal">null</span> || guard) <span class="keyword">return</span> array[array.length - <span class="number">1</span>];</div><div class="line">   <span class="keyword">return</span> _.rest(array, <span class="built_in">Math</span>.max(<span class="number">0</span>, array.length - n));</div><div class="line"> &#125;;</div><div class="line"></div><div class="line"> _.rest = _.tail = _.drop = <span class="function"><span class="keyword">function</span>(<span class="params">array, n, guard</span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> slice.call(array, n == <span class="literal">null</span> || guard ? <span class="number">1</span> : n);</div><div class="line"> &#125;;</div></pre></td></tr></table></figure>
+<p>而last跟rest的邏輯就只是first跟initial反過來</p>
+<h3 id="Compact"><a href="#Compact" class="headerlink" title="Compact"></a>Compact</h3><figure class="highlight js"><figcaption><span>line: 499</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">_.compact = <span class="function"><span class="keyword">function</span>(<span class="params">array</span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> _.filter(array, <span class="built_in">Boolean</span>);</div><div class="line"> &#125;;</div></pre></td></tr></table></figure>
+<p>透過_.filter把false的值濾掉</p>
+<p>我還在想這個東西的應用情境為何</p>
+<h3 id="Flatten"><a href="#Flatten" class="headerlink" title="Flatten"></a>Flatten</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> flatten = <span class="function"><span class="keyword">function</span>(<span class="params">input, shallow, strict, output</span>) </span>&#123;</div><div class="line">   output = output || [];</div><div class="line">   <span class="keyword">var</span> idx = output.length;</div><div class="line">   <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, length = getLength(input); i &lt; length; i++) &#123;</div><div class="line">     <span class="keyword">var</span> value = input[i];</div><div class="line">     <span class="keyword">if</span> (isArrayLike(value) &amp;&amp; (_.isArray(value) || _.isArguments(value))) &#123;</div><div class="line">       <span class="comment">// Flatten current level of array or arguments object.</span></div><div class="line">       <span class="keyword">if</span> (shallow) &#123;</div><div class="line">         <span class="keyword">var</span> j = <span class="number">0</span>, len = value.length;</div><div class="line">         <span class="keyword">while</span> (j &lt; len) output[idx++] = value[j++];</div><div class="line">       &#125; <span class="keyword">else</span> &#123;</div><div class="line">         flatten(value, shallow, strict, output);</div><div class="line">         idx = output.length;</div><div class="line">       &#125;</div><div class="line">     &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!strict) &#123;</div><div class="line">       output[idx++] = value;</div><div class="line">     &#125;</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">return</span> output;</div><div class="line"> &#125;;</div><div class="line"></div><div class="line"> _.flatten = <span class="function"><span class="keyword">function</span>(<span class="params">array, shallow</span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> flatten(array, shallow, <span class="literal">false</span>);</div><div class="line"> &#125;;</div></pre></td></tr></table></figure>
+<p>flatten主要的邏輯就是</p>
+<ul>
+<li>遍歷最大的Array<ul>
+<li>如果Element是ArrayLike或者Array<ul>
+<li>shallow === true 就只Flatten一層Array</li>
+<li>否則就透過Recursion將遍歷到的Array繼續做Flatten</li>
+</ul>
+</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><figcaption><span>line: 531</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">_.without = restArgs(<span class="function"><span class="keyword">function</span>(<span class="params">array, otherArrays</span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> _.difference(array, otherArrays);</div><div class="line"> &#125;);</div><div class="line"></div><div class="line"> _.difference = restArgs(<span class="function"><span class="keyword">function</span>(<span class="params">array, rest</span>) </span>&#123;</div><div class="line">   rest = flatten(rest, <span class="literal">true</span>, <span class="literal">true</span>);</div><div class="line">   <span class="keyword">return</span> _.filter(array, <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</div><div class="line">     <span class="keyword">return</span> !_.contains(rest, value);</div><div class="line">   &#125;);</div><div class="line"> &#125;);</div></pre></td></tr></table></figure>
+<p>先看_.difference</p>
+<p>主要是希望讓只出現在第一個Array的Element留下來</p>
+<p>參數為第一個array和剩下的Array們</p>
+<p>來看一個例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_.difference([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>],[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">4</span>]);</div><div class="line"><span class="comment">// output: [5]</span></div></pre></td></tr></table></figure>
+<p>由於是透過restArgs來做實現</p>
+<p>所以在這裡會讓接受到的參數變成</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</div><div class="line">rest = [[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]];</div></pre></td></tr></table></figure>
+<p>因此就可以在透過flatten來針對rest做處理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rest = flatten(rest, <span class="literal">true</span>, <span class="literal">true</span>);</div></pre></td></tr></table></figure>
+<p>最後一個true是希望讓傳入的參數是ArrayLike</p>
+<p>否則就不flatten</p>
+<p>因此</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">_.difference([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>],[<span class="number">1</span>,<span class="number">2</span>],<span class="number">3</span>,<span class="number">4</span>);</div><div class="line"><span class="comment">// output: [3,4,5]</span></div><div class="line"><span class="comment">// not: [5]</span></div></pre></td></tr></table></figure>
+<p>而_.without則是去除特定的值</p>
+<p>不是ArrayLike的參數</p>
+<h3 id="Uniq"><a href="#Uniq" class="headerlink" title="Uniq"></a>Uniq</h3><figure class="highlight js"><figcaption><span>line: 538</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">_.uniq = _.unique = <span class="function"><span class="keyword">function</span>(<span class="params">array, isSorted, iteratee, context</span>) </span>&#123;</div><div class="line">   <span class="keyword">if</span> (!_.isBoolean(isSorted)) &#123;</div><div class="line">     context = iteratee;</div><div class="line">     iteratee = isSorted;</div><div class="line">     isSorted = <span class="literal">false</span>;</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">if</span> (iteratee != <span class="literal">null</span>) iteratee = cb(iteratee, context);</div><div class="line">   <span class="keyword">var</span> result = [];</div><div class="line">   <span class="keyword">var</span> seen = [];</div><div class="line">   <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, length = getLength(array); i &lt; length; i++) &#123;</div><div class="line">     <span class="keyword">var</span> value = array[i],</div><div class="line">         computed = iteratee ? iteratee(value, i, array) : value;</div><div class="line">     <span class="keyword">if</span> (isSorted) &#123;</div><div class="line">       <span class="keyword">if</span> (!i || seen !== computed) result.push(value);</div><div class="line">       seen = computed;</div><div class="line">     &#125; <span class="keyword">else</span> <span class="keyword">if</span> (iteratee) &#123;</div><div class="line">       <span class="keyword">if</span> (!_.contains(seen, computed)) &#123;</div><div class="line">         seen.push(computed);</div><div class="line">         result.push(value);</div><div class="line">       &#125;</div><div class="line">     &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!_.contains(result, value)) &#123;</div><div class="line">       result.push(value);</div><div class="line">     &#125;</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">return</span> result;</div><div class="line"> &#125;;</div><div class="line"></div><div class="line"> _.union = restArgs(<span class="function"><span class="keyword">function</span>(<span class="params">arrays</span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> _.uniq(flatten(arrays, <span class="literal">true</span>, <span class="literal">true</span>));</div><div class="line"> &#125;);</div></pre></td></tr></table></figure>
+<p>_.uniq就透過遍歷整個array將不重複的值push到result</p>
+<p>如果是排列過的就只要依序做比較就好</p>
+<p>若沒排序過則會使用到_.contains 來做唯一性的比較</p>
+<p>_.union 也是透過restArgs做實作</p>
+<p>傳入的所有Arrays會變成Array of Array</p>
+<p>透過flatten 再透過_.uniq將交集選出來</p>
+<figure class="highlight js"><figcaption><span>line: 573</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">_.intersection = <span class="function"><span class="keyword">function</span>(<span class="params">array</span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> result = [];</div><div class="line">   <span class="keyword">var</span> argsLength = <span class="built_in">arguments</span>.length;</div><div class="line">   <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, length = getLength(array); i &lt; length; i++) &#123;</div><div class="line">     <span class="keyword">var</span> item = array[i];</div><div class="line">     <span class="keyword">if</span> (_.contains(result, item)) <span class="keyword">continue</span>;</div><div class="line">     <span class="keyword">var</span> j;</div><div class="line">     <span class="keyword">for</span> (j = <span class="number">1</span>; j &lt; argsLength; j++) &#123;</div><div class="line">       <span class="keyword">if</span> (!_.contains(<span class="built_in">arguments</span>[j], item)) <span class="keyword">break</span>;</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">if</span> (j === argsLength) result.push(item);</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">return</span> result;</div><div class="line"> &#125;;</div></pre></td></tr></table></figure>
+<p>_.intersection這邊剛開始看的時候想說作者怎麼不用restArgs去實作</p>
+<p>然後在參數的array 跟 arguments那邊卡了一下</p>
+<p>原來如果在function內部的array只會refernce到輸入的第一個array</p>
+<p>因此這裡主要的邏輯就是拿第一個Array的所有元素來和其他Array們比較</p>
+<p>如果沒有包含就換下一個元素</p>
+<p>因為是intersection</p>
+<p>只要檢查完第一個Array就可以</p>
+<p>因為之後就算其他Array有的元素 第一個Array也不會有</p>
+<p>也試著用restArgs以同個邏輯實作看看</p>
+<p>並且比較兩者的速度</p>
+<figure class="highlight js"><figcaption><span>intersection2</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">_.intersection2 = restArgs(<span class="function"><span class="keyword">function</span>(<span class="params">arrays</span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> result = [];</div><div class="line">   <span class="keyword">var</span> argsLength = arrays.length;</div><div class="line">   <span class="keyword">var</span> firstArray = arrays[<span class="number">0</span>];</div><div class="line">   <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, length = getLength(firstArray); i &lt; length; i++) &#123;</div><div class="line">     <span class="keyword">var</span> item = firstArray[i];</div><div class="line">     <span class="keyword">if</span> (_.contains(result, item)) <span class="keyword">continue</span>;</div><div class="line">     <span class="keyword">var</span> j;</div><div class="line">     <span class="keyword">for</span> (j = <span class="number">1</span>; j &lt; argsLength; j++) &#123;</div><div class="line">       <span class="keyword">if</span> (!_.contains(arrays[j], item)) <span class="keyword">break</span>;</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">if</span> (j === argsLength) result.push(item);</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">return</span> result;</div><div class="line"> &#125;);</div><div class="line"></div><div class="line"> <span class="comment">/* compare */</span></div><div class="line"> (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> times = <span class="number">100000</span>;</div><div class="line">  </div><div class="line">  <span class="built_in">console</span>.time(<span class="string">'original'</span>)</div><div class="line">  <span class="keyword">while</span>(times &gt; <span class="number">0</span>)&#123;</div><div class="line">    _.intersection([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>],[<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>],[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]);</div><div class="line">    times --;</div><div class="line">  &#125;</div><div class="line">  <span class="built_in">console</span>.timeEnd(<span class="string">'original'</span>)</div><div class="line">  </div><div class="line">  times = <span class="number">100000</span>;</div><div class="line">  </div><div class="line">  <span class="built_in">console</span>.time(<span class="string">'restArgs'</span>)</div><div class="line">  <span class="keyword">while</span>(times &gt; <span class="number">0</span>)&#123;</div><div class="line">    _.intersection2([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>],[<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>],[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]);</div><div class="line">    times --;</div><div class="line">  &#125;</div><div class="line">  <span class="built_in">console</span>.timeEnd(<span class="string">'restArgs'</span>)</div><div class="line"></div><div class="line">&#125;())</div><div class="line"></div><div class="line"><span class="comment">// original: 77.72ms</span></div><div class="line"> <span class="comment">// restArgs: 330.04ms</span></div></pre></td></tr></table></figure>
+<p>看到結果就笑了ＸＤ</p>
+<p>restArgs的版本幾乎慢了五倍</p>
+<p>雖然早就預期會比較慢</p>
+<p>但沒想到會慢那麼多</p>
+<p>所以像作者那樣的寫法</p>
+<p>還真的是要很了解javascript對arguments的操作方式啊！</p>
+<h3 id="Zip"><a href="#Zip" class="headerlink" title="Zip"></a>Zip</h3><figure class="highlight js"><figcaption><span>line: 599</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">_.unzip = <span class="function"><span class="keyword">function</span>(<span class="params">array</span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> length = array &amp;&amp; _.max(array, getLength).length || <span class="number">0</span>;</div><div class="line">   <span class="keyword">var</span> result = <span class="built_in">Array</span>(length);</div><div class="line"></div><div class="line">   <span class="keyword">for</span> (<span class="keyword">var</span> index = <span class="number">0</span>; index &lt; length; index++) &#123;</div><div class="line">     result[index] = _.pluck(array, index);</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">return</span> result;</div><div class="line"> &#125;;</div><div class="line"></div><div class="line"> _.zip = restArgs(_.unzip);</div></pre></td></tr></table></figure>
+<p>這邊的解法真的很有趣</p>
+<p>導致會有下面的結果產生</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ziped = _.zip([<span class="string">'moe'</span>, <span class="string">'larry'</span>, <span class="string">'curly'</span>], [<span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>], [<span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>]);</div><div class="line"><span class="comment">//ziped: [["moe", 30, true], ["larry", 40, false], ["curly", 50, false]]</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> unziped = _.unzip(ziped);</div><div class="line"><span class="comment">//unziped: [['moe', 'larry', 'curly'], [30, 40, 50], [true, false, false]]</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> failziped = _.zip(unziped);</div><div class="line"><span class="comment">//failziped:  [[["moe", "larry", "curly"]], [[30, 40, 50]], [[true, false, false]]]</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">_.chunk = <span class="function"><span class="keyword">function</span>(<span class="params">array, count</span>) </span>&#123;</div><div class="line">   <span class="keyword">if</span> (count == <span class="literal">null</span> || count &lt; <span class="number">1</span>) <span class="keyword">return</span> [];</div><div class="line"></div><div class="line">   <span class="keyword">var</span> result = [];</div><div class="line">   <span class="keyword">var</span> i = <span class="number">0</span>, length = array.length;</div><div class="line">   <span class="keyword">while</span> (i &lt; length) &#123;</div><div class="line">     result.push(slice.call(array, i, i += count));</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">return</span> result;</div><div class="line"> &#125;;</div></pre></td></tr></table></figure>
+<p>將Array切成每個chunck的element數量等於count的array</p>
+<p>這邊透過slice並且用i += count來更新i的位置</p>
             
         </div>
     </div>
@@ -301,7 +306,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/10/10/來讀underscore原始碼吧-二/"  data-tooltip="來讀underscore原始碼吧(二)">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -309,7 +314,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/27/Transition/" data-tooltip="Transition">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/10/10/來讀underscore原始碼吧-二/" data-tooltip="來讀underscore原始碼吧(二)">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -324,17 +329,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/10/09/來讀underscore原始碼吧-一/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/10/13/來讀underscore原始碼吧-三/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/10/09/來讀underscore原始碼吧-一/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/10/13/來讀underscore原始碼吧-三/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/10/09/來讀underscore原始碼吧-一/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/10/13/來讀underscore原始碼吧-三/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -382,7 +387,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/10/10/來讀underscore原始碼吧-二/"  data-tooltip="來讀underscore原始碼吧(二)">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -390,7 +395,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/09/27/Transition/" data-tooltip="Transition">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/10/10/來讀underscore原始碼吧-二/" data-tooltip="來讀underscore原始碼吧(二)">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -405,17 +410,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/10/09/來讀underscore原始碼吧-一/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/10/13/來讀underscore原始碼吧-三/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/10/09/來讀underscore原始碼吧-一/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/10/13/來讀underscore原始碼吧-三/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/10/09/來讀underscore原始碼吧-一/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/10/13/來讀underscore原始碼吧-三/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -441,17 +446,17 @@
                 <div id="share-options-bar" class="share-options-bar" data-behavior="4">
     <ul class="share-options">
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/10/09/來讀underscore原始碼吧-一/">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/10/13/來讀underscore原始碼吧-三/">
                 <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/10/09/來讀underscore原始碼吧-一/">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/10/13/來讀underscore原始碼吧-三/">
                 <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/10/09/來讀underscore原始碼吧-一/">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/10/13/來讀underscore原始碼吧-三/">
                 <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
             </a>
         </li>
@@ -834,9 +839,9 @@ Closure 是指說一個function記住了他在被定義的當下時的lexical sc
     
         <script>
              var disqus_config = function () {
-                 this.page.url = 'http://swarchen.github.io/Blog/2016/10/09/來讀underscore原始碼吧-一/';
+                 this.page.url = 'http://swarchen.github.io/Blog/2016/10/13/來讀underscore原始碼吧-三/';
                  
-                    this.page.identifier = '2016/10/09/來讀underscore原始碼吧-一/';
+                    this.page.identifier = '2016/10/13/來讀underscore原始碼吧-三/';
                  
              };
             (function() {
