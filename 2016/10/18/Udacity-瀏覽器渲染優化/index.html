@@ -6,19 +6,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="來自馬祖的前端工程師">
-    <title>標籤: Writing - 來自馬祖的前端工程師</title>
+    <title>Udacity 瀏覽器渲染優化 - 來自馬祖的前端工程師</title>
     <meta name="author" content="Jhao Cheng Wu">
+    
+        <meta name="keywords" content="Udacity,optimization">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/Blog/atom.xml">
     
-    <meta property="og:type" content="blog">
-<meta property="og:title" content="來自馬祖的前端工程師">
-<meta property="og:url" content="http://swarchen.github.io/tags/Writing/index.html">
+    <meta name="description" content="Udacity上的 bowser render optimization課程，透過chrome dev tool的timeline來debug，試著將瀏覽器的渲染速度達到60fps。">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Udacity 瀏覽器渲染優化">
+<meta property="og:url" content="http://swarchen.github.io/2016/10/18/Udacity-瀏覽器渲染優化/index.html">
 <meta property="og:site_name" content="來自馬祖的前端工程師">
+<meta property="og:description" content="Udacity上的 bowser render optimization課程，透過chrome dev tool的timeline來debug，試著將瀏覽器的渲染速度達到60fps。">
+<meta property="og:image" content="http://i.imgur.com/EMee3xb.png">
+<meta property="og:image" content="http://i.imgur.com/EMee3xb.png">
+<meta property="og:updated_time" content="2016-10-17T16:26:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="來自馬祖的前端工程師">
+<meta name="twitter:title" content="Udacity 瀏覽器渲染優化">
+<meta name="twitter:description" content="Udacity上的 bowser render optimization課程，透過chrome dev tool的timeline來debug，試著將瀏覽器的渲染速度達到60fps。">
+<meta name="twitter:image" content="http://i.imgur.com/EMee3xb.png">
     
     
         
@@ -26,6 +35,9 @@
     
         <meta property="og:image" content="http://swarchen.github.io/assets/images/profile.jpg"/>
     
+    
+        <meta property="og:image" content="https://pbs.twimg.com/profile_images/703090165976162305/XU5nh5a9.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://pbs.twimg.com/profile_images/703090165976162305/XU5nh5a9.jpg" />
     
     
     
@@ -61,7 +73,7 @@
         
     
 
-<header id="header" data-behavior="1">
+<header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a class="header-title-link" href="/Blog/ ">來自馬祖的前端工程師</a>
@@ -85,7 +97,7 @@
         
     
 
-<nav id="sidebar" data-behavior="1">
+<nav id="sidebar" data-behavior="4">
     <div class="sidebar-container">
         
             <div class="sidebar-profile">
@@ -169,73 +181,245 @@
 </nav>
 
             
-            <div id="main" data-behavior="1"
+            <div id="main" data-behavior="4"
                  class="
                         hasCoverMetaIn
                         ">
                 
-    <section class="postShorten-group main-content-wrap">
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
     
     
-    <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/Blog/2016/09/22/Hexo-Markdown-的使用/">
-                            Hexo Markdown 的使用
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2016-09-22T00:53:50+08:00">
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title" itemprop="headline">
+            Udacity 瀏覽器渲染優化
+        </h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" datetime="2016-10-18T00:22:02+08:00">
 	
-		    9月 22, 2016
+		    10月 18, 2016
     	
     </time>
     
         <span>分類 </span>
         
-    <a class="category-link" href="/Blog/categories/writing/">writing</a>
+    <a class="category-link" href="/Blog/categories/Udacity/">Udacity</a>
 
 
     
 </div>
 
-            </div>
-            
-                <div class="postShorten-excerpt" itemprop="articleBody">
-                    <h1 id="標題們"><a href="#標題們" class="headerlink" title="標題們"></a>標題們</h1><blockquote>
-<h1 id="h1-title"><a href="#h1-title" class="headerlink" title="# h1 title"></a># h1 title</h1><h2 id="h2-title"><a href="#h2-title" class="headerlink" title="## h2 title"></a>## h2 title</h2>
-                    
-                        <a href="/Blog/2016/09/22/Hexo-Markdown-的使用/" class="postShorten-excerpt_link link">
-                            繼續閱讀
-                        </a>
-                        
-                    
-                </div>
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>Udacity上的 bowser render optimization課程，透過chrome dev tool的timeline來debug，試著將瀏覽器的渲染速度達到60fps。</p>
+<h1 id="Frame"><a href="#Frame" class="headerlink" title="Frame"></a>Frame</h1><hr>
+<p>如果要在瀏覽透過60fps的速度去渲染畫面</p>
+<p>也就是說我們必須在1000ms/60frame ~ 16ms </p>
+<p>16毫秒以內將要渲染在畫面上的設定都處理完成</p>
+<p>而實際上大約是只有10~12ms</p>
+<a id="more"></a>
+<h1 id="Render-Tree"><a href="#Render-Tree" class="headerlink" title="Render Tree"></a>Render Tree</h1><hr>
+<p>瀏覽器先向server發出http request</p>
+<p>接者會收到server傳來的html,css檔案</p>
+<p>透過解讀html裡面的tag去建立DOM tree</p>
+<p>再來透過css file, inline style, 3rd party css lib去建立CSS tree</p>
+<p>並將兩者合併變成Render Tree</p>
+<p>Render Tree 就不包含html裡面的head tag</p>
+<p>也不會有任何script</p>
+<p>另外若Css有對Dom Tree的元素作一些操作</p>
+<p>例如</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">	<span class="attribute">display</span>: none;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在確定每個元素的規則樣式之後</p>
+<p>接著就是計算每個DOM元素最終在銀幕上的大小和位置</p>
+<p>也就是Layout（佈局）</p>
+<p>再來就是Paint，將文字、顏色或者圖形等等的繪製在多個不同的圖層上</p>
+<p>並透過最後的Composite來做合併</p>
+<p>簡化成下圖來做表示整個渲染階段的動作</p>
+<p><img src="http://i.imgur.com/EMee3xb.png" alt=""></p>
+<p>因此在做60fps優化的時候</p>
+<p>我們可以透過chrome dev tool提供的timeline去看這些渲染階段所佔用的時間</p>
+<p>另外<a href="https://csstriggers.com/" target="_blank" rel="external">csstriggers</a>提供了csstrigger的查詢</p>
+<p>在做畫面優化的時候可以了解到哪些操作所產生的步驟比較少</p>
+<p>進而去提高畫面的表現</p>
+<h1 id="App-lifecycle"><a href="#App-lifecycle" class="headerlink" title="App lifecycle"></a>App lifecycle</h1><hr>
+<p>在做優化之前我們應該要先知道</p>
+<p>我們有哪些時間上的限制</p>
+<p>和使用者對於一個Web app的期待和反應</p>
+<table>
+    <tr>
+        <th>Action</th>
+        <th>Times</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>R(Response)</td>
+        <td>100ms</td>
+        <td>使用者和網頁做互動時的反饋時間</td>
+    </tr>
+    <tr>
+        <td>A(Animate)</td>
+        <td>16ms (actual 10~12ms)</td>
+        <td>我們期望的60fps的網頁效能</td>
+    </tr>
+    <tr>
+        <td>I(Idle)</td>
+        <td>50ms</td>
+        <td>使用者看到畫面並且稍微瀏覽的時間</td>
+    </tr>
+    <tr>
+        <td>L(Load)</td>
+        <td>1000ms</td>
+        <td>使用者送出request到畫面出現的時間</td>
+    </tr>
+</table>
+
+<p>在了解到App lifecycle之後</p>
+<p>我們就可以針對下面的流程來做優化拉！</p>
+<p><img src="http://i.imgur.com/EMee3xb.png" alt=""></p>
+<h1 id="Optimizing-JS"><a href="#Optimizing-JS" class="headerlink" title="Optimizing JS"></a>Optimizing JS</h1><hr>
+<h3 id="Optimizing-JS-for-Animations"><a href="#Optimizing-JS-for-Animations" class="headerlink" title="Optimizing JS for Animations"></a>Optimizing JS for Animations</h3><div class="alert warning"><p>不要去做 Micro-optimization</p>
+</div>
+<p>像是去比較for-loop跟while-loop的差別</p>
+<p>可以透過timeline tool </p>
+<p>看到哪個function導致執行時間變長</p>
+<h3 id="Web-Wokers"><a href="#Web-Wokers" class="headerlink" title="Web Wokers"></a>Web Wokers</h3><p>有時候我們會透過javascript去處理一些運算較為久的task</p>
+<p>並在算完之後渲染到畫面上</p>
+<p>但由於js engine是單執行緒</p>
+<p>在處理這些task的時候可能會導致渲染的效能變慢</p>
+<p>這時候就可以透過web worker建立一個背景的執行緒</p>
+<p>幫我們完成這些work</p>
+<p>透過這段code來宣告一個新的web worker</p>
+<figure class="highlight js"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myWorker = <span class="keyword">new</span> Worker(<span class="string">"worker.js"</span>);</div></pre></td></tr></table></figure>
+<p>接著我們就可以在worker.js裡面去處理我們要執行的task</p>
+<p>main script和web worker主要透過 postMessage() 方法以及 onmessage 事件處理器來溝通</p>
+<p>要注意的是在worker.js中必須用self來指定全域物件</p>
+<p>因為此時的worker不是在window這個scope底下</p>
+<figure class="highlight js"><figcaption><span>worker.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">importScripts(<span class="string">'otherScripts.js'</span>);</div><div class="line"></div><div class="line">self.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123; </div><div class="line">  <span class="keyword">var</span> data = e.data;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    <span class="comment">/* heavy work here */</span></div><div class="line">    &#125;</div><div class="line">    postMessage(result);</div><div class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">    <span class="comment">/* handle error */</span></div><div class="line">    postMessage(<span class="literal">undefined</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>透過worker處理完的data我們就可以在main script當中透過onmessage來監聽</p>
+<figure class="highlight js"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* ... */</span></div><div class="line">myWorker.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</div><div class="line">	<span class="comment">/* handle result */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如此一來就可以把較為耗資源的運算跟渲染的運算做分離</p>
+<p>避免渲染時卡卡的情形發生了</p>
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/API/Web_Workers_API/Using_web_workers" target="_blank" rel="external">MDN-Web Workers</a></p>
+<h3 id="JS-Memory-Management"><a href="#JS-Memory-Management" class="headerlink" title="JS Memory Management"></a>JS Memory Management</h3><ul>
+<li><a href="http://www.smashingmagazine.com/2012/11/writing-fast-memory-efficient-javascript/" target="_blank" rel="external">Writing Fast, Memory-Efficient JavaScript on Smashing Magazine</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management" target="_blank" rel="external">Memory Management on MDN    </a></li>
+<li><a href="http://buildnewgames.com/garbage-collector-friendly-code/" target="_blank" rel="external">High-Performance, Garbage-Collector-Friendly Code on Build New Games</a></li>
+</ul>
+<h1 id="Optimizing-Style-amp-Layout-Calculation"><a href="#Optimizing-Style-amp-Layout-Calculation" class="headerlink" title="Optimizing Style &amp; Layout Calculation"></a>Optimizing Style &amp; Layout Calculation</h1><hr>
+<p>Style change的cost是和change的element數量成線性的關係</p>
+<p>因此我們會希望每次做style change的時候改變的element數量越少越好</p>
+<p>藉此加快 Style Caluculation的速度</p>
+<h3 id="Selector-Matching"><a href="#Selector-Matching" class="headerlink" title="Selector Matching"></a>Selector Matching</h3><p>Block Element Modifier</p>
+<p>再透過class改變style的時候</p>
+<p>我們會希望影響到的element越少越好</p>
+<p>並且在selector的地方越簡單越好</p>
+<h3 id="Stopping-F-orced-S-ynchronous-L-ayout-Strategy"><a href="#Stopping-F-orced-S-ynchronous-L-ayout-Strategy" class="headerlink" title="Stopping F(orced) S(ynchronous) L(ayout) Strategy"></a>Stopping F(orced) S(ynchronous) L(ayout) Strategy</h3><div class="alert warning"><p>千萬不要改變渲染的順序否則會造成很差的perf</p>
+<p>JS -&gt; Style -&gt; Layout -&gt; Paint -&gt; Composite</p>
+</div>
+<h1 id="Optimizing-Paint-amp-Composite-Calculation"><a href="#Optimizing-Paint-amp-Composite-Calculation" class="headerlink" title="Optimizing Paint &amp; Composite Calculation"></a>Optimizing Paint &amp; Composite Calculation</h1><hr>
+<h3 id="Paint-Profiler"><a href="#Paint-Profiler" class="headerlink" title="Paint Profiler"></a>Paint Profiler</h3><p>透過timeline的Paint</p>
+<p>去記錄整個paint的過程</p>
+<p>甚至可以直接看到在對應的function call時</p>
+<p>所完成的paint</p>
+<h3 id="Composite"><a href="#Composite" class="headerlink" title="Composite"></a>Composite</h3><p>越多Layer Composite time越久</p>
+<p>所以當我們透過增加Layer去減少Paint次數時</p>
+<p>Composite的時間就會變長</p>
+<h3 id="Manage-Layers"><a href="#Manage-Layers" class="headerlink" title="Manage Layers"></a>Manage Layers</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.circle</span> &#123;</div><div class="line">	<span class="attribute">will-change</span>: transform; </div><div class="line">&#125;</div><div class="line">*<span class="selector-tag">newer</span> <span class="selector-tag">browser</span></div><div class="line"></div><div class="line"><span class="selector-class">.circle</span> &#123;</div><div class="line">	<span class="attribute">transform</span>: <span class="built_in">transformZ</span>(0);</div><div class="line">&#125;</div><div class="line"></div><div class="line">*<span class="selector-tag">older</span> <span class="selector-tag">browser</span></div></pre></td></tr></table></figure>
+<p>可以讓有will-change或transform的component</p>
+<p>建立自己的Layer</p>
+<p><a href="http://udacity.github.io/60fps/lesson6/willChange/index.html" target="_blank" rel="external">demo will-change</a></p>
+<p>試著把.box加上will-change: transform</p>
+<p>渲染效果差超級多</p>
+<h3 id="Layers-Counting"><a href="#Layers-Counting" class="headerlink" title="Layers Counting"></a>Layers Counting</h3><p>透過Timeline的Paint Profiler</p>
+<p>我們可以直接點擊Layers看到頁面有多少層Layer</p>
+<p>並且可以透過圖像化的表示將Layer做旋轉</p>
+<p>看到不同Layers的相對位置</p>
+
             
         </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
         
-            <a href="/Blog/2016/09/22/Hexo-Markdown-的使用/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/208px-Markdown-mark.svg.png"/>
-                </div>
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">標籤</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/Blog/tags/Udacity/">Udacity</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/10/13/來讀underscore原始碼吧-三/" data-tooltip="來讀underscore原始碼吧(三)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
             </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/10/18/Udacity-瀏覽器渲染優化/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/10/18/Udacity-瀏覽器渲染優化/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/10/18/Udacity-瀏覽器渲染優化/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
             
-        
-    </article>
-    
-    <div class="pagination-bar">
-    <ul class="pagination">
-        
-        
-        <li class="pagination-number">第 1 頁 共 1 頁</li>
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
     </ul>
 </div>
 
-</section>
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
 
 
                 <footer id="footer" class="main-content-wrap">
@@ -245,6 +429,90 @@
 </footer>
 
             </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/Blog/2016/10/13/來讀underscore原始碼吧-三/" data-tooltip="來讀underscore原始碼吧(三)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/10/18/Udacity-瀏覽器渲染優化/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/10/18/Udacity-瀏覽器渲染優化/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/10/18/Udacity-瀏覽器渲染優化/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://swarchen.github.io/Blog/2016/10/18/Udacity-瀏覽器渲染優化/">
+                <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://swarchen.github.io/Blog/2016/10/18/Udacity-瀏覽器渲染優化/">
+                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://swarchen.github.io/Blog/2016/10/18/Udacity-瀏覽器渲染優化/">
+                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
             
         </div>
         
@@ -616,6 +884,25 @@ Closure 是指說一個function記住了他在被定義的當下時的lexical sc
 <script src="/Blog/assets/js/jquery.fancybox-thumbs.js"></script>
 <script src="/Blog/assets/js/tranquilpeak.js"></script>
 <!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+                 this.page.url = 'http://swarchen.github.io/Blog/2016/10/18/Udacity-瀏覽器渲染優化/';
+                 
+                    this.page.identifier = '2016/10/18/Udacity-瀏覽器渲染優化/';
+                 
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'swarchen';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
 
 
 
